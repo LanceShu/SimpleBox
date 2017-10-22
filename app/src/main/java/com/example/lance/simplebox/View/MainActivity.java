@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements MVPContract.TimeV
 
     @Override
     public void showTimeData(String data) {
+
         String time = data.split("&")[1];
         String calendar = data.split("&")[0];
         String week = data.split("&")[2];
