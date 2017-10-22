@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <include layout="@layout/funcions_layout"/>
 
         </LinearLayout>
 

@@ -10,5 +10,6 @@ public class Content {
 
     public static Handler handler = new Handler();
 
-    public static int UPDATE_TIME = 1;
+    public static final int UPDATE_TIME = 1;
+
 }

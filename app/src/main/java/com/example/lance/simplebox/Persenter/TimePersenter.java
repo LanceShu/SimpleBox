@@ -6,12 +6,12 @@ import com.example.lance.simplebox.MVPContract.MVPContract;
  * Created by Lance on 2017/10/13.
  */
 
-public class PersenterText implements MVPContract.Persenter{
+public class TimePersenter implements MVPContract.TimePersenter{
 
-    private MVPContract.Mode mode;
-    private MVPContract.View view;
+    private MVPContract.TimeMode mode;
+    private MVPContract.TimeView view;
 
-    public PersenterText(MVPContract.Mode mode,MVPContract.View view){
+    public TimePersenter(MVPContract.TimeMode mode, MVPContract.TimeView view){
         this.mode = mode;
         this.view = view;
     }

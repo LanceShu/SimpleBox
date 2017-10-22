@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by Lance on 2017/10/13.
  */
 
-public class TimeMode implements MVPContract.Mode{
+public class TimeMode implements MVPContract.TimeMode{
     @Override
     public String doTimeData() {
         long time = System.currentTimeMillis();
