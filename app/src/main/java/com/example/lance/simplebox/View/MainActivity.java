@@ -1,32 +1,25 @@
 package com.example.lance.simplebox.View;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 import com.example.lance.simplebox.Mode.TimeMode;
 import com.example.lance.simplebox.Persenter.TimePersenter;
 import com.example.lance.simplebox.R;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+public class MainActivity extends AppCompatActivity implements TimeContract.TimeView,View.OnClickListener{
 
-public class MainActivity extends AppCompatActivity implements MVPContract.TimeView,View.OnClickListener{
-
-    private TimePersenter timePersenter = new TimePersenter(TimeMode.getInstance(), (MVPContract.TimeView) this);
+    private TimePersenter timePersenter = new TimePersenter(TimeMode.getInstance(), (TimeContract.TimeView) this);
 
     private Toolbar toolbar;
     private TextView hTime;
@@ -90,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements MVPContract.TimeV
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.sms:
-                Intent smsIntent = new Intent(this,SMSActivity.class);
+                Intent smsIntent = new Intent(this,CallLogActivity.class);
                 startActivity(smsIntent);
                 break;
         }

@@ -2,19 +2,20 @@ package com.example.lance.simplebox.Persenter;
 
 import android.content.Context;
 
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.SMSContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 
 /**
  * Created by Lance on 2017/10/22.
  */
 
-public class SMSPersenter implements MVPContract.SMSPersenter {
+public class SMSPersenter implements SMSContract.SMSPersenter {
 
-    private MVPContract.SMSView smsView;
-    private MVPContract.SMSMode smsMode;
+    private SMSContract.SMSView smsView;
+    private SMSContract.SMSMode smsMode;
     private Context context;
 
-    public SMSPersenter(MVPContract.SMSMode mode,MVPContract.SMSView view,Context context){
+    public SMSPersenter(SMSContract.SMSMode mode, SMSContract.SMSView view, Context context){
         smsMode = mode;
         smsView = view;
         this.context = context;

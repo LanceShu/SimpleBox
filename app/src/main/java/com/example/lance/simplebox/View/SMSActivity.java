@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.lance.simplebox.DataBean.SMSBean;
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.SMSContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 import com.example.lance.simplebox.Mode.SMSMode;
 import com.example.lance.simplebox.Persenter.SMSPersenter;
 import com.example.lance.simplebox.R;
@@ -17,9 +18,9 @@ import java.util.List;
  * Created by Lance on 2017/10/22.
  */
 
-public class SMSActivity extends AppCompatActivity implements MVPContract.SMSView {
+public class SMSActivity extends AppCompatActivity implements SMSContract.SMSView {
 
-    private SMSPersenter smsPersenter = new SMSPersenter(SMSMode.getInstance(),(MVPContract.SMSView)this,this);
+    private SMSPersenter smsPersenter = new SMSPersenter(SMSMode.getInstance(),(SMSContract.SMSView)this,this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

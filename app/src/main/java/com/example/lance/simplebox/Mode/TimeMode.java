@@ -1,10 +1,9 @@
 package com.example.lance.simplebox.Mode;
 
 import android.os.Message;
-import android.provider.Settings;
 
 import com.example.lance.simplebox.Content.Content;
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +12,7 @@ import java.util.Date;
  * Created by Lance on 2017/10/13.
  */
 
-public class TimeMode implements MVPContract.TimeMode{
+public class TimeMode implements TimeContract.TimeMode{
     @Override
     public String doTimeData() {
         long time = System.currentTimeMillis();

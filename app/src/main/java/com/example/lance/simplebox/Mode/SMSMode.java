@@ -5,7 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.example.lance.simplebox.DataBean.SMSBean;
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.SMSContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Lance on 2017/10/22.
  */
 
-public class SMSMode implements MVPContract.SMSMode {
+public class SMSMode implements SMSContract.SMSMode {
 
 
     @Override

@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.SMSActivity"/>
+        <activity android:name=".View.CallLogActivity"/>
     </application>
 
 </manifest>

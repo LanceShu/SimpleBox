@@ -1,17 +1,17 @@
 package com.example.lance.simplebox.Persenter;
 
-import com.example.lance.simplebox.MVPContract.MVPContract;
+import com.example.lance.simplebox.MVPContract.TimeContract;
 
 /**
  * Created by Lance on 2017/10/13.
  */
 
-public class TimePersenter implements MVPContract.TimePersenter{
+public class TimePersenter implements TimeContract.TimePersenter{
 
-    private MVPContract.TimeMode mode;
-    private MVPContract.TimeView view;
+    private TimeContract.TimeMode mode;
+    private TimeContract.TimeView view;
 
-    public TimePersenter(MVPContract.TimeMode mode, MVPContract.TimeView view){
+    public TimePersenter(TimeContract.TimeMode mode, TimeContract.TimeView view){
         this.mode = mode;
         this.view = view;
     }
