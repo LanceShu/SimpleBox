@@ -18,6 +18,11 @@ public class LinkmanMode implements LinkmanContract.LinkmanMode {
 
     private List<LinkmanBean> linkmanBeens;
 
+    public static String getLinkman(List<LinkmanBean> linkmanBeanList,String phone){
+        String man = "";
+        return man;
+    }
+
     @Override
     public List<LinkmanBean> doLickman(Context context) {
 
