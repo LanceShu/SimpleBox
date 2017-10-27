@@ -7,15 +7,21 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
+import com.example.lance.simplebox.DataBean.LinkmanBean;
 import com.example.lance.simplebox.MVPContract.TimeContract;
 import com.example.lance.simplebox.Mode.TimeMode;
 import com.example.lance.simplebox.Persenter.TimePersenter;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.Utils.LinkmanUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TimeContract.TimeView,View.OnClickListener{
 
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //初始化控件;
         initWight();
 
         Content.handler = new Handler(){
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.sms:
-                Intent smsIntent = new Intent(this,CallLogActivity.class);
+                Intent smsIntent = new Intent(this,SMSorCallAcivity.class);
                 startActivity(smsIntent);
                 break;
         }

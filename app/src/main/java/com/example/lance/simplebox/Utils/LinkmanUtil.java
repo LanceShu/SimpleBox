@@ -1,32 +1,26 @@
-package com.example.lance.simplebox.Mode;
+package com.example.lance.simplebox.Utils;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.util.Log;
 
+import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.DataBean.LinkmanBean;
-import com.example.lance.simplebox.MVPContract.LinkmanContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/10/24.
+ * Created by Lance on 2017/10/26.
  */
 
-public class LinkmanMode implements LinkmanContract.LinkmanMode {
+public class LinkmanUtil{
 
-    private List<LinkmanBean> linkmanBeens;
+    public static List<LinkmanBean> getLinkmenData(Context context){
 
-    public static String getLinkman(List<LinkmanBean> linkmanBeanList,String phone){
-        String man = "";
-        return man;
-    }
-
-    @Override
-    public List<LinkmanBean> doLickman(Context context) {
-
-        linkmanBeens = new ArrayList<>();
+        List<LinkmanBean> linkmanBeanList = new ArrayList<>();
+        linkmanBeanList.clear();
 
         Cursor cursor = context.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,null,null,null);
         if(cursor.moveToFirst()){
@@ -37,7 +31,7 @@ public class LinkmanMode implements LinkmanContract.LinkmanMode {
                 linkmanBean.setContactId(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID)));
 
                 Cursor phone = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null
-                                , ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + linkmanBean.getContactId(),null,null);
+                        , ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + linkmanBean.getContactId(),null,null);
                 if(phone.moveToFirst()){
                     do{
                         String p = phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
@@ -45,18 +39,12 @@ public class LinkmanMode implements LinkmanContract.LinkmanMode {
                     }while(phone.moveToNext());
                     phone.close();
                 }
-                linkmanBeens.add(linkmanBean);
+                linkmanBeanList.add(linkmanBean);
+                Log.e("name",linkmanBean.getName());
             }while(cursor.moveToNext());
             cursor.close();
         }
-        return linkmanBeens;
+        return linkmanBeanList;
     }
 
-    private static LinkmanMode linkmanMode;
-    public static LinkmanMode getInstance(){
-        if(linkmanMode == null){
-            linkmanMode = new LinkmanMode();
-        }
-        return linkmanMode;
-    }
 }

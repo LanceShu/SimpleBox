@@ -1,12 +1,11 @@
-package com.example.lance.simplebox.Mode;
+package com.example.lance.simplebox.Utils;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.DataBean.SMSBean;
-import com.example.lance.simplebox.MVPContract.SMSContract;
-import com.example.lance.simplebox.MVPContract.TimeContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,18 +13,17 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/10/22.
+ * Created by Lance on 2017/10/26.
  */
 
-public class SMSMode implements SMSContract.SMSMode {
+public class SMSUtil {
 
+    public static List<SMSBean> getSMSData(Context context){
 
-    @Override
-    public List<SMSBean> doSMSData(Context context) {
         List<SMSBean> smsBeanList = new ArrayList<>();
+        smsBeanList.clear();
 
         final String SMS_URI_ALL = "content://sms/";
-        StringBuilder smsBuilder = new StringBuilder();
 
         try{
             Uri uri = Uri.parse(SMS_URI_ALL);
@@ -61,17 +59,6 @@ public class SMSMode implements SMSContract.SMSMode {
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return smsBeanList;
-    }
-
-    private static SMSMode smsMode;
-
-    public static SMSMode getInstance(){
-        if(smsMode == null){
-            smsMode = new SMSMode();
-
-        }
-        return smsMode;
     }
 }

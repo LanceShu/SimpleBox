@@ -1,4 +1,4 @@
-package com.example.lance.simplebox.Mode;
+package com.example.lance.simplebox.Utils;
 
 import android.Manifest;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.provider.CallLog;
 import android.support.v4.app.ActivityCompat;
 
 import com.example.lance.simplebox.DataBean.CallLogBean;
-import com.example.lance.simplebox.MVPContract.CallLogContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,17 +15,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/10/24.
+ * Created by Lance on 2017/10/26.
  */
 
-public class CallLogMode implements CallLogContract.CallLogMode {
+public class CallLogUtil {
 
-    private List<CallLogBean> callLogBeen;
+    public static List<CallLogBean> getCallLogData(Context context){
 
-    //获取系统的通话记录;
-    @Override
-    public List<CallLogBean> doCallLog(Context context) {
-        callLogBeen = new ArrayList<>();
+        List<CallLogBean> callLogBeenList = new ArrayList<>();
+        callLogBeenList.clear();
+
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -54,18 +52,10 @@ public class CallLogMode implements CallLogContract.CallLogMode {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date d = new Date(duration);
                 callLogBean.setDuration(format.format(d));
-                callLogBeen.add(callLogBean);
+                callLogBeenList.add(callLogBean);
             }while(cursor.moveToNext());
             cursor.close();
         }
-        return callLogBeen;
-    }
-
-    private static CallLogMode callLogMode;
-    public static CallLogMode getInstance(){
-        if(callLogMode == null){
-            callLogMode = new CallLogMode();
-        }
-        return callLogMode;
+        return callLogBeenList;
     }
 }
