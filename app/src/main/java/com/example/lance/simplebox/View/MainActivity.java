@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     private TextView hWeather;
 
     private LinearLayout smsLayout;
+    private LinearLayout pictureBed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,11 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         hWeather = (TextView) findViewById(R.id.hWeather);
 
         smsLayout = (LinearLayout) findViewById(R.id.sms);
+        pictureBed = (LinearLayout) findViewById(R.id.picture);
 
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
+        pictureBed.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
             case R.id.sms:
                 Intent smsIntent = new Intent(this,SMSorCallAcivity.class);
                 startActivity(smsIntent);
+                break;
+            case R.id.picture:
+                Intent picIntent = new Intent(this,PictureBedActivity.class);
+                startActivity(picIntent);
                 break;
         }
     }
