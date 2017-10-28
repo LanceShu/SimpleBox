@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.SMSorCallAcivity"/>
+        <activity android:name=".View.PictureBedActivity" android:launchMode="singleTask"/>
     </application>
 
 </manifest>
