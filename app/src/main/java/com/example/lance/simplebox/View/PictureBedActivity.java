@@ -151,6 +151,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void openCamera() {
+
         if(Build.VERSION.SDK_INT >= 24){
             imageUri = FileProvider.getUriForFile(PictureBedActivity.this
                     ,"com.example.lance.simplebox",outputImage);
