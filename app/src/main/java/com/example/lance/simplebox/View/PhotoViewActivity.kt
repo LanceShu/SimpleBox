@@ -35,6 +35,7 @@ class PhotoViewActivity : AppCompatActivity(){
         bitmap = BitmapFactory.decodeFile(imagePath)
         photoView.setImageBitmap(bitmap)
         mAttcher!!.update()
+
     }
 
 }
