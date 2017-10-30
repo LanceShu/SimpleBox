@@ -34,14 +34,15 @@
         android:layout_height="30dp"
         android:text="↓↓请选择照片↓↓"
         android:textSize="12sp"
-        android:gravity="center"/>
+        android:gravity="center" />
 
     <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@mipmap/select_picture" />
+        android:src="@mipmap/select_picture"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:layout_marginTop="12dp"

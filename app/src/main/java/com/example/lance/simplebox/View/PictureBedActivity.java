@@ -21,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -107,6 +108,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }else{
                     openPicuture();
                 }
+
                 dialog.dismiss();
             }
         });
@@ -114,6 +116,9 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         takeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dialog.dismiss();
+
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this, Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(PictureBedActivity.this
@@ -131,7 +136,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                     }
                     openCamera();
                 }
-                dialog.dismiss();
+
             }
         });
         /**取消*/
@@ -145,6 +150,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void openPicuture() {
+
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
         startActivityForResult(intent,SELECT_PICTURE);
@@ -180,7 +186,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case SELECT_PICTURE:
-                if(requestCode == RESULT_OK){
+                if(resultCode == RESULT_OK){
                     if(Build.VERSION.SDK_INT >= 19){
                         handleImageOnKitKat(data);
                     }else{
@@ -194,6 +200,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private void handleImageOnKitKat(Intent data) {
         String imagePath = null;
         Uri uri = data.getData();
+        Log.e("path123456",uri+"");
         if(DocumentsContract.isDocumentUri(this,uri)){
             String documentId = DocumentsContract.getDocumentId(uri);
             if("com.android.providers.media.documents".equals(uri.getAuthority())){
@@ -210,6 +217,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         }else if("file".equalsIgnoreCase(uri.getScheme())){
             imagePath = uri.getPath();
         }
+        Log.e("path333",imagePath);
         displayImage(imagePath);
     }
 
@@ -223,7 +231,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         if(imagePath != null){
             Glide.with(this).load(imagePath).into(picture);
         }else{
-            Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"获取图片失败",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -245,14 +253,14 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     openCamera();
                 }else{
-                    Snackbar.make(toUrl,"You denied the permission",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(toUrl,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
             case 2:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     openPicuture();
                 }else{
-                    Snackbar.make(toPicture,"You denied the permission",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(toPicture,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
         }
