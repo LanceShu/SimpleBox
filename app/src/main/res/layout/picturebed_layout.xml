@@ -36,13 +36,20 @@
         android:textSize="12sp"
         android:gravity="center" />
 
-    <ImageView
-        android:id="@+id/picture"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@mipmap/select_picture"
-        android:scaleType="centerCrop"/>
+        android:layout_weight="4">
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/select_picture"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
 
     <TextView
         android:layout_marginTop="12dp"

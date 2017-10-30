@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,7 +26,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
 
 import java.io.File;
@@ -48,10 +46,18 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private Button toUrl;
     private Button toPicture;
     private BottomSheetDialog dialog;
+    private Button selectPicture;
+    private Button takeCamera;
+    private Button lookPicture;
+    private Button cancel;
 
+    //利用临时文件存储拍照的照片;
     private File outputImage;
     private Uri imageUri;
-    private String path;
+    //图册里image的路径;
+    private String ImagePath;
+
+    private boolean isHasPicture = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,9 +99,16 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private void selectPictureOrTakeCamera() {
         dialog = new BottomSheetDialog(this,R.style.DialogTheme);
         dialog.setContentView(R.layout.select_or_take_photo);
-        Button selectPicture = (Button) dialog.findViewById(R.id.select_picture);
-        Button takeCamera = (Button) dialog.findViewById(R.id.take_camera);
-        Button cancel = (Button) dialog.findViewById(R.id.cancel);
+        selectPicture = (Button) dialog.findViewById(R.id.select_picture);
+        takeCamera = (Button) dialog.findViewById(R.id.take_camera);
+        lookPicture = (Button) dialog.findViewById(R.id.look_picture);
+        cancel = (Button) dialog.findViewById(R.id.cancel);
+
+        if(isHasPicture){
+            lookPicture.setVisibility(View.VISIBLE);
+        }else{
+            lookPicture.setVisibility(View.GONE);
+        }
 
         /**选择照片*/
         selectPicture.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +153,18 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+        //查看原图；
+        lookPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Intent picToView = new Intent(PictureBedActivity.this, PhotoViewActivity.class);
+                picToView.putExtra("imagePath",ImagePath);
+                startActivity(picToView);
+            }
+        });
+
         /**取消*/
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +208,9 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                         e.printStackTrace();
                     }
                     bitmap.createScaledBitmap(bitmap,100,100,true);
+                    isHasPicture = true;
+                    ImagePath = outputImage.getAbsolutePath();
+                    Log.e("outputimage6666:",ImagePath);
                     picture.setImageBitmap(bitmap);
                 }
                 break;
@@ -230,17 +258,22 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
 
     private void displayImage(String imagePath) {
         if(imagePath != null){
-            Glide.with(this).load(imagePath).into(picture);
+            isHasPicture = true;
+            ImagePath = imagePath;
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            bitmap.createScaledBitmap(bitmap,100,100,true);
+            picture.setImageBitmap(bitmap);
         }else{
             Toast.makeText(this,"获取图片失败",Toast.LENGTH_SHORT).show();
         }
     }
 
     private String getImagePath(Uri uri, String selection) {
+        String path = "";
         Cursor cursor = getContentResolver().query(uri,null,selection,null,null);
         if(cursor != null){
             if(cursor.moveToFirst()){
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                 path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
             }
             cursor.close();
         }
