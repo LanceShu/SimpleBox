@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:background="#00000000">
 
     <Button
@@ -22,10 +22,21 @@
         android:textSize="16sp"/>
 
     <Button
-        android:id="@+id/cancel"
+        android:id="@+id/look_picture"
+        android:visibility="gone"
+        android:layout_below="@id/take_camera"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
+        android:text="查看原图"
+        android:textColor="@color/font"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/look_picture"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:text="取消"
         android:textSize="16sp"
         android:textColor="@color/font" />

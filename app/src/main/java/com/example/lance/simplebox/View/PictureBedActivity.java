@@ -28,6 +28,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private ImageView picture;
     private Button toUrl;
     private Button toPicture;
+    private BottomSheetDialog dialog;
 
     private File outputImage;
 
@@ -69,7 +70,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void selectPictureOrTakeCamera() {
-        final BottomSheetDialog dialog = new BottomSheetDialog(this,R.style.DialogTheme);
+        dialog = new BottomSheetDialog(this,R.style.DialogTheme);
         dialog.setContentView(R.layout.select_or_take_photo);
         Button selectPicture = (Button) dialog.findViewById(R.id.select_picture);
         Button takeCamera = (Button) dialog.findViewById(R.id.take_camera);
