@@ -153,7 +153,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/backup"
+                    android:id="@+id/document_back_up"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="6dp"
@@ -172,7 +172,31 @@
                         android:layout_marginLeft="16dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="短信备份"
+                        android:text="文档备份"
+                        android:textColor="@color/font"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/software_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/functionBack"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/software" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="软件管理"
                         android:textColor="@color/font"
                         android:textSize="16sp" />
 

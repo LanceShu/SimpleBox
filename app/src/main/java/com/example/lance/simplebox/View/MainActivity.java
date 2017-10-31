@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
 
     private LinearLayout smsLayout;
     private LinearLayout pictureBed;
+    private LinearLayout documentUpDate;
+    private LinearLayout softwareManagement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,10 +75,15 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
 
         smsLayout = (LinearLayout) findViewById(R.id.sms);
         pictureBed = (LinearLayout) findViewById(R.id.picture);
+        documentUpDate= (LinearLayout) findViewById(R.id.document_back_up);
+        softwareManagement= (LinearLayout) findViewById(R.id.software_management);
 
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
         pictureBed.setOnClickListener(this);
+        documentUpDate.setOnClickListener(this);
+        softwareManagement.setOnClickListener(this);
+
     }
 
     @Override
@@ -99,6 +106,14 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
             case R.id.picture:
                 Intent picIntent = new Intent(this,PictureBedActivity.class);
                 startActivity(picIntent);
+                break;
+            case R.id.document_back_up:
+                Intent documentBackUp =new Intent(this,DocumentBackUpActivity.class);
+                startActivity(documentBackUp);
+                break;
+            case R.id.software_management:
+                Intent SoftwareManagement =new Intent(this,SoftwareManagementActivity.class);
+                startActivity(SoftwareManagement);
                 break;
         }
     }
