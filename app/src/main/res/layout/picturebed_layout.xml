@@ -42,7 +42,7 @@
         android:layout_weight="4">
 
         <ImageView
-            android:id="@+id/picture"
+            android:id="@+id/bpicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/select_picture"

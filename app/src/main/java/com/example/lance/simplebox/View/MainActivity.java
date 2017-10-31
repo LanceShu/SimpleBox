@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //初始化控件;
+        //初始化控件
         initWight();
 
         Content.handler = new Handler(){
