@@ -26,11 +26,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Lance on 2017/10/28.
@@ -71,7 +76,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private void initWight() {
 
         back = (ImageView) findViewById(R.id.back);
-        picture = (ImageView) findViewById(R.id.picture);
+        picture = (ImageView) findViewById(R.id.bpicture);
         toUrl = (Button) findViewById(R.id.toUrl);
         toPicture = (Button) findViewById(R.id.topicture);
 
@@ -79,6 +84,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         picture.setOnClickListener(this);
         toUrl.setOnClickListener(this);
         toPicture.setOnClickListener(this);
+
     }
 
     @Override
