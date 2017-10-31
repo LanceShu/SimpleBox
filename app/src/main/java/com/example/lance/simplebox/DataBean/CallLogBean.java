@@ -9,7 +9,7 @@ public class CallLogBean {
 
     //通话时长
     private String duration;
-    //呼出/呼入
+    //呼出/呼入/未接
     private String type;
     //通话时间;
     private String date;
