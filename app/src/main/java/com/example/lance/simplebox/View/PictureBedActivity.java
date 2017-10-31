@@ -97,6 +97,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 selectPictureOrTakeCamera();
                 break;
             case R.id.toUrl:
+
                 break;
             case R.id.topicture:
                 break;
