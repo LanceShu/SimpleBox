@@ -33,14 +33,14 @@ public class DocumentBackUpActivity extends AppCompatActivity{
         setContentView(R.layout.document_back_up);
         initWidget();
         initData();
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView.setAdapter(new ExpandableAdapter(DocumentBackUpActivity.this,childArray,groupArray));
     }
 
     public void initWidget() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.font));
         toolbar.setTitle("文档备份");
-        expandableListView = (ExpandableListView)findViewById(R.id.expandableListView);
-        expandableListView.setAdapter(new ExpandableAdapter(DocumentBackUpActivity.this ));
     }
 
      public void initData(){

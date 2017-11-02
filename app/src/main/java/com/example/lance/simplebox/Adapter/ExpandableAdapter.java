@@ -1,9 +1,14 @@
 package com.example.lance.simplebox.Adapter;
 
 import android.app.Activity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by xiyu0 on 2017/11/1.
@@ -11,58 +16,73 @@ import android.widget.BaseExpandableListAdapter;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
    private Activity activity;
+    private  List<List<String>> childArray;
+    private List<String> groupArray;
 
-    public ExpandableAdapter(Activity a ){
+    public ExpandableAdapter(Activity a ,List<List<String>> childArray,  List<String> groupArray){
         activity=a;
+        this.childArray=childArray;
+        this.groupArray=groupArray;
     }
 
-    @Override
-    public int getGroupCount() {
-        return 0;
-    }
-
-    @Override
-    public int getChildrenCount(int groupPosition) {
-        return 0;
-    }
-
-    @Override
-    public Object getGroup(int groupPosition) {
-        return null;
-    }
-
-    @Override
-    public Object getChild(int groupPosition, int childPosition) {
+    public  Object getChild(int  groupPosition, int  childPosition)
+    {
         return  childArray.get(groupPosition).get(childPosition);
     }
-
-    @Override
-    public long getGroupId(int groupPosition) {
-        return 0;
+    public  long  getChildId(int  groupPosition, int  childPosition)
+    {
+        return  childPosition;
     }
-
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+    public  int  getChildrenCount(int  groupPosition)
+    {
+        return  childArray.get(groupPosition).size();
     }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
+    public  View getChildView(int  groupPosition, int  childPosition,
+                              boolean  isLastChild, View convertView, ViewGroup parent)
+    {
+        String string = childArray.get(groupPosition).get(childPosition);
+        return  getGenericView(string);
     }
-
-    @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        return null;
+    // group method stub
+    public  Object getGroup(int  groupPosition)
+    {
+        return  groupArray.get(groupPosition);
     }
-
-    @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        return null;
+    public  int  getGroupCount()
+    {
+        return  groupArray.size();
     }
-
-    @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+    public  long  getGroupId(int  groupPosition)
+    {
+        return  groupPosition;
+    }
+    public  View getGroupView(int  groupPosition, boolean  isExpanded,
+                              View convertView, ViewGroup parent)
+    {
+        String string = String.valueOf(groupArray.get(groupPosition));
+        return  getGenericView(string);
+    }
+    // View stub to create Group/Children 's View
+    public TextView getGenericView(String string)
+    {
+        // Layout parameters for the ExpandableListView
+        AbsListView.LayoutParams layoutParams = new  AbsListView.LayoutParams(
+                ViewGroup.LayoutParams.FILL_PARENT, 64 );
+        TextView text = new  TextView(activity);
+        text.setLayoutParams(layoutParams);
+        // Center the text vertically
+        text.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+        // Set the text starting position
+        text.setPadding(36 , 0 , 0 , 0 );
+        text.setText(string);
+        return  text;
+    }
+    public  boolean  hasStableIds()
+    {
+        return  false ;
+    }
+    public  boolean  isChildSelectable(int  groupPosition, int  childPosition)
+    {
+        return  true ;
     }
 }
