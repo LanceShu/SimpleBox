@@ -59,6 +59,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     public  View getGroupView(int  groupPosition, boolean  isExpanded,
                               View convertView, ViewGroup parent)
     {
+        //
         String string = String.valueOf(groupArray.get(groupPosition));
         return  getGenericView(string);
     }
