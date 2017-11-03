@@ -22,5 +22,6 @@ public class Content {
     public static List<LinkmanBean> linkmanBeanList = new ArrayList<>();
     //获取信息数据;
     public static List<SMSBean> smsBeanList = new ArrayList<>();
+    //
 
 }

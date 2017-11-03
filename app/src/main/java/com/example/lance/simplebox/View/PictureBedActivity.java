@@ -10,6 +10,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -22,16 +24,27 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.Utils.ImageToURLUtil;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -49,6 +62,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
 
     private ImageView back;
     private ImageView picture;
+    private EditText imageEdit;
     private Button toUrl;
     private Button toPicture;
     private BottomSheetDialog dialog;
@@ -61,7 +75,9 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private File outputImage;
     private Uri imageUri;
     //图册里image的路径;
-    private String ImagePath;
+    private String ImagePath = "";
+
+    public static Handler handler ;
 
     private boolean isHasPicture = false;
 
@@ -71,12 +87,28 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.picturebed_layout);
         //初始化控件
         initWight();
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                String imageURl = (String) msg.obj;
+                switch (msg.what){
+                    case ImageToURLUtil.SUCCESS:
+                        imageEdit.setText(imageURl);
+                        break;
+                    case ImageToURLUtil.FAILURE:
+                        imageEdit.setText(imageURl);
+                        break;
+                }
+            }
+        };
     }
 
     private void initWight() {
 
         back = (ImageView) findViewById(R.id.back);
         picture = (ImageView) findViewById(R.id.bpicture);
+        imageEdit = (EditText) findViewById(R.id.imageUrlEdit);
         toUrl = (Button) findViewById(R.id.toUrl);
         toPicture = (Button) findViewById(R.id.topicture);
 
@@ -93,13 +125,24 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
             case R.id.back:
                 finish();
                 break;
-            case R.id.picture:
+            case R.id.bpicture:
                 selectPictureOrTakeCamera();
                 break;
             case R.id.toUrl:
-
+                //图片转URL;
+                if(ImagePath.equals("")){
+                    Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
+                }else{
+                    new Thread(new ImageToURLUtil(ImagePath)).start();
+                }
                 break;
             case R.id.topicture:
+                ImagePath = imageEdit.getText().toString();
+                Glide.with(this)
+                        .load(imageEdit.getText().toString())
+                        .fitCenter()
+                        .into(picture);
+                isHasPicture = true;
                 break;
         }
     }
@@ -218,7 +261,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                     bitmap.createScaledBitmap(bitmap,100,100,true);
                     isHasPicture = true;
                     ImagePath = outputImage.getAbsolutePath();
-                    Log.e("outputimage6666:",ImagePath);
+                    Log.e("outputimage6666:",outputImage.getPath());
                     picture.setImageBitmap(bitmap);
                 }
                 break;
@@ -237,6 +280,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private void handleImageOnKitKat(Intent data) {
         String imagePath = null;
         Uri uri = data.getData();
+
         Log.e("path123456",uri+"");
         if(DocumentsContract.isDocumentUri(this,uri)){
             String documentId = DocumentsContract.getDocumentId(uri);
