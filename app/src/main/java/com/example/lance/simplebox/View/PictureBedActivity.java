@@ -1,6 +1,7 @@
 package com.example.lance.simplebox.View;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -71,6 +73,8 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private Button lookPicture;
     private Button cancel;
 
+    private ProgressDialog progressDialog;
+
     //利用临时文件存储拍照的照片;
     private File outputImage;
     private Uri imageUri;
@@ -80,6 +84,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     public static Handler handler ;
 
     private boolean isHasPicture = false;
+    private int watchType = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,9 +100,11 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 switch (msg.what){
                     case ImageToURLUtil.SUCCESS:
                         imageEdit.setText(imageURl);
+                        progressDialog.dismiss();
                         break;
                     case ImageToURLUtil.FAILURE:
                         imageEdit.setText(imageURl);
+                        progressDialog.dismiss();
                         break;
                 }
             }
@@ -105,6 +112,9 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initWight() {
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
 
         back = (ImageView) findViewById(R.id.back);
         picture = (ImageView) findViewById(R.id.bpicture);
@@ -133,14 +143,16 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 if(ImagePath.equals("")){
                     Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
                 }else{
+                    progressDialog.show();
                     new Thread(new ImageToURLUtil(ImagePath)).start();
                 }
                 break;
             case R.id.topicture:
+                watchType = 2;
                 ImagePath = imageEdit.getText().toString();
                 Glide.with(this)
                         .load(imageEdit.getText().toString())
-                        .fitCenter()
+                        .centerCrop()
                         .into(picture);
                 isHasPicture = true;
                 break;
@@ -166,6 +178,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View view) {
 
+                watchType = 1;
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(PictureBedActivity.this
@@ -182,7 +195,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View view) {
 
-                dialog.dismiss();
+                watchType = 1;
 
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this, Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED){
@@ -201,6 +214,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                     }
                     openCamera();
                 }
+                dialog.dismiss();
 
             }
         });
@@ -212,6 +226,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 dialog.dismiss();
                 Intent picToView = new Intent(PictureBedActivity.this, PhotoViewActivity.class);
                 picToView.putExtra("imagePath",ImagePath);
+                picToView.putExtra("watchType",watchType);
                 startActivity(picToView);
             }
         });
