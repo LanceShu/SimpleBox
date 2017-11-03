@@ -60,10 +60,11 @@
         android:gravity="center_vertical"/>
 
     <EditText
+        android:id="@+id/imageUrlEdit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="www.baidu.com"
+        android:hint="请输入URL"
         android:gravity="center"
         android:textColor="@color/font"
         android:textSize="16sp"
