@@ -74,7 +74,11 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         // Set the text starting position
         text.setPadding(32 , 0 , 0 , 0 );
         text.setText(string);
-        Thread.sleep();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return  text;
     }
     public  boolean  hasStableIds()
