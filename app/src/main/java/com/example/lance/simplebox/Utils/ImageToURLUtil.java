@@ -21,6 +21,9 @@ import java.util.Scanner;
 
 public class ImageToURLUtil implements Runnable{
 
+    //服务器地址;
+    private static final String urls = "http://123.207.145.251:8080/SimpleBox/ImageUrl";
+
     private String imageUrl;
     public  final static int SUCCESS = 1;
     public  final static int FAILURE = 2;
@@ -31,7 +34,6 @@ public class ImageToURLUtil implements Runnable{
 
     private void imageToUrl(String imagePath){
 
-        final String urls = "http://123.207.145.251:8080/SimpleBox/ImageUrl";
         try {
             URL url = new URL(urls);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
