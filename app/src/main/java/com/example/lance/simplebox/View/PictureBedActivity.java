@@ -148,13 +148,17 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.topicture:
-                watchType = 2;
-                ImagePath = imageEdit.getText().toString();
-                Glide.with(this)
-                        .load(imageEdit.getText().toString())
-                        .centerCrop()
-                        .into(picture);
-                isHasPicture = true;
+                if(imageEdit.getText().toString().length() == 0){
+                    watchType = 2;
+                    ImagePath = imageEdit.getText().toString();
+                    Glide.with(this)
+                            .load(imageEdit.getText().toString())
+                            .fitCenter()
+                            .into(picture);
+                    isHasPicture = true;
+                }else{
+                    Toast.makeText(this,"请输入图片的URL",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
