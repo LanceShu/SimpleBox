@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="51dp"
+    android:id="@+id/layout_child"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/line"
+        >
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/select1"
+            android:id="@+id/chlid_select"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_toRightOf="@id/chlid_select"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/chlid_pic"
+            />
+
+        <TextView
+            android:id="@+id/child_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@id/chlid_pic"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#AAA"
+        android:layout_alignTop="@id/line"
+        />
+</RelativeLayout>

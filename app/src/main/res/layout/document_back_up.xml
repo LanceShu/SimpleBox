@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
-    <include layout="@layout/toolbar"/>
-    <ExpandableListView
-        android:id ="@+id/expandableListView"
-        android:layout_width ="match_parent"
-        android:layout_height ="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <include layout="@layout/toolbar"/>
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#aaa"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_margin="10dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius"
+                android:text="取消"
+                android:textSize="14sp"
+                android:textColor="#FFF"
+                />
+
+            <Button
+                android:id="@+id/back_up"
+                android:layout_margin="10dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius"
+                android:layout_alignParentEnd="true"
+                android:text="上传"
+                android:textSize="14sp"
+                android:textColor="#FFF"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>
