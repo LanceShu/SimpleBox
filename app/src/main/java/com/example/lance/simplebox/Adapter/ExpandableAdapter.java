@@ -76,9 +76,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View view=convertView;
-        GroupHolder groupholder = null;//**
-        String group=(String)getGroup(groupPosition);
-
+        GroupHolder groupholder = null;
         if(view!=null){
             groupholder = (GroupHolder) view.getTag();
         }else{
@@ -94,9 +92,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override   //加载子元素并显示
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View view=convertView;
-        ChildHolder childHolder=null;//**
-        List<String> child =(List<String>) getChild(groupPosition,childPosition);
-
+        ChildHolder childHolder=null;
         if(view!=null){
             childHolder= (ChildHolder) view.getTag();
         }else {
@@ -107,7 +103,6 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             childHolder.imageView2= (ImageView) view.findViewById(R.id.chlid_select);
             childHolder.relativeLayout= (RelativeLayout) view.findViewById(R.id.layout_child);
             view.setTag(childHolder);
-            childHolder.imageView2.setTag();
         }
         final ChildHolder finalChildHolder = childHolder;
         finalChildHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
