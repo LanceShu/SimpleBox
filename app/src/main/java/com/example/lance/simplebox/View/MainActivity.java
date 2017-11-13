@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
 
     //短信；
     private LinearLayout smsLayout;
+    //时光简记
+    private LinearLayout timeMemory;
     //图床;
     private LinearLayout pictureBed;
     //文档备份;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         hWeather = (TextView) findViewById(R.id.hWeather);
 
         smsLayout = (LinearLayout) findViewById(R.id.sms);
+        timeMemory = (LinearLayout) findViewById(R.id.time_memory);
         pictureBed = (LinearLayout) findViewById(R.id.picture);
         documentUpDate= (LinearLayout) findViewById(R.id.document_back_up);
         softwareManagement= (LinearLayout) findViewById(R.id.software_management);
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
 
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
+        timeMemory.setOnClickListener(this);
         pictureBed.setOnClickListener(this);
         documentUpDate.setOnClickListener(this);
         softwareManagement.setOnClickListener(this);
@@ -102,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
             case R.id.sms:
                 Intent smsIntent = new Intent(this,SMSorCallAcivity.class);
                 startActivity(smsIntent);
+                break;
+            case R.id.time_memory:
+                Intent timeIntent = new Intent(this,TimeMemActivity.class);
+                startActivity(timeIntent);
                 break;
             case R.id.picture:
                 Intent picIntent = new Intent(this,PictureBedActivity.class);

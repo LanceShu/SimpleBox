@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TimeView">
+
+        <attr name="borderColor" format="color"/>
+        <attr name="borderSize" format="integer"/>
+        <attr name="secondColor" format="color"/>
+        <attr name="secondSize" format="integer"/>
+        <attr name="minColor" format="color"/>
+        <attr name="minSize" format="integer"/>
+        <attr name="hourColor" format="color"/>
+        <attr name="hourSize" format="integer"/>
+
+    </declare-styleable>
+
+</resources>
