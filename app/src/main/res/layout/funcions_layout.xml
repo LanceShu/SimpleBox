@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/headerBack">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,7 +41,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="25dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/phone" />
 
@@ -66,7 +67,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="25dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/sms" />
 
@@ -92,7 +93,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="25dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/linkman" />
 
@@ -136,7 +137,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="25dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/picture" />
 
@@ -162,7 +163,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="24dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/smss" />
 
@@ -186,7 +187,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="24dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/software" />
 
@@ -212,7 +213,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="20dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/transfor" />
 
@@ -238,7 +239,7 @@
 
                     <ImageView
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center"
                         android:src="@mipmap/cloudtrans" />
 

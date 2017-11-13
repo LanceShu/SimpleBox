@@ -13,7 +13,7 @@ import com.example.lance.simplebox.R;
  * Created by xiyu0 on 2017/10/31.
  */
 
-public class SoftwareManagementActivity extends AppCompatActivity{
+public class SoftManageActivity extends AppCompatActivity{
     private Toolbar toolbar;
     @SuppressLint("ResourceAsColor")
     @Override
