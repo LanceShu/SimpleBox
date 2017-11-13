@@ -2,13 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/search"
-        android:icon="@mipmap/find"
-        android:title="搜索"
-        app:showAsAction="always"/>
+    <group android:checkableBehavior="single">
 
-    <item android:id="@+id/theme"
-        android:icon="@mipmap/ic_launcher"
-        android:title="主题"
-        app:showAsAction="never"/>
+        <item android:id="@+id/search"
+            android:icon="@mipmap/find"
+            android:title="搜索"
+            app:showAsAction="never"/>
+
+        <item android:id="@+id/theme"
+            android:icon="@mipmap/ic_launcher"
+            android:title="主题"
+            app:showAsAction="never"/>
+
+    </group>
 </menu>
