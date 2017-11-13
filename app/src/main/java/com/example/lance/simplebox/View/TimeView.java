@@ -181,7 +181,7 @@ public class TimeView extends View {
         minColor = ta.getColor(R.styleable.TimeView_minColor,Color.BLACK);
         minSize = ta.getInt(R.styleable.TimeView_minSize,4);
         hourColor = ta.getColor(R.styleable.TimeView_hourColor,Color.BLACK);
-        hourSize = ta.getInt(R.styleable.TimeView_hourSize,7)
+        hourSize = ta.getInt(R.styleable.TimeView_hourSize,7);
         ta.recycle();
     }
 
