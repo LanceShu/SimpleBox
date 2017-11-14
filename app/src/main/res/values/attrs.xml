@@ -11,6 +11,12 @@
         <attr name="minSize" format="integer"/>
         <attr name="hourColor" format="color"/>
         <attr name="hourSize" format="integer"/>
+        <attr name="lineColor" format="color"/>
+
+        <attr name="borderType">
+            <enum name="stroke" value="0"/>
+            <enum name="fill" value="1"/>
+        </attr>
 
     </declare-styleable>
 
