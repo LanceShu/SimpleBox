@@ -3,7 +3,6 @@ package com.example.lance.simplebox.Mode;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.lance.simplebox.DataBean.StrBean;
 import com.example.lance.simplebox.Utils.FileUtils;
 
 import java.util.ArrayList;
@@ -34,6 +33,12 @@ public class DocumenMode {
         return wordList;
     }
 
+    public static List<String> getWordUriList(Context context){
+        List<String> wordList =new ArrayList<String>();
+        wordList=FileUtils.getSpecificTypeOfFile(context,new String[]{".docx",".doc"});
+        return wordList;
+    }
+
     public static List<String> getExcelList(Context context){
         List <String> fullList2=new ArrayList<String>();
         List<String> excelList =new ArrayList<String>();
@@ -50,6 +55,12 @@ public class DocumenMode {
                 }
             }
         }
+        return excelList;
+    }
+
+    public static List<String> getExcelUriList(Context context){
+        List<String> excelList =new ArrayList<String>();
+        excelList=FileUtils.getSpecificTypeOfFile(context,new String[]{".xls",".xlsx"});
         return excelList;
     }
 

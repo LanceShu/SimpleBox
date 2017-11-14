@@ -1,8 +1,6 @@
 package com.example.lance.simplebox.View;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,20 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
 
 import com.example.lance.simplebox.Adapter.ExpandableAdapter;
-import com.example.lance.simplebox.Content.Content;
-import com.example.lance.simplebox.DataBean.StrBean;
+import com.example.lance.simplebox.DataBean.ChildBean;
 import com.example.lance.simplebox.Mode.DocumenMode;
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.Utils.FileUtils;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Created by xiyu0 on 2017/10/31.
@@ -33,11 +27,13 @@ import java.util.List;
 public class DocumentBackUpActivity extends AppCompatActivity implements View.OnClickListener,
         ExpandableListView.OnGroupClickListener,ExpandableListView.OnChildClickListener{
     private List<String> groupArray;
-    private  List<List<String>> childArray;
+    private  List<ChildBean> childArray;
     private Button buttonCancel;
     private Button buttonBackUp;
     private Toolbar toolbar;
     private  ExpandableListView expandableListView ;
+    private ExpandableAdapter expandableAdapter;
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,13 +60,32 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
 
 
      public void initData(){
-        childArray=new ArrayList<List<String>>();
-        childArray.add(DocumenMode.getWordList(this));
-        childArray.add(DocumenMode.getExcelList(this));
+        ChildBean childBean1=new ChildBean();
+        ChildBean childBean2=new ChildBean();
+        childArray=new ArrayList<ChildBean>();
+        List<Boolean>list1=new ArrayList<Boolean>();
+        List<Boolean>list2=new ArrayList<Boolean>();
+        List<String> listW =DocumenMode.getWordList(this);
+        List<String> listE =DocumenMode.getExcelList(this);
+        childBean1.setFileName(listW);
+        childBean1.setFileUri(DocumenMode.getWordUriList(this));
+        for(int i=0;i<listW.size();i++){
+            list1.add(false);
+        }
+        childBean1.setSelect(list1);
+        childBean2.setFileName(listE);
+        childBean2.setFileUri(DocumenMode.getExcelUriList(this));
+         for(int i=0;i<listE.size();i++){
+             list2.add(false);
+         }
+         childBean2.setSelect(list2);
+        childArray.add(childBean1);
+        childArray.add(childBean2);
         groupArray = new  ArrayList<String>();
         groupArray.add("Word" );
         groupArray.add("Excel" );
-        expandableListView.setAdapter(new ExpandableAdapter(DocumentBackUpActivity.this,childArray,groupArray));
+        expandableAdapter=new ExpandableAdapter(DocumentBackUpActivity.this,childArray,groupArray);
+        expandableListView.setAdapter(expandableAdapter);
     }
 
     @Override
@@ -79,7 +94,12 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
             case R.id.cancel:
                 finish();
             case R.id.back_up:
+               List<ChildBean> childListBean =expandableAdapter.getChildMessage();
+                for(int i=0;i<childListBean.size();i++){
+                    Log.e("tag",childListBean.get(i).getFileName().get(0));
+                    Log.e("tag",childListBean.get(i).getFileUri().get(0));
 
+                }
         }
     }
 
