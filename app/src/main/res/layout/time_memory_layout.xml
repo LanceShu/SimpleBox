@@ -12,6 +12,7 @@
         <com.example.lance.simplebox.View.TimeView
             android:id="@+id/timeView"
             app:borderColor="#ba5050"
+            app:borderType="stroke"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_centerInParent="true"/>

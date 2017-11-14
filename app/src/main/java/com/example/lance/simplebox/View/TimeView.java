@@ -155,6 +155,10 @@ public class TimeView extends View {
     /**
      * 在xml中自定义的样式;
      * */
+    //边框样式;
+    private int type;
+    private static final int STROKE = 0;    //边框;
+    private static final int FILL = 1;      //表盘；
     //时钟边框的颜色;
     private int borderColor;
     //时钟边框大小；
@@ -171,9 +175,12 @@ public class TimeView extends View {
     private int hourColor;
     //时针的大小;
     private int hourSize;
+    //刻度颜色;
+    private int lineColor;
 
     private void init(Context context,AttributeSet attrs){
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TimeView);
+        type = ta.getInt(R.styleable.TimeView_borderType,STROKE);
         borderColor = ta.getColor(R.styleable.TimeView_borderColor,Color.BLACK);
         borderSize = ta.getInt(R.styleable.TimeView_borderSize,2);
         secondColor = ta.getColor(R.styleable.TimeView_secondColor,Color.RED);
@@ -182,6 +189,7 @@ public class TimeView extends View {
         minSize = ta.getInt(R.styleable.TimeView_minSize,4);
         hourColor = ta.getColor(R.styleable.TimeView_hourColor,Color.BLACK);
         hourSize = ta.getInt(R.styleable.TimeView_hourSize,7);
+        lineColor = ta.getInt(R.styleable.TimeView_lineColor,Color.BLACK);
         ta.recycle();
     }
 
@@ -191,7 +199,11 @@ public class TimeView extends View {
         mPaint = new Paint();
         //抗锯齿;
         mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
+        if(type == 0){
+            mPaint.setStyle(Paint.Style.STROKE);
+        }else if(type == 1){
+            mPaint.setStyle(Paint.Style.FILL);
+        }
 
         //画边框；
         mPaint.setColor(borderColor);
@@ -199,11 +211,14 @@ public class TimeView extends View {
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/3,mPaint);
 
         //画中心点;
+        mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(5);
         canvas.drawPoint(getWidth()/2,getHeight()/2,mPaint);
 
         //画刻度线;
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(lineColor);
         mPaint.setStrokeWidth(1);
         canvas.translate(getWidth()/2,getHeight()/2);
         for(int i = 0;i<360;i++){
@@ -218,7 +233,7 @@ public class TimeView extends View {
         }
 
         canvas.save();
-        //画刻度线;
+        //画刻度;
         mPaint.setTextSize(25);
         mPaint.setStyle(Paint.Style.STROKE);
         for(int i =0;i<12;i++){
