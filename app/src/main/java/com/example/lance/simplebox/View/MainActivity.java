@@ -1,7 +1,6 @@
 package com.example.lance.simplebox.View;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.sms:
-                Intent smsIntent = new Intent(this,SMSorCallAcivity.class);
+                Intent smsIntent = new Intent(this,SoftManageActivity.SMSorCallAcivity.class);
                 startActivity(smsIntent);
                 break;
             case R.id.time_memory:

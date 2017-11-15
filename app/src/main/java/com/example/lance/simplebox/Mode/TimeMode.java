@@ -4,6 +4,7 @@ import android.os.Message;
 
 import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.MVPContract.TimeContract;
+import com.example.lance.simplebox.Utils.FileUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,7 +28,9 @@ public class TimeMode implements TimeContract.TimeMode{
     public static TimeMode getInstance(){
         if(timeMode == null){
             timeMode = new TimeMode();
+
         }
+
         return timeMode;
     }
 
