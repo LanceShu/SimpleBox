@@ -86,6 +86,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         groupholder.textView.setText(groupArray.get(groupPosition));
         return view;
     }
+<<<<<<< HEAD
 
     @Override   //加载子元素并显示
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -143,6 +144,26 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
+=======
+    // View stub to create Group/Children 's View
+    public TextView getGenericView(String string)
+    {
+        // Layout parameters for the ExpandableListView
+        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 200 );
+        TextView text = new TextView(activity);
+        text.setLayoutParams(layoutParams);
+        // Center the text vertically
+        text.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+        // Set the text starting position
+        text.setPadding(32 , 0 , 0 , 0 );
+        text.setText(string);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  text;
+>>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70
     }
 
     public List<ChildBean> getChildMessage(){

@@ -12,6 +12,33 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ToolbarPopupTheme" />
+        app:popupTheme="@style/ToolbarPopupTheme"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="SimpleBox"
+                android:textColor="#4d4d4d"
+                android:textSize="18sp"
+                android:layout_marginLeft="18dp"
+                android:gravity="center_vertical"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:src="@mipmap/find"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 </LinearLayout>

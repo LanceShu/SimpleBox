@@ -1,27 +1,20 @@
 package com.example.lance.simplebox.View;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
-import com.example.lance.simplebox.DataBean.LinkmanBean;
 import com.example.lance.simplebox.MVPContract.TimeContract;
 import com.example.lance.simplebox.Mode.TimeMode;
 import com.example.lance.simplebox.Persenter.TimePersenter;
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.Utils.LinkmanUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TimeContract.TimeView,View.OnClickListener{
 
@@ -32,10 +25,18 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     private TextView hCalendar;
     private TextView hWeather;
 
+    //短信；
     private LinearLayout smsLayout;
+    //时光简记
+    private LinearLayout timeMemory;
+    //图床;
     private LinearLayout pictureBed;
+    //文档备份;
     private LinearLayout documentUpDate;
+    //软件管理;
     private LinearLayout softwareManagement;
+    //面对面传输;
+    private LinearLayout faceTransformer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,24 +66,25 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
 
     private void initWight() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.toolbar);
-        toolbar.setTitle("简盒");
-        toolbar.setTitleTextColor(Color.parseColor("#4d4d4d"));
 
         hTime = (TextView) findViewById(R.id.hTime);
         hCalendar = (TextView) findViewById(R.id.hCalendar);
         hWeather = (TextView) findViewById(R.id.hWeather);
 
         smsLayout = (LinearLayout) findViewById(R.id.sms);
+        timeMemory = (LinearLayout) findViewById(R.id.time_memory);
         pictureBed = (LinearLayout) findViewById(R.id.picture);
         documentUpDate= (LinearLayout) findViewById(R.id.document_back_up);
         softwareManagement= (LinearLayout) findViewById(R.id.software_management);
+        faceTransformer = (LinearLayout) findViewById(R.id.faceTransform);
 
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
+        timeMemory.setOnClickListener(this);
         pictureBed.setOnClickListener(this);
         documentUpDate.setOnClickListener(this);
         softwareManagement.setOnClickListener(this);
+        faceTransformer.setOnClickListener(this);
 
     }
 
@@ -100,20 +102,26 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.sms:
-                Intent smsIntent = new Intent(this,SMSorCallAcivity.class);
+                Intent smsIntent = new Intent(this,SoftManageActivity.SMSorCallAcivity.class);
                 startActivity(smsIntent);
+                break;
+            case R.id.time_memory:
+                Intent timeIntent = new Intent(this,TimeMemActivity.class);
+                startActivity(timeIntent);
                 break;
             case R.id.picture:
                 Intent picIntent = new Intent(this,PictureBedActivity.class);
                 startActivity(picIntent);
                 break;
             case R.id.document_back_up:
-                Intent documentBackUp =new Intent(this,DocumentBackUpActivity.class);
+                Intent documentBackUp =new Intent(this,DocuBackUpActivity.class);
                 startActivity(documentBackUp);
                 break;
             case R.id.software_management:
-                Intent SoftwareManagement =new Intent(this,SoftwareManagementActivity.class);
+                Intent SoftwareManagement =new Intent(this,SoftManageActivity.class);
                 startActivity(SoftwareManagement);
+                break;
+            case R.id.faceTransform:
                 break;
         }
     }

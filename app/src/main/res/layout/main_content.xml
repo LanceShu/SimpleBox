@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/headerBack">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -25,7 +26,7 @@
                 android:gravity="center"
                 android:text="00:00:00"
                 android:textColor="@color/font"
-                android:textSize="56sp" />
+                android:textSize="48sp" />
 
             <TextView
                 android:id="@+id/hCalendar"
@@ -36,7 +37,7 @@
                 android:gravity="center"
                 android:text="2017-10-13   Fri"
                 android:textColor="@color/font"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/hWeather"
@@ -47,7 +48,7 @@
                 android:gravity="center"
                 android:text="17℃  西安"
                 android:textColor="@color/font"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/hWpic"

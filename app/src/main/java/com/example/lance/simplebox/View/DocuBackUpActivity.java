@@ -12,8 +12,11 @@ import android.widget.ExpandableListView;
 
 
 import com.example.lance.simplebox.Adapter.ExpandableAdapter;
+<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
 import com.example.lance.simplebox.DataBean.ChildBean;
 import com.example.lance.simplebox.Mode.DocumenMode;
+=======
+>>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
 import com.example.lance.simplebox.R;
 
 import java.util.ArrayList;
@@ -24,8 +27,12 @@ import java.util.logging.Level;
  * Created by xiyu0 on 2017/10/31.
  */
 
+<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
 public class DocumentBackUpActivity extends AppCompatActivity implements View.OnClickListener,
         ExpandableListView.OnGroupClickListener,ExpandableListView.OnChildClickListener{
+=======
+public class DocuBackUpActivity extends AppCompatActivity{
+>>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
     private List<String> groupArray;
     private  List<ChildBean> childArray;
     private Button buttonCancel;
@@ -41,7 +48,12 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.document_back_up);
         initWidget();
         initData();
+<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
 
+=======
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView.setAdapter(new ExpandableAdapter(DocuBackUpActivity.this,childArray,groupArray));
+>>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
     }
 
     public void initWidget() {
