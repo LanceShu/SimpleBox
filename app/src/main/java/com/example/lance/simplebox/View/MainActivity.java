@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
                 startActivity(picIntent);
                 break;
             case R.id.document_back_up:
-                Intent documentBackUp =new Intent(this,DocuBackUpActivity.class);
+                Intent documentBackUp =new Intent(this,DocumentBackUpActivity.class);
                 startActivity(documentBackUp);
                 break;
             case R.id.software_management:

@@ -10,29 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 
-
 import com.example.lance.simplebox.Adapter.ExpandableAdapter;
-<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
 import com.example.lance.simplebox.DataBean.ChildBean;
 import com.example.lance.simplebox.Mode.DocumenMode;
-=======
->>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
 import com.example.lance.simplebox.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
- * Created by xiyu0 on 2017/10/31.
+ * Created by xiyu0 on 2017/11/15.
  */
 
-<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
 public class DocumentBackUpActivity extends AppCompatActivity implements View.OnClickListener,
         ExpandableListView.OnGroupClickListener,ExpandableListView.OnChildClickListener{
-=======
-public class DocuBackUpActivity extends AppCompatActivity{
->>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
     private List<String> groupArray;
     private  List<ChildBean> childArray;
     private Button buttonCancel;
@@ -48,12 +39,8 @@ public class DocuBackUpActivity extends AppCompatActivity{
         setContentView(R.layout.document_back_up);
         initWidget();
         initData();
-<<<<<<< HEAD:app/src/main/java/com/example/lance/simplebox/View/DocumentBackUpActivity.java
-
-=======
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListView.setAdapter(new ExpandableAdapter(DocuBackUpActivity.this,childArray,groupArray));
->>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70:app/src/main/java/com/example/lance/simplebox/View/DocuBackUpActivity.java
+        expandableListView.setAdapter(new ExpandableAdapter(DocumentBackUpActivity.this,childArray,groupArray));
     }
 
     public void initWidget() {
@@ -71,13 +58,13 @@ public class DocuBackUpActivity extends AppCompatActivity{
     }
 
 
-     public void initData(){
+    public void initData(){
         ChildBean childBean1=new ChildBean();
         ChildBean childBean2=new ChildBean();
         childArray=new ArrayList<ChildBean>();
         List<Boolean>list1=new ArrayList<Boolean>();
         List<Boolean>list2=new ArrayList<Boolean>();
-        List<String> listW =DocumenMode.getWordList(this);
+        List<String> listW = DocumenMode.getWordList(this);
         List<String> listE =DocumenMode.getExcelList(this);
         childBean1.setFileName(listW);
         childBean1.setFileUri(DocumenMode.getWordUriList(this));
@@ -87,10 +74,10 @@ public class DocuBackUpActivity extends AppCompatActivity{
         childBean1.setSelect(list1);
         childBean2.setFileName(listE);
         childBean2.setFileUri(DocumenMode.getExcelUriList(this));
-         for(int i=0;i<listE.size();i++){
-             list2.add(false);
-         }
-         childBean2.setSelect(list2);
+        for(int i=0;i<listE.size();i++){
+            list2.add(false);
+        }
+        childBean2.setSelect(list2);
         childArray.add(childBean1);
         childArray.add(childBean2);
         groupArray = new  ArrayList<String>();
@@ -98,6 +85,7 @@ public class DocuBackUpActivity extends AppCompatActivity{
         groupArray.add("Excel" );
         expandableAdapter=new ExpandableAdapter(DocumentBackUpActivity.this,childArray,groupArray);
         expandableListView.setAdapter(expandableAdapter);
+
     }
 
     @Override
@@ -106,10 +94,10 @@ public class DocuBackUpActivity extends AppCompatActivity{
             case R.id.cancel:
                 finish();
             case R.id.back_up:
-               List<ChildBean> childListBean =expandableAdapter.getChildMessage();
+                List<ChildBean> childListBean =expandableAdapter.getChildMessage();
                 for(int i=0;i<childListBean.size();i++){
-                    Log.e("tag",childListBean.get(i).getFileName().get(0));
-                    Log.e("tag",childListBean.get(i).getFileUri().get(0));
+                  //  Log.e("tag",childListBean.get(i).getFileName().get(0));
+                   // Log.e("tag",childListBean.get(i).getFileUri().get(0));
 
                 }
         }
