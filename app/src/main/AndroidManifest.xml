@@ -35,7 +35,7 @@
         <activity android:name=".View.PictureBedActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".View.PhotoViewActivity"/>
-        <activity android:name=".View.DocuBackUpActivity"/>
+        <activity android:name=".View.DocumentBackUpActivity"/>
         <activity android:name=".View.SoftManageActivity"/>
         <activity android:name=".View.TimeMemActivity"/>
 

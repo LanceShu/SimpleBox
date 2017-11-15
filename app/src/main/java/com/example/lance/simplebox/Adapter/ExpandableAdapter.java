@@ -2,9 +2,11 @@ package com.example.lance.simplebox.Adapter;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -25,13 +27,14 @@ import static org.jetbrains.anko.AsyncKt.runOnUiThread;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private  List<ChildBean> childArray;
+    private List<ChildBean> childArray;
     private List<String> groupArray;
     private ChildBean childBean;
+
     public ExpandableAdapter(Context context, List<ChildBean> childArray, List<String> groupArray) {
-        this.context=context;
-        this.childArray=childArray;
-        this.groupArray=groupArray;
+        this.context = context;
+        this.childArray = childArray;
+        this.groupArray = groupArray;
     }
 
 
@@ -72,37 +75,37 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        View view=convertView;
+        View view = convertView;
         GroupHolder groupholder = null;
-        if(view!=null){
+        if (view != null) {
 
             groupholder = (GroupHolder) view.getTag();
-        }else{
-            groupholder=new GroupHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.document_back_up_group,parent,false);
+        } else {
+            groupholder = new GroupHolder();
+            view = LayoutInflater.from(context).inflate(R.layout.document_back_up_group, parent, false);
             groupholder.textView = (TextView) view.findViewById(R.id.textView);
             view.setTag(groupholder);
         }
         groupholder.textView.setText(groupArray.get(groupPosition));
         return view;
     }
-<<<<<<< HEAD
+
 
     @Override   //加载子元素并显示
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        View view=convertView;
-        ChildHolder childHolder=null;
-        childBean= (ChildBean) getChild(groupPosition,childPosition);
-        if(view!=null){
-            childHolder= (ChildHolder) view.getTag();
+        View view = convertView;
+        ChildHolder childHolder = null;
+        childBean = (ChildBean) getChild(groupPosition, childPosition);
+        if (view != null) {
+            childHolder = (ChildHolder) view.getTag();
             childHolder.imageView2.setTag(childBean);
-        }else {
-            childHolder=new ChildHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.document_back_up_child,null);
-            childHolder.imageView= (ImageView) view.findViewById(R.id.chlid_pic);
-            childHolder.textView= (TextView) view.findViewById(R.id.child_text);
-            childHolder.imageView2= (ImageView) view.findViewById(R.id.chlid_select);
-            childHolder.relativeLayout= (RelativeLayout) view.findViewById(R.id.layout_child);
+        } else {
+            childHolder = new ChildHolder();
+            view = LayoutInflater.from(context).inflate(R.layout.document_back_up_child, null);
+            childHolder.imageView = (ImageView) view.findViewById(R.id.chlid_pic);
+            childHolder.textView = (TextView) view.findViewById(R.id.child_text);
+            childHolder.imageView2 = (ImageView) view.findViewById(R.id.chlid_select);
+            childHolder.relativeLayout = (RelativeLayout) view.findViewById(R.id.layout_child);
             view.setTag(childHolder);
             childHolder.imageView2.setTag(childBean);
         }
@@ -112,29 +115,29 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 ChildBean childBean1 = (ChildBean) finalChildHolder.imageView2.getTag();
-                if(childBean1.getSelect().get(childPosition)) {
-                finalChildHolder.imageView2.setImageResource(R.mipmap.select1);
-                    childBean1.setSelect(childPosition,false);
-                }else{
+                if (childBean1.getSelect().get(childPosition)) {
+                    finalChildHolder.imageView2.setImageResource(R.mipmap.select1);
+                    childBean1.setSelect(childPosition, false);
+                } else {
                     finalChildHolder.imageView2.setImageResource(R.mipmap.select2);
-                    childBean1.setSelect(childPosition,true);
+                    childBean1.setSelect(childPosition, true);
 
-                    Log.e("呵呵","又是这");
+                    Log.e("呵呵", "又是这");
                 }
             }
         });
 
-        if(childBean.getSelect().get(childPosition)){
+        if (childBean.getSelect().get(childPosition)) {
             childHolder.imageView2.setImageResource(R.mipmap.select2);
-            Log.e("呵呵",childBean.getFileName().get(childPosition)+childBean.getSelect().get(childPosition)+"呵呵");
-        }else {
+            Log.e("呵呵", childBean.getFileName().get(childPosition) + childBean.getSelect().get(childPosition) + "呵呵");
+        } else {
             childHolder.imageView2.setImageResource(R.mipmap.select1);
-            Log.e("呵呵2",childBean.getFileName().get(childPosition)+childBean.getSelect().get(childPosition)+"呵呵2");
+            Log.e("呵呵2", childBean.getFileName().get(childPosition) + childBean.getSelect().get(childPosition) + "呵呵2");
         }
-        if(groupPosition==0){
+        if (groupPosition == 0) {
             childHolder.imageView.setImageResource(R.mipmap.word);
         }
-        if(groupPosition==1){
+        if (groupPosition == 1) {
             childHolder.imageView.setImageResource(R.mipmap.excel);
         }
         childHolder.textView.setText(childArray.get(groupPosition).getFileName().get(childPosition));
@@ -144,62 +147,46 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
-=======
-    // View stub to create Group/Children 's View
-    public TextView getGenericView(String string)
-    {
-        // Layout parameters for the ExpandableListView
-        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 200 );
-        TextView text = new TextView(activity);
-        text.setLayoutParams(layoutParams);
-        // Center the text vertically
-        text.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-        // Set the text starting position
-        text.setPadding(32 , 0 , 0 , 0 );
-        text.setText(string);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return  text;
->>>>>>> 8ab57cae007da840a60c5642f38024f0d224ae70
+        // View stub to create Group/Children 's View
     }
 
-    public List<ChildBean> getChildMessage(){
-        List<ChildBean> childListBean=new ArrayList<ChildBean>();
+    public List<ChildBean> getChildMessage() {
+        List<ChildBean> childListBean = new ArrayList<ChildBean>();
         ChildBean childBean;
-        List<String> temp=null;
-        for(int i=0;i<2;i++){
-            for(int j=0;j<childArray.get(i).getFileName().size();j++){
-                childBean=new ChildBean();
-                if(childArray.get(i).getSelect().get(j)){
-                    Log.e("getchild",childArray.get(i).getFileName().get(j));
-                    temp =new ArrayList<String>();
+        List<String> temp = null;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < childArray.get(i).getFileName().size(); j++) {
+                childBean = new ChildBean();
+                if (childArray.get(i).getSelect().get(j)) {
+
+                    temp = new ArrayList<String>();
                     temp.add(childArray.get(i).getFileName().get(j));
+                    Log.e("lllllll",temp.get(0));
                     childBean.setFileName(temp);
-                    temp =new ArrayList<String>();
+
+                    temp = new ArrayList<String>();
                     temp.add(childArray.get(i).getFileUri().get(j));
+                    Log.e("lllllll",temp.get(0));
                     childBean.setFileUri(temp);
                     childListBean.add(childBean);
+                    Log.e("bbbbbbbugg",childListBean.size()+"");
+                    Log.e("laji",""+childListBean.get(j).getFileName().size());
                     temp.clear();
                 }
-            }
+            }//713808
         }
         return childListBean;
     }
 
-
-     class ChildHolder{
+    class ChildHolder {
         RelativeLayout relativeLayout;
         ImageView imageView;
         ImageView imageView2;
         TextView textView;
     }
 
-     class GroupHolder{
+    class GroupHolder {
         TextView textView;
         ImageView imageView;
     }
-
 }
