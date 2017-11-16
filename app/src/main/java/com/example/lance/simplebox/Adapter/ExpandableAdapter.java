@@ -121,18 +121,14 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                 } else {
                     finalChildHolder.imageView2.setImageResource(R.mipmap.select2);
                     childBean1.setSelect(childPosition, true);
-
-                    Log.e("呵呵", "又是这");
                 }
             }
         });
 
         if (childBean.getSelect().get(childPosition)) {
             childHolder.imageView2.setImageResource(R.mipmap.select2);
-            Log.e("呵呵", childBean.getFileName().get(childPosition) + childBean.getSelect().get(childPosition) + "呵呵");
         } else {
             childHolder.imageView2.setImageResource(R.mipmap.select1);
-            Log.e("呵呵2", childBean.getFileName().get(childPosition) + childBean.getSelect().get(childPosition) + "呵呵2");
         }
         if (groupPosition == 0) {
             childHolder.imageView.setImageResource(R.mipmap.word);
@@ -169,8 +165,9 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                     Log.e("lllllll",temp.get(0));
                     childBean.setFileUri(temp);
                     childListBean.add(childBean);
-                    Log.e("bbbbbbbugg",childListBean.size()+"");
-                    Log.e("laji",""+childListBean.get(j).getFileName().size());
+                    Log.e("bbbbbbbugg",childListBean.size()+" "+j);
+                    Log.e("laji",""+childListBean.get(childListBean.size()-1).getFileUri().get(0));
+                    temp = new ArrayList<String>();
                     temp.clear();
                 }
             }//713808

@@ -96,8 +96,10 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
             case R.id.back_up:
                 List<ChildBean> childListBean =expandableAdapter.getChildMessage();
                 for(int i=0;i<childListBean.size();i++){
-                  //  Log.e("tag",childListBean.get(i).getFileName().get(0));
-                   // Log.e("tag",childListBean.get(i).getFileUri().get(0));
+                    Log.e("tag",childListBean.get(i).getFileName().get(0));
+                    Log.e("tag",childListBean.size()+" "+i);
+                    Log.e("tag",childListBean.get(i).getFileUri().get(0));
+
 
                 }
         }
