@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#4d4d4d</color>
     <color name="colorAccent">#4d4d4d</color>
     <color name="font">#4d4d4d</color>
+    <color name="deadBack">#4d4d4d</color>
+    <color name="liveBack">#f9f9f9</color>
     <color name="headerBack">#ededed</color>
     <color name="functionBack">#ececec</color>
 </resources>
