@@ -1,22 +1,18 @@
 package com.example.lance.simplebox.View
 
-import android.app.DatePickerDialog
 import android.content.SharedPreferences
-import android.opengl.Visibility
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.annotation.IntegerRes
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.widget.DatePicker
 import com.codbking.widget.DatePickDialog
 import com.codbking.widget.OnSureLisener
 import com.codbking.widget.bean.DateType
 
 import com.example.lance.simplebox.R
-import kotlinx.android.synthetic.main.time_memory_layout.*
+import kotlinx.android.synthetic.main.time_dead_layout.*
+import kotlinx.android.synthetic.main.time_live_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,33 +47,41 @@ class TimeMemActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.time_memory_layout)
+        setContentView(R.layout.time_live_layout)
 
         pref = PreferenceManager.getDefaultSharedPreferences(this)
         editor = pref!!.edit()
+        settted = pref!!.getBoolean("isSetted",false)
+        userAge = pref!!.getFloat("userAge",-1.0f)
 
-        initDate()
-        //初始化控件;
-        initWight()
+        initDateLive()
+        initWightLive()
     }
 
     /**
+     * 生之时：
      * 获取当前的系统时间
      * */
-    fun initDate(){
+    fun initDateLive(){
         val calendar = Calendar.getInstance()
         curYear = calendar.get(Calendar.YEAR)
         curMonth = calendar.get(Calendar.MONTH)
         curDays = calendar.get(Calendar.DAY_OF_MONTH)
     }
 
-    fun initWight(){
+    /**
+     * 生之时：
+     * 初始化控件
+     * */
+    fun initWightLive(){
         var currentTime : Long = System.currentTimeMillis()
         var date = Date(currentTime)
         timeView.setTime(date.hours,date.minutes,date.seconds)
         timeView.start()
-        settted = pref!!.getBoolean("isSetted",false)
-        userAge = pref!!.getFloat("userAge",-1.0f)
+
+        back.setOnClickListener({
+            finish()
+        })
 
         /**
          * 是否已经设置了出生的时间
@@ -88,6 +92,18 @@ class TimeMemActivity : AppCompatActivity() {
             timelive_info.visibility = View.VISIBLE
 
             text_center.text = "你已经 "+userAge+" 岁了..."
+            time_live_year.text = userAge!!.toInt().toString()
+            time_live_month.text = (userAge!! * 12).toInt().toString()
+            time_live_weeks.text = (userAge!! * 52).toInt().toString()
+            time_live_days.text = (userAge!! * 365).toInt().toString()
+            time_live_hours.text = (userAge!! * 365 * 12).toInt().toString()
+            time_live_minutes.text = (userAge!! * 365 * 12 * 60).toInt().toString()
+
+            time_dead_but.setOnClickListener {
+                setContentView(R.layout.time_dead_layout)
+                initDateDead()
+                initWightDead()
+            }
         }else{
             time_start.visibility = View.VISIBLE
             text_center.visibility = View.GONE
@@ -129,6 +145,36 @@ class TimeMemActivity : AppCompatActivity() {
         })
         dialog.show()
 
+    }
+
+    /**
+     * 死之钟：
+     * 初始化数据；
+     * */
+    fun initDateDead(){
+
+    }
+
+    /**
+     * 死之钟：
+     * 初始化控件
+     * */
+    fun initWightDead(){
+
+        var currentTime : Long = System.currentTimeMillis()
+        var date = Date(currentTime)
+        timeView_d.setTime(date.hours,date.minutes,date.seconds)
+        timeView_d.start()
+
+        back_d.setOnClickListener{
+            finish()
+        }
+
+        time_live_but.setOnClickListener {
+            setContentView(R.layout.time_live_layout)
+            initDateLive()
+            initWightLive()
+        }
     }
 
 
