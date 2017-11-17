@@ -48,186 +48,224 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/date_layout"
+    <RelativeLayout
+        android:id="@+id/time_start"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
         <TextView
+            android:layout_marginTop="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="在这个世界上，你已经存在"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="32dp"
-            android:textColor="@color/font"
-            android:textSize="12sp"/>
-
-        <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="2017"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="11"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="52"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="年"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="月"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="周"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@color/font"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="365"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="2563"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="45632"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="日"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="时"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@color/font"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="分"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/font"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+            android:text="生于忧患\n...\n死于安乐"
+            android:textSize="20sp"
+            android:textColor="@color/deadBack"
+            android:layout_centerHorizontal="true"/>
 
         <Button
-            android:layout_marginTop="24dp"
-            android:layout_width="99dp"
-            android:layout_height="36dp"
-            android:layout_centerInParent="true"
+            android:id="@+id/time_live_select"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:background="@drawable/time_dead_button"
+            android:text="选择诞辰"
             android:textColor="@color/liveBack"
-            android:text="死之钟"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:textSize="16sp"/>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/timelive_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在这个世界上，你已经存在"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="32dp"
+                android:textColor="@color/font"
+                android:textSize="12sp"/>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="2017"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="11"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="52"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="年"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="月"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="周"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/font"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="365"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="2563"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="45632"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="日"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="时"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/font"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="分"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/font"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_marginTop="24dp"
+                android:layout_width="99dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/time_dead_button"
+                android:textColor="@color/liveBack"
+                android:text="死之钟"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
