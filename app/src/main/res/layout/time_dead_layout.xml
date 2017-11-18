@@ -15,17 +15,26 @@
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:src="@mipmap/back_l"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:layout_marginLeft="16dp"/>
 
         <TextView
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="时光简史"
+            android:text="死之钟"
             android:gravity="center"
             android:textColor="@color/liveBack"
             android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/time_dead_wish"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/add_live"/>
 
         <com.example.lance.clockview.ClockView
             android:id="@+id/timeView_d"
@@ -39,15 +48,32 @@
             android:layout_marginTop="18dp"
             android:layout_centerHorizontal="true"/>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:text="距离生命的终结还有 100 天..."
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginBottom="2dp"
-            android:textColor="@color/liveBack"/>
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/time_dead_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="距离生命的终结还有   天..."
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/liveBack"/>
+
+            <ImageView
+                android:id="@+id/time_dead_edit"
+                android:layout_toRightOf="@id/time_dead_content"
+                android:layout_marginLeft="8dp"
+                android:layout_width="20dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/live_edit"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -111,12 +137,13 @@
                 android:layout_marginRight="32dp">
 
                 <TextView
+                    android:id="@+id/time_dead_book"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="看 666 本书"
+                    android:text="看  本书"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
                 <TextView
@@ -125,12 +152,13 @@
                     android:background="@color/liveBack"/>
 
                 <TextView
+                    android:id="@+id/time_dead_travel"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="旅游 66 次"
+                    android:text="旅游  次"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
 
@@ -145,12 +173,13 @@
                 android:layout_marginRight="32dp">
 
                 <TextView
+                    android:id="@+id/time_dead_food"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="吃 666 顿饭"
+                    android:text="吃  顿饭"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
                 <TextView
@@ -159,12 +188,13 @@
                     android:background="@color/liveBack"/>
 
                 <TextView
+                    android:id="@+id/time_dead_love"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="啪啪啪 666 次"
+                    android:text="啪啪啪  次"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
 
@@ -179,12 +209,13 @@
                 android:layout_marginRight="32dp">
 
                 <TextView
+                    android:id="@+id/time_dead_weeks"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="度过 666 次周末"
+                    android:text="度过  次周末"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
                 <TextView
@@ -193,12 +224,13 @@
                     android:background="@color/liveBack"/>
 
                 <TextView
+                    android:id="@+id/time_dead_holidays"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="享受 6666 个长假"
+                    android:text="享受  个长假"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/liveBack"/>
 
             </LinearLayout>
@@ -207,20 +239,20 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="22dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
             <Button
                 android:id="@+id/time_live_but"
-                android:layout_marginTop="24dp"
                 android:layout_width="99dp"
                 android:layout_height="36dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/time_live_button"
                 android:textColor="@color/deadBack"
                 android:text="生之时"
+                android:gravity="center"
                 android:textSize="16sp"/>
 
         </RelativeLayout>

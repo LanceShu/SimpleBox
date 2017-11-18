@@ -15,17 +15,26 @@
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:src="@mipmap/back"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:layout_marginLeft="16dp"/>
 
         <TextView
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="时光简史"
+            android:text="生之时"
             android:gravity="center"
             android:textColor="@color/deadBack"
             android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/time_live_wish"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/add_dead"/>
 
         <com.example.lance.clockview.ClockView
             android:id="@+id/timeView"
@@ -36,16 +45,33 @@
             android:layout_marginTop="18dp"
             android:layout_centerHorizontal="true"/>
 
-        <TextView
-            android:id="@+id/text_center"
+        <RelativeLayout
+            android:id="@+id/time_live_text"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:text="你已经 21 岁了..."
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginBottom="2dp"
-            android:textColor="@color/deadBack"/>
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/text_center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="你已经 21 岁了..."
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/deadBack"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:id="@+id/time_live_edit"
+                android:layout_toRightOf="@id/text_center"
+                android:layout_marginLeft="8dp"
+                android:layout_width="20dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/dead_edit"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -271,6 +297,7 @@
                 android:background="@drawable/time_dead_button"
                 android:textColor="@color/liveBack"
                 android:text="死之钟"
+                android:gravity="center"
                 android:textSize="16sp"/>
 
         </RelativeLayout>
