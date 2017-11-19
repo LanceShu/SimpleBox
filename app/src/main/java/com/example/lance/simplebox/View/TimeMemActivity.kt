@@ -51,7 +51,6 @@ class TimeMemActivity : AppCompatActivity() {
     var userYear : Int = 0
     var userMonth : Int = 0
     var userDays : Int = 0
-    var userAge : Float = 0.0f
 
     /**
      * 用户选择的生命终结日期；
@@ -65,7 +64,6 @@ class TimeMemActivity : AppCompatActivity() {
         pref = PreferenceManager.getDefaultSharedPreferences(this)
         editor = pref!!.edit()
         settted = pref!!.getBoolean("isSetted",false)
-        userAge = pref!!.getFloat("userAge",-1.0f)
 
         initDateLive()
         initWightLive()
@@ -105,7 +103,7 @@ class TimeMemActivity : AppCompatActivity() {
             time_live_text.visibility = View.VISIBLE
             timelive_info.visibility = View.VISIBLE
 
-            setLiveInfor(userAge)
+            setLiveInfor(pref!!.getInt("liveYear",-1),pref!!.getInt("liveMonth",-1),pref!!.getInt("liveDays",-1))
 
             //死之钟按钮;
             time_dead_but.setOnClickListener {
@@ -139,7 +137,9 @@ class TimeMemActivity : AppCompatActivity() {
     /**
      * 设置生之时的信息
      * */
-    fun setLiveInfor(userage : Float){
+    fun setLiveInfor(liveYear : Int,liveMonth : Int,liveDays : Int){
+
+        var userage : Float = (curYear + (curMonth-1) /12.0f + curDays/30.0f) - (liveYear + (liveMonth -1)/12.0f + liveDays/30.0f)
 
         text_center.text = "你已经 "+userage+" 岁了..."
         time_live_year.text = userage!!.toInt().toString()
@@ -180,12 +180,14 @@ class TimeMemActivity : AppCompatActivity() {
                 userMonth = dates.split("-")[1].toInt()
                 userDays = dates.split("-")[2].toInt()
 
-                editor!!.putFloat("userAge",(curYear + (curMonth-1) /12.0f + curDays/30.0f) - (userYear + (userMonth -1)/12.0f + userDays/30.0f))
+                editor!!.putInt("liveYear",userYear)
+                editor!!.putInt("liveMonth",userMonth)
+                editor!!.putInt("liveDays",userDays)
                 editor!!.putString("liveDate",date.toString())
 
                 if(settted == true){
                     editor!!.apply()
-                    setLiveInfor(pref!!.getFloat("userAge",-1.0f))
+                    setLiveInfor(pref!!.getInt("liveYear",-1),pref!!.getInt("liveMonth",-1),pref!!.getInt("liveDays",-1))
                 }else{
                     editor!!.putBoolean("isSetted",true)
                     editor!!.apply()
@@ -205,7 +207,6 @@ class TimeMemActivity : AppCompatActivity() {
      * */
     fun initDateDead(){
         setted_dead = pref!!.getBoolean("setted_dead",false)
-        userDead = pref!!.getFloat("userDead",-1.0f)
     }
 
     /**
@@ -220,8 +221,8 @@ class TimeMemActivity : AppCompatActivity() {
         timeView_d.start()
 
         if(setted_dead == true){
-            userDead = pref!!.getFloat("userDead",-1.0f)
-            setDeadInfor(userDead)
+
+            setDeadInfor(pref!!.getInt("deadYear",-1),pref!!.getInt("deadMonth",-1),pref!!.getInt("deadDays",-1))
 
         }else{
             openDeadDatePicker()
@@ -249,6 +250,9 @@ class TimeMemActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * 打开死之钟的日期选择器
+     * */
     fun openDeadDatePicker(){
 
         if(pref!!.getString("deadDate","") == ""){
@@ -277,11 +281,14 @@ class TimeMemActivity : AppCompatActivity() {
 
                 editor!!.putString("deadDate",date.toString())
                 editor!!.putBoolean("setted_dead",true)
-                editor!!.putFloat("userDead",(userYear + (userMonth-1) /12.0f + userDays/30.0f) - (curYear + (curMonth -1)/12.0f + curDays/30.0f))
+
+                editor!!.putInt("deadYear",userYear)
+                editor!!.putInt("deadMonth",userMonth)
+                editor!!.putInt("deadDays",userDays)
                 editor!!.apply()
                 Log.e("DeaddatePicker",pref!!.getFloat("userDead",-1.0f).toString())
 
-                setDeadInfor(pref!!.getFloat("userDead",-1.0f))
+                setDeadInfor(pref!!.getInt("deadYear",-1),pref!!.getInt("deadMonth",-1),pref!!.getInt("deadDays",-1))
             }
         })
         dialog.show()
@@ -290,7 +297,10 @@ class TimeMemActivity : AppCompatActivity() {
     /**
      * 设置死之钟的信息
      * */
-    fun setDeadInfor(userdead : Float){
+    fun setDeadInfor(deadYear : Int,deadMonth : Int,deadDays : Int){
+
+        var userdead = (deadYear + (deadMonth-1) /12.0f + deadDays/30.0f) - (curYear + (curMonth -1)/12.0f + curDays/30.0f)
+
         var deadDyas = userdead * 365
         time_dead_content.text = "距离生命的终结还有 "+ deadDyas +" 天..."
         time_dead_book.text = "看 "+ (deadDyas/7).toInt() +" 本书"
