@@ -1,4 +1,4 @@
-package com.example.lance.simplebox.View
+package com.example.lance.simplebox.View.PictureBed.View
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

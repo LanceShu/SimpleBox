@@ -31,14 +31,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.SoftManageActivity$SMSorCallAcivity"/>
-        <activity android:name=".View.PictureBedActivity"
+        <activity android:name=".View.SoftManageActivity$SMSorCallAcivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".View.PhotoViewActivity"/>
-        <activity android:name=".View.DocumentBackUpActivity"/>
-        <activity android:name=".View.SoftManageActivity"/>
-        <activity android:name=".View.TimeMemActivity"/>
-        <activity android:name=".View.FTFTransfer.View.FTFTransferMain"/>
+        <activity android:name=".View.PictureBed.View.PictureBedActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.PictureBed.View.PhotoViewActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.DocumentBackUp.View.DocumentBackUpActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.SoftManageActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.TimeMemory.View.TimeMemActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.FTFTransfer.View.FTFTransferMainActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.FTFTransfer.View.FTFSenderActivity"
+            android:launchMode="singleTask"/>
 
         <provider
             android:authorities="com.example.lance.simplebox"

@@ -3,7 +3,7 @@ package com.example.lance.simplebox.Utils;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.lance.simplebox.View.PictureBedActivity;
+import com.example.lance.simplebox.View.PictureBed.View.PictureBedActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Scanner;
 
 /**

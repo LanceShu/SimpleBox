@@ -1,4 +1,4 @@
-package com.example.lance.simplebox.View
+package com.example.lance.simplebox.View.TimeMemory.View
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import com.codbking.widget.DatePickDialog
 import com.codbking.widget.OnSureLisener

@@ -20,7 +20,7 @@ public class AuVideoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.ftf_sender,container,false);
+        view = inflater.inflate(R.layout.list_audio_vedio,container,false);
         return view;
     }
 }

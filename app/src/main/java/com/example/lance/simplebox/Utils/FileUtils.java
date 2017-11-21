@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
-
-import com.example.lance.simplebox.View.DocumentBackUpActivity;
 
 import java.util.ArrayList;
 import java.util.List;

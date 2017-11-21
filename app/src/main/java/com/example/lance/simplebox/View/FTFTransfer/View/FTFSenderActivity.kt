@@ -1,6 +1,5 @@
 package com.example.lance.simplebox.View.FTFTransfer.View
 
-import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
@@ -10,13 +9,13 @@ import com.example.lance.simplebox.View.FTFTransfer.Fragment.ApkFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.AuVideoFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.DocumentFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.PictureFragment
-import kotlinx.android.synthetic.main.ftf_main.*
+import com.example.lance.simplebox.View.FTFTransfer.Utils.ReFTFFragUtil
 import kotlinx.android.synthetic.main.ftf_sender.*
 
 /**
  * Created by Lance on 2017/11/21.
  */
-class FTFTransferMain : AppCompatActivity(){
+class FTFSenderActivity : AppCompatActivity(){
 
     var senderTitleList = ArrayList<String>()
     var senderFragmentList = ArrayList<android.support.v4.app.Fragment>()
@@ -24,24 +23,6 @@ class FTFTransferMain : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.ftf_main)
-        //初始化主页面的控件;
-        initMainWight()
-    }
-
-    fun initMainWight(){
-        //主页面返回按键;
-        ftfback.setOnClickListener { finish() }
-        //主页面发送按键；
-        ftfSender.setOnClickListener { FTFSend() }
-        //主页面接收按键;
-        ftfReceiver.setOnClickListener { FTFReceive() }
-    }
-
-    /**
-     * 发送文件的逻辑;
-     * */
-    fun FTFSend(){
         setContentView(R.layout.ftf_sender)
         initSenderData()
         initSenderWight()
@@ -67,7 +48,7 @@ class FTFTransferMain : AppCompatActivity(){
      * */
     fun initSenderWight(){
 
-        sendback.setOnClickListener { recreate() }
+        sendback.setOnClickListener { finish() }
 
         for(i in 0 until senderTitleList.size){
             tab_layout.addTab(tab_layout.newTab().setText(senderTitleList[i]))
@@ -76,12 +57,6 @@ class FTFTransferMain : AppCompatActivity(){
         tab_layout.tabMode = TabLayout.MODE_FIXED
         sendViewPage.adapter = sendAdapter
         tab_layout.setupWithViewPager(sendViewPage)
-    }
-
-    /**
-     * 接收文件的逻辑
-     * */
-    fun FTFReceive(){
-
+        ReFTFFragUtil.replaceFTFSendFragment(AuVideoFragment(),this)
     }
 }
