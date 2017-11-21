@@ -1,4 +1,4 @@
-package com.example.lance.simplebox.View;
+package com.example.lance.simplebox.View.Main.View;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -11,10 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
-import com.example.lance.simplebox.MVPContract.TimeContract;
-import com.example.lance.simplebox.Mode.TimeMode;
-import com.example.lance.simplebox.Persenter.TimePersenter;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.View.DocumentBackUpActivity;
+import com.example.lance.simplebox.View.FTFTransfer.View.FTFTransferMain;
+import com.example.lance.simplebox.View.Main.Mode.TimeMode;
+import com.example.lance.simplebox.View.Main.Contract.TimeContract;
+import com.example.lance.simplebox.View.Main.Persenter.TimePersenter;
+import com.example.lance.simplebox.View.PictureBedActivity;
+import com.example.lance.simplebox.View.SoftManageActivity;
+import com.example.lance.simplebox.View.TimeMemActivity;
 
 public class MainActivity extends AppCompatActivity implements TimeContract.TimeView,View.OnClickListener{
 
@@ -122,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
                 startActivity(SoftwareManagement);
                 break;
             case R.id.faceTransform:
+                Intent FTFIontent = new Intent(this, FTFTransferMain.class);
+                startActivity(FTFIontent);
                 break;
         }
     }

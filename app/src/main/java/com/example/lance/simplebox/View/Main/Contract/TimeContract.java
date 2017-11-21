@@ -1,4 +1,4 @@
-package com.example.lance.simplebox.MVPContract;
+package com.example.lance.simplebox.View.Main.Contract;
 
 import android.content.Context;
 

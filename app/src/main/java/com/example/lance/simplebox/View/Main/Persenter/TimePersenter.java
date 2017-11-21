@@ -1,6 +1,6 @@
-package com.example.lance.simplebox.Persenter;
+package com.example.lance.simplebox.View.Main.Persenter;
 
-import com.example.lance.simplebox.MVPContract.TimeContract;
+import com.example.lance.simplebox.View.Main.Contract.TimeContract;
 
 /**
  * Created by Lance on 2017/10/13.
