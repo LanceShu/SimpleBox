@@ -2,7 +2,7 @@ package com.example.lance.simplebox.View.FTFTransfer.Utils
 
 import android.content.Context
 import android.provider.MediaStore
-import com.example.lance.simplebox.Mode.MusicBean
+import com.example.lance.simplebox.DataBean.MusicBean
 
 /**
  * Created by Lance on 2017/11/21.

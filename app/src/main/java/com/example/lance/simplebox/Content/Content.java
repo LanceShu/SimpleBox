@@ -15,13 +15,14 @@ import java.util.List;
 public class Content {
 
     public static Handler handler = new Handler();
+    public static Handler FTFhandler = new Handler();
 
     public static final int UPDATE_TIME = 1;
+    public static final int SCAN_AUDIO_SUCCESS = 2;
 
     //获取通讯录数据;
     public static List<LinkmanBean> linkmanBeanList = new ArrayList<>();
     //获取信息数据;
     public static List<SMSBean> smsBeanList = new ArrayList<>();
-    //
 
 }
