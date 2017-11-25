@@ -14,6 +14,7 @@ import com.example.lance.simplebox.Adapter.ExpandableAdapter;
 import com.example.lance.simplebox.DataBean.ChildBean;
 import com.example.lance.simplebox.Mode.DocumenMode;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.Utils.UploadFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,13 +96,9 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
                 finish();
             case R.id.back_up:
                 List<ChildBean> childListBean =expandableAdapter.getChildMessage();
-                for(int i=0;i<childListBean.size();i++){
-                    Log.e("tag",childListBean.get(i).getFileName().get(0));
-                    Log.e("tag",childListBean.size()+" "+i);
-                    Log.e("tag",childListBean.get(i).getFileUri().get(0));
-
-
-                }
+                UploadFile uploadFile=new UploadFile(childListBean);
+                Thread thread =new Thread(uploadFile);
+                thread.start();
         }
     }
 
