@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.View.DocumentBackUp.View.DocumentBackUpActivity;
+import com.example.lance.simplebox.View.DocumentBackUp.View.View.DocumentBackUpActivity;
 import com.example.lance.simplebox.View.FTFTransfer.View.FTFTransferMainActivity;
 import com.example.lance.simplebox.View.Main.Mode.TimeMode;
 import com.example.lance.simplebox.View.Main.Contract.TimeContract;

@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 
 public class UploadFile implements Runnable{
-    private static final String urls = "http://172.20.0.152:8080/JavaWeb/HelloWorld";
+    private static final String urls = "http://192.168.1.101:8080/FileService/recive";
     String fileUrl;
 
     public UploadFile(List<ChildBean> filePath){
@@ -51,7 +51,6 @@ public class UploadFile implements Runnable{
             byte[] bytes = new byte[1024];
             int data = 0;
 
-
             while((data = bufferedInputStream.read(bytes)) != -1){
                 bufferedOutputStream.write(bytes,0,data);
             }
@@ -59,7 +58,7 @@ public class UploadFile implements Runnable{
             bufferedInputStream.close();
             inputStream.close();
             bufferedOutputStream.close();
-            Log.e("oooooooooooo","oooooooooooooo");
+
             StringBuilder response = new StringBuilder();
             Scanner in = new Scanner(httpURLConnection.getInputStream());
             while(in.hasNextLine()){

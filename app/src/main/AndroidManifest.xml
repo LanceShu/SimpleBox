@@ -42,7 +42,7 @@
             android:launchMode="singleTask"/>
         <activity android:name=".View.PictureBed.View.PhotoViewActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".View.DocumentBackUp.View.DocumentBackUpActivity"
+        <activity android:name=".View.DocumentBackUp.View.View.DocumentBackUpActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".View.SoftManageActivity"
             android:launchMode="singleTask"/>

@@ -1,11 +1,10 @@
-package com.example.lance.simplebox.View.DocumentBackUp.View;
+package com.example.lance.simplebox.View.DocumentBackUp.View.View;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -14,7 +13,7 @@ import com.example.lance.simplebox.Adapter.ExpandableAdapter;
 import com.example.lance.simplebox.DataBean.ChildBean;
 import com.example.lance.simplebox.Mode.DocumenMode;
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.Utils.UploadFile;
+import com.example.lance.simplebox.Utils.UploadFileUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +95,8 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
                 finish();
             case R.id.back_up:
                 List<ChildBean> childListBean =expandableAdapter.getChildMessage();
-                UploadFile uploadFile=new UploadFile(childListBean);
+               // UploadFile uploadFile=new UploadFile(childListBean);
+                UploadFileUtil uploadFile =new UploadFileUtil(childListBean);
                 Thread thread =new Thread(uploadFile);
                 thread.start();
         }
