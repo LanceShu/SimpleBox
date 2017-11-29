@@ -17,4 +17,7 @@ class AudioBean{
 
     //视频大小
     var audioSize : String = ""
+
+    //视频是否被选中
+    var isSelected : Boolean = false
 }

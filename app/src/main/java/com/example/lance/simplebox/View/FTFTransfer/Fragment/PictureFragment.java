@@ -38,13 +38,6 @@ public class PictureFragment extends Fragment {
     private void initData() {
         if(pictureBeans == null){
             pictureBeans = ScanImageUtil.INSTANCE.scanImageFile(getContext());
-            for(int i = 0;i<pictureBeans.size();i++){
-                Log.e("picturesSize:",pictureBeans.get(i).getImagePath());
-            }
-        }else{
-            for(int i = 0;i<pictureBeans.size();i++){
-                Log.e("picturesSize:",pictureBeans.get(i).getImagePath());
-            }
         }
     }
 

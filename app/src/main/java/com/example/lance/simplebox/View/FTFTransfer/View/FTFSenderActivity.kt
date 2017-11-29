@@ -53,6 +53,12 @@ class FTFSenderActivity : AppCompatActivity(){
                 musicBeans[i].isSelected = false
             }
         }
+
+        if(audioBeans != null){
+            for(i in audioBeans.indices){
+                audioBeans[i].isSelected = false
+            }
+        }
     }
 
     /**

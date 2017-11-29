@@ -16,7 +16,7 @@
             <LinearLayout
                 android:id="@+id/ftf_music"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="32dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
@@ -25,7 +25,7 @@
                 <ImageView
                     android:id="@+id/ftf_music_arrow"
                     android:layout_width="24dp"
-                    android:layout_height="14dp"
+                    android:layout_height="15dp"
                     android:src="@mipmap/ftf_right"
                     android:layout_gravity="center"/>
 
@@ -52,7 +52,7 @@
             <LinearLayout
                 android:id="@+id/ftf_audio"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="32dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -61,7 +61,7 @@
                 <ImageView
                     android:id="@+id/ftf_audio_arrow"
                     android:layout_width="24dp"
-                    android:layout_height="14dp"
+                    android:layout_height="15dp"
                     android:src="@mipmap/ftf_right"
                     android:layout_gravity="center"/>
 

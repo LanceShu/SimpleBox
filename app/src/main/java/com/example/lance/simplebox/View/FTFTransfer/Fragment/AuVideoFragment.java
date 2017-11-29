@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.lance.simplebox.Adapter.FTFAudioAdapter;
 import com.example.lance.simplebox.Adapter.FTFMusicAdapter;
 import com.example.lance.simplebox.R;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAudioUtil;
@@ -27,7 +28,7 @@ import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent
  * Created by Lance on 2017/11/21.
  */
 
-public class AuVideoFragment extends Fragment {
+public class AuVideoFragment extends Fragment implements View.OnClickListener{
 
     private View view;
     private LinearLayout musicExpand;
@@ -38,6 +39,8 @@ public class AuVideoFragment extends Fragment {
     private RecyclerView audioRecycler;
 
     private String builder;
+    private boolean isMusicOpen = true;
+    private boolean isAudioOpen = false;
 
     private static final File audioFile = Environment.getExternalStorageDirectory();
 
@@ -55,30 +58,16 @@ public class AuVideoFragment extends Fragment {
      * 初始化数据;
      * */
     private void initData() {
+
+        isMusicOpen = true;
+        isAudioOpen = false;
+
         if(musicBeans == null){
             musicBeans = ScanMusicUtil.INSTANCE.scanMusicFile(getContext());
-            builder = "";
-            for(int i =0 ;i<musicBeans.size();i++){
-                builder += musicBeans.get(i).getMusicName()+"-----"+musicBeans.get(i).getMusicPath()+"-----"+musicBeans.get(i).getMusicSize()+"---"+musicBeans.get(i).getAlbum_id()+"\n";
-                Log.e("music"+i,builder);
-            }
-        }else{
-            builder = "";
-            for(int i =0 ;i<musicBeans.size();i++){
-                builder += musicBeans.get(i).getMusicName()+"-----"+musicBeans.get(i).getMusicPath()+"-----"+musicBeans.get(i).getMusicSize()+"\n";
-                Log.e("music"+i,builder);
-            }
         }
 
         if(audioBeans == null){
             audioBeans = ScanAudioUtil.INSTANCE.scanAudioFile(getContext());
-            for(int i =0 ;i<audioBeans.size();i++){
-                Log.e("music"+i, audioBeans.get(i).getAudioName()+"-----"+audioBeans.get(i).getAudioPath()+"-----"+audioBeans.get(i).getAudioSize());
-            }
-        }else{
-            for(int i =0 ;i<audioBeans.size();i++){
-                Log.e("music"+i, audioBeans.get(i).getAudioName()+"-----"+audioBeans.get(i).getAudioPath()+"-----"+audioBeans.get(i).getAudioSize());
-            }
         }
 
     }
@@ -94,11 +83,70 @@ public class AuVideoFragment extends Fragment {
         musicRecycler = (RecyclerView) view.findViewById(R.id.ftf_music_recycle);
         audioRecycler = (RecyclerView) view.findViewById(R.id.ftf_audio_recycle);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        if(isMusicOpen){
+            musicArrow.setImageResource(R.mipmap.ftf_down);
+        }else {
+            musicArrow.setImageResource(R.mipmap.ftf_right);
+        }
 
-        musicRecycler.setLayoutManager(layoutManager);
+        if(isAudioOpen){
+            audioArrow.setImageResource(R.mipmap.ftf_down);
+        }else {
+            audioArrow.setImageResource(R.mipmap.ftf_right);
+        }
+
+        /**
+         * 音频与视频列表的点击事件;
+         * */
+        musicExpand.setOnClickListener(this);
+        audioExpand.setOnClickListener(this);
+
+        /**
+         * 音频与视频列表是否可见（初始不可见）;
+         * */
+        musicRecycler.setVisibility(View.VISIBLE);
+        audioRecycler.setVisibility(View.GONE);
+
+        LinearLayoutManager musicLayoutManager = new LinearLayoutManager(getContext());
+        musicLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        musicRecycler.setLayoutManager(musicLayoutManager);
         FTFMusicAdapter musicAdapter = new FTFMusicAdapter(getContext(),musicBeans);
         musicRecycler.setAdapter(musicAdapter);
+
+        LinearLayoutManager audioLayoutManager = new LinearLayoutManager(getContext());
+        audioLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        audioRecycler.setLayoutManager(audioLayoutManager);
+        FTFAudioAdapter audioAdapter = new FTFAudioAdapter(getContext(),audioBeans);
+        audioRecycler.setAdapter(audioAdapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ftf_music:
+                if(isMusicOpen){
+                    musicRecycler.setVisibility(View.GONE);
+                    musicArrow.setImageResource(R.mipmap.ftf_right);
+                    isMusicOpen = false;
+                }else{
+                    musicRecycler.setVisibility(View.VISIBLE);
+                    musicArrow.setImageResource(R.mipmap.ftf_down);
+                    isMusicOpen = true;
+                }
+                break;
+            case R.id.ftf_audio:
+                if(isAudioOpen){
+                    audioRecycler.setVisibility(View.GONE);
+                    audioArrow.setImageResource(R.mipmap.ftf_right);
+                    isAudioOpen = false;
+                }else{
+                    audioRecycler.setVisibility(View.VISIBLE);
+                    audioArrow.setImageResource(R.mipmap.ftf_down);
+                    isAudioOpen = true;
+                }
+                break;
+        }
     }
 }

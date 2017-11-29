@@ -1,11 +1,6 @@
 package com.example.lance.simplebox.Adapter;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +31,7 @@ public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ftf_music_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ftf_media_item,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -45,9 +40,9 @@ public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final MusicBean musicBean = musicBeans.get(musicBeans.size()-1-position);
         if(musicBean.isSelected()){
-            holder.musicSelected.setImageResource(R.mipmap.select2);
+            holder.musicSelected.setImageResource(R.mipmap.ftf_select2);
         }else{
-            holder.musicSelected.setImageResource(R.mipmap.select1);
+            holder.musicSelected.setImageResource(R.mipmap.ftf_select1);
         }
 
         Glide.with(context).load(musicBean.getAlbum_id()).error(R.mipmap.ftf_music).into(holder.musicImage);
@@ -58,10 +53,10 @@ public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 if(musicBean.isSelected()){
-                    holder.musicSelected.setImageResource(R.mipmap.select1);
+                    holder.musicSelected.setImageResource(R.mipmap.ftf_select1);
                     musicBeans.get(musicBeans.size()-1-position).setSelected(false);
                 }else{
-                    holder.musicSelected.setImageResource(R.mipmap.select2);
+                    holder.musicSelected.setImageResource(R.mipmap.ftf_select2);
                     musicBeans.get(musicBeans.size()-1-position).setSelected(true);
                 }
             }
@@ -83,11 +78,11 @@ public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            musicLayout = (LinearLayout) view.findViewById(R.id.music_layout);
-            musicSelected = (ImageView) view.findViewById(R.id.music_isSeleted);
-            musicImage = (ImageView) view.findViewById(R.id.music_image);
-            musicName = (TextView) view.findViewById(R.id.music_name);
-            musicSize = (TextView) view.findViewById(R.id.music_size);
+            musicLayout = (LinearLayout) view.findViewById(R.id.media_layout);
+            musicSelected = (ImageView) view.findViewById(R.id.media_isSeleted);
+            musicImage = (ImageView) view.findViewById(R.id.media_image);
+            musicName = (TextView) view.findViewById(R.id.media_name);
+            musicSize = (TextView) view.findViewById(R.id.media_size);
         }
     }
 }

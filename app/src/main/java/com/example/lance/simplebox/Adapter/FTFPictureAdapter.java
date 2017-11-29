@@ -41,18 +41,18 @@ public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.Vi
         final ImageBean imageBean = pictures.get(pictures.size()-1-position);
         Glide.with(context).load(imageBean.getImagePath()).centerCrop().into(holder.imageView);
         if(imageBean.isSelected()){
-            holder.isSelected.setImageResource(R.mipmap.select2);
+            holder.isSelected.setImageResource(R.mipmap.ftf_select2);
         }else{
-            holder.isSelected.setImageResource(R.mipmap.select1);
+            holder.isSelected.setImageResource(R.mipmap.ftf_select1);
         }
         holder.pictureLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(imageBean.isSelected()){
-                    holder.isSelected.setImageResource(R.mipmap.select1);
+                    holder.isSelected.setImageResource(R.mipmap.ftf_select1);
                     pictures.get(pictures.size()-1-position).setSelected(false);
                 }else{
-                    holder.isSelected.setImageResource(R.mipmap.select2);
+                    holder.isSelected.setImageResource(R.mipmap.ftf_select2);
                     pictures.get(pictures.size()-1-position).setSelected(true);
                 }
             }
