@@ -13,7 +13,77 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/ftf_music"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp">
 
+                <ImageView
+                    android:id="@+id/ftf_music_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="14dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="音乐"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ftf_music_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ftf_audio"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/ftf_audio_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="14dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="视频"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ftf_audio_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

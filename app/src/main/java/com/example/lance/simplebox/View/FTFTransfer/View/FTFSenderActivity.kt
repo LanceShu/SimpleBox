@@ -3,11 +3,9 @@ package com.example.lance.simplebox.View.FTFTransfer.View
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.example.lance.simplebox.Adapter.SendTableViewAdapter
 import com.example.lance.simplebox.R
-import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent
-import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.pictureBeans
+import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.*
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.ApkFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.AuVideoFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.DocumentFragment
@@ -44,9 +42,15 @@ class FTFSenderActivity : AppCompatActivity(){
         senderFragmentList.add(DocumentFragment())
         senderFragmentList.add(ApkFragment())
 
-        if(FTFContent.pictureBeans != null){
+        if(pictureBeans != null){
             for (i in pictureBeans.indices) {
                 pictureBeans[i].isSelected = false
+            }
+        }
+
+        if(musicBeans != null){
+            for(i in musicBeans.indices){
+                musicBeans[i].isSelected = false
             }
         }
     }

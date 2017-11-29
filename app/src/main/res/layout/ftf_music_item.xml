@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/music_layout"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="4dp">
+
+    <ImageView
+        android:id="@+id/music_isSeleted"
+        android:layout_width="36dp"
+        android:layout_height="24dp"
+        android:src="@mipmap/select1"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:id="@+id/music_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="12dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/music_name"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="0dp"
+            android:paddingLeft="8dp"
+            android:text="music_name"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/font"/>
+
+        <TextView
+            android:id="@+id/music_size"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:text="music_size"
+            android:textSize="14sp"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/font"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
