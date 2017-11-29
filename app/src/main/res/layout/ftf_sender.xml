@@ -36,25 +36,31 @@
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@color/font"
         app:tabMode="fixed"/>
-    
-    <com.example.lance.simplebox.View.FTFTransfer.View.NoScrollViewPager
-        android:id="@+id/sendViewPage"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:isScrollContainer="true"/>
+        android:layout_weight="1">
 
-    <Button
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:text="下一步(0)"
-        android:textSize="16sp"
-        android:textColor="@color/font_white"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="@drawable/send_button" />
+        <com.example.lance.simplebox.View.FTFTransfer.View.NoScrollViewPager
+            android:id="@+id/sendViewPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"/>
 
+        <Button
+            android:layout_marginBottom="12dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="下一步(0)"
+            android:textSize="16sp"
+            android:textColor="@color/font_white"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:background="@drawable/send_button" />
+
+
+    </RelativeLayout>
 
 </LinearLayout>
