@@ -10,4 +10,7 @@ class ImageBean{
 
     //图片所在的绝对路径
     var imagePath : String = ""
+
+    //图片是否选中
+    var isSelected : Boolean = false
 }

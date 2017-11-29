@@ -3,10 +3,13 @@ package com.example.lance.simplebox.View.FTFTransfer.Utils
 import android.content.Context
 import android.provider.MediaStore
 import com.example.lance.simplebox.DataBean.MusicBean
+import java.io.File
+import java.util.Vector
 
 /**
- * Created by Lance on 2017/11/21.
+ * Created by Lance on 2017/11/29.
  */
+
 object ScanMusicUtil{
 
     fun scanMusicFile(context : Context) : ArrayList<MusicBean>{

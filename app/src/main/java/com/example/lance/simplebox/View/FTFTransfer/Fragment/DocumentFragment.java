@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanImageUtil;
+import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanOfficeFIleUtil;
 
 /**
  * Created by Lance on 2017/11/21.
@@ -21,6 +23,7 @@ public class DocumentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.ftf_main,container,false);
+//        new Thread(new ScanOfficeFIleUtil(getContext())).start();
         return view;
     }
 }

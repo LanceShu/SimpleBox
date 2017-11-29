@@ -3,13 +3,15 @@ package com.example.lance.simplebox.View.FTFTransfer.View
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.example.lance.simplebox.Adapter.SendTableViewAdapter
 import com.example.lance.simplebox.R
+import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent
+import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.pictureBeans
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.ApkFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.AuVideoFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.DocumentFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.PictureFragment
-import com.example.lance.simplebox.View.FTFTransfer.Utils.ReFTFFragUtil
 import kotlinx.android.synthetic.main.ftf_sender.*
 
 /**
@@ -32,15 +34,21 @@ class FTFSenderActivity : AppCompatActivity(){
      * 初始化发送端的数据部分;
      * */
     fun initSenderData(){
-        senderTitleList.add("影音")
         senderTitleList.add("图片")
+        senderTitleList.add("影音")
         senderTitleList.add("文档")
         senderTitleList.add("应用")
 
-        senderFragmentList.add(AuVideoFragment())
         senderFragmentList.add(PictureFragment())
+        senderFragmentList.add(AuVideoFragment())
         senderFragmentList.add(DocumentFragment())
         senderFragmentList.add(ApkFragment())
+
+        if(FTFContent.pictureBeans != null){
+            for (i in pictureBeans.indices) {
+                pictureBeans[i].isSelected = false
+            }
+        }
     }
 
     /**
@@ -57,6 +65,7 @@ class FTFSenderActivity : AppCompatActivity(){
         tab_layout.tabMode = TabLayout.MODE_FIXED
         sendViewPage.adapter = sendAdapter
         tab_layout.setupWithViewPager(sendViewPage)
-        ReFTFFragUtil.replaceFTFSendFragment(AuVideoFragment(),this)
+//        ReFTFFragUtil.replaceFTFSendFragment(AuVideoFragment(),this)
+        sendViewPage.setCurrentItem(0)
     }
 }
