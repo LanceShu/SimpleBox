@@ -144,12 +144,18 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * 打开文件夹动画；
+     * */
     private void openDiretory(View v){
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v,"rotation",0,90);
         objectAnimator.setDuration(300);
         objectAnimator.start();
     }
 
+    /**
+     * 关闭文件夹动画
+     * */
     private void closeDiretory(View v){
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v,"rotation",90,0);
         objectAnimator.setDuration(300);

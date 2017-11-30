@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.Adapter.FTFPictureAdapter;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAPKUtil;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAudioUtil;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanImageUtil;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanMusicUtil;
@@ -77,6 +78,14 @@ public class PictureFragment extends Fragment {
 
                 if(pdfList == null){
                     pdfList = ScanOfficeFileUtil.INSTANCE.scanPDFFile(getContext());
+                }
+
+                if(apkList == null){
+                    apkList = ScanAPKUtil.scanAPKsFile(getContext());
+                }
+
+                if(sysApkList == null){
+                    sysApkList = ScanAPKUtil.scanSysAPKsFile(getContext());
                 }
 
                 progressDialog.dismiss();

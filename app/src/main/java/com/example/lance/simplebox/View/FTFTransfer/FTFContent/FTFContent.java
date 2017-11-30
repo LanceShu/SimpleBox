@@ -1,7 +1,9 @@
 package com.example.lance.simplebox.View.FTFTransfer.FTFContent;
 
+import android.content.pm.PackageInfo;
 import android.text.style.ImageSpan;
 
+import com.example.lance.simplebox.DataBean.ApkBean;
 import com.example.lance.simplebox.DataBean.AudioBean;
 import com.example.lance.simplebox.DataBean.FileBean;
 import com.example.lance.simplebox.DataBean.ImageBean;
@@ -29,5 +31,9 @@ public class FTFContent {
     public static List<FileBean> excelList;
     //PDF文档的列表;
     public static List<FileBean> pdfList;
+    //用户安装的apk列表;
+    public static List<ApkBean> apkList;
+    //系统预安装的apk列表;
+    public static List<ApkBean> sysApkList;
 
 }

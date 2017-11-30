@@ -108,6 +108,21 @@ class FTFSenderActivity : AppCompatActivity(){
             }
         }
 
+        /**
+         * 初始所有apk列表与系统apk列表为未点击;
+         * */
+        if(apkList != null){
+            for(i in apkList.indices){
+                apkList[i].apkSelected = false
+            }
+        }
+
+        if(sysApkList != null){
+            for(i in sysApkList.indices){
+                sysApkList[i].apkSelected = false
+            }
+        }
+
     }
 
     /**
