@@ -38,11 +38,8 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
     private RecyclerView musicRecycler;
     private RecyclerView audioRecycler;
 
-    private String builder;
-    private boolean isMusicOpen = true;
-    private boolean isAudioOpen = false;
-
-    private static final File audioFile = Environment.getExternalStorageDirectory();
+    private boolean isMusicOpen;
+    private boolean isAudioOpen;
 
     @Nullable
     @Override
@@ -61,14 +58,6 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
 
         isMusicOpen = true;
         isAudioOpen = false;
-
-        if(musicBeans == null){
-            musicBeans = ScanMusicUtil.INSTANCE.scanMusicFile(getContext());
-        }
-
-        if(audioBeans == null){
-            audioBeans = ScanAudioUtil.INSTANCE.scanAudioFile(getContext());
-        }
 
     }
 
@@ -138,10 +127,14 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.ftf_audio:
                 if(isAudioOpen){
+                    musicExpand.setVisibility(View.VISIBLE);
+
                     audioRecycler.setVisibility(View.GONE);
                     audioArrow.setImageResource(R.mipmap.ftf_right);
                     isAudioOpen = false;
                 }else{
+                    musicExpand.setVisibility(View.GONE);
+
                     audioRecycler.setVisibility(View.VISIBLE);
                     audioArrow.setImageResource(R.mipmap.ftf_down);
                     isAudioOpen = true;

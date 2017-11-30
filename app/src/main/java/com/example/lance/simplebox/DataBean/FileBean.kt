@@ -11,6 +11,9 @@ class FileBean{
     //文件路径
     var filePath : String = ""
 
+    //文件的大小;
+    var fileSize : String = ""
+
     //文件是否被选中;
     var isFileSelected : Boolean = false
 
