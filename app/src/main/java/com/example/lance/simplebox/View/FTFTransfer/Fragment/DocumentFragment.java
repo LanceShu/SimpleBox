@@ -1,5 +1,6 @@
 package com.example.lance.simplebox.View.FTFTransfer.Fragment;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -88,27 +89,27 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
          * 初始化列表是否展开;
          * */
         if(isWordOpen){
-            wordArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(wordArrow);
         }else{
-            wordArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(wordArrow);
         }
 
         if (isPPTOpen){
-            pptArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(pptArrow);
         }else{
-            pptArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(pptArrow);
         }
 
         if (isExcelOpen){
-            excelArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(excelArrow);
         }else{
-            excelArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(excelArrow);
         }
 
         if (isPDFOpen){
-            pdfArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(pdfArrow);
         }else{
-            pdfArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(pdfArrow);
         }
 
         /**
@@ -158,11 +159,11 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
             case R.id.ftf_word:
                 if(isWordOpen){
                     wordRecycler.setVisibility(View.GONE);
-                    wordArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(wordArrow);
                     isWordOpen = false;
                 }else{
                     wordRecycler.setVisibility(View.VISIBLE);
-                    wordArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(wordArrow);
                     isWordOpen = true;
                 }
                 break;
@@ -171,13 +172,13 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
                     wordLayout.setVisibility(View.VISIBLE);
 
                     pptRecycler.setVisibility(View.GONE);
-                    pptArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(pptArrow);
                     isPPTOpen = false;
                 }else{
                     wordLayout.setVisibility(View.GONE);
 
                     pptRecycler.setVisibility(View.VISIBLE);
-                    pptArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(pptArrow);
                     isPPTOpen = true;
                 }
                 break;
@@ -187,14 +188,14 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
                     pptLayout.setVisibility(View.VISIBLE);
 
                     excelRecycler.setVisibility(View.GONE);
-                    excelArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(excelArrow);
                     isExcelOpen = false;
                 }else{
                     wordLayout.setVisibility(View.GONE);
                     pptLayout.setVisibility(View.GONE);
 
                     excelRecycler.setVisibility(View.VISIBLE);
-                    excelArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(excelArrow);
                     isExcelOpen = true;
                 }
                 break;
@@ -205,7 +206,7 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
                     excelLayout.setVisibility(View.VISIBLE);
 
                     pdfRecycler.setVisibility(View.GONE);
-                    pdfArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(pdfArrow);
                     isPDFOpen = false;
                 }else{
                     wordLayout.setVisibility(View.GONE);
@@ -213,10 +214,28 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
                     excelLayout.setVisibility(View.GONE);
 
                     pdfRecycler.setVisibility(View.VISIBLE);
-                    pdfArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(pdfArrow);
                     isPDFOpen = true;
                 }
                 break;
         }
+    }
+
+    /**
+     * 打开文件夹，旋转三角形;
+     * */
+    private void openDiretory(View v){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(v,"rotation",0,90);
+        animator.setDuration(300);
+        animator.start();
+    }
+
+    /**
+     * 关闭文件夹，旋转三角形;
+     * */
+    private void closeDiretory(View v){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(v,"rotation",90,0);
+        animator.setDuration(300);
+        animator.start();
     }
 }

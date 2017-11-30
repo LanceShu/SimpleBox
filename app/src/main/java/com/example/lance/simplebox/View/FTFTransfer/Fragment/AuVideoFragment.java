@@ -1,5 +1,6 @@
 package com.example.lance.simplebox.View.FTFTransfer.Fragment;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -73,15 +74,15 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
         audioRecycler = (RecyclerView) view.findViewById(R.id.ftf_audio_recycle);
 
         if(isMusicOpen){
-            musicArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(musicArrow);
         }else {
-            musicArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(musicArrow);
         }
 
         if(isAudioOpen){
-            audioArrow.setImageResource(R.mipmap.ftf_down);
+            openDiretory(audioArrow);
         }else {
-            audioArrow.setImageResource(R.mipmap.ftf_right);
+            closeDiretory(audioArrow);
         }
 
         /**
@@ -117,11 +118,11 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
             case R.id.ftf_music:
                 if(isMusicOpen){
                     musicRecycler.setVisibility(View.GONE);
-                    musicArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(musicArrow);
                     isMusicOpen = false;
                 }else{
                     musicRecycler.setVisibility(View.VISIBLE);
-                    musicArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(musicArrow);
                     isMusicOpen = true;
                 }
                 break;
@@ -130,16 +131,28 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
                     musicExpand.setVisibility(View.VISIBLE);
 
                     audioRecycler.setVisibility(View.GONE);
-                    audioArrow.setImageResource(R.mipmap.ftf_right);
+                    closeDiretory(audioArrow);
                     isAudioOpen = false;
                 }else{
                     musicExpand.setVisibility(View.GONE);
 
                     audioRecycler.setVisibility(View.VISIBLE);
-                    audioArrow.setImageResource(R.mipmap.ftf_down);
+                    openDiretory(audioArrow);
                     isAudioOpen = true;
                 }
                 break;
         }
+    }
+
+    private void openDiretory(View v){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v,"rotation",0,90);
+        objectAnimator.setDuration(300);
+        objectAnimator.start();
+    }
+
+    private void closeDiretory(View v){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v,"rotation",90,0);
+        objectAnimator.setDuration(300);
+        objectAnimator.start();
     }
 }
