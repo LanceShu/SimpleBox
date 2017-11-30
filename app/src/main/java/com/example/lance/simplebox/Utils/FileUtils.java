@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class FileUtils {
             }
             selection=selection+ MediaStore.Files.FileColumns.DATA+" LIKE '%"+extension[i]+"'";
         }
+        Log.e("selection:",selection);
         //按时间递增顺序对结果进行排序;待会从后往前移动游标就可实现时间递减
         String sortOrder= MediaStore.Files.FileColumns.DATE_MODIFIED;
         //获取内容解析器对象

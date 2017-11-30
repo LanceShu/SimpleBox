@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanImageUtil;
-import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanOfficeFIleUtil;
 
 /**
  * Created by Lance on 2017/11/21.
