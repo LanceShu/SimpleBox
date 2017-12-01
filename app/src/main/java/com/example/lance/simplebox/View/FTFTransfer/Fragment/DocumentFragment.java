@@ -1,6 +1,7 @@
 package com.example.lance.simplebox.View.FTFTransfer.Fragment;
 
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.example.lance.simplebox.Adapter.FTFFileAdapter;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAPKUtil;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanOfficeFileUtil;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.*;
 
@@ -128,29 +130,37 @@ public class DocumentFragment extends Fragment implements View.OnClickListener{
         /**
          * 实例化各列表的RecycleView;
          * */
-        LinearLayoutManager wordLM = new LinearLayoutManager(getContext());
-        wordLM.setOrientation(LinearLayoutManager.VERTICAL);
-        wordRecycler.setLayoutManager(wordLM);
-        FTFFileAdapter wordAdapter = new FTFFileAdapter(getContext(),wordList,R.mipmap.ftf_word);
-        wordRecycler.setAdapter(wordAdapter);
+        if(wordList != null){
+            LinearLayoutManager wordLM = new LinearLayoutManager(getContext());
+            wordLM.setOrientation(LinearLayoutManager.VERTICAL);
+            wordRecycler.setLayoutManager(wordLM);
+            FTFFileAdapter wordAdapter = new FTFFileAdapter(getContext(),wordList,R.mipmap.ftf_word);
+            wordRecycler.setAdapter(wordAdapter);
+        }
 
-        LinearLayoutManager pptLM = new LinearLayoutManager(getContext());
-        pptLM.setOrientation(LinearLayoutManager.VERTICAL);
-        pptRecycler.setLayoutManager(pptLM);
-        FTFFileAdapter pptAdapter = new FTFFileAdapter(getContext(),pptList,R.mipmap.ftf_ppt);
-        pptRecycler.setAdapter(pptAdapter);
+        if(pptList != null){
+            LinearLayoutManager pptLM = new LinearLayoutManager(getContext());
+            pptLM.setOrientation(LinearLayoutManager.VERTICAL);
+            pptRecycler.setLayoutManager(pptLM);
+            FTFFileAdapter pptAdapter = new FTFFileAdapter(getContext(),pptList,R.mipmap.ftf_ppt);
+            pptRecycler.setAdapter(pptAdapter);
+        }
 
-        LinearLayoutManager excelLM = new LinearLayoutManager(getContext());
-        excelLM.setOrientation(LinearLayoutManager.VERTICAL);
-        excelRecycler.setLayoutManager(excelLM);
-        FTFFileAdapter excelAdapter = new FTFFileAdapter(getContext(),excelList,R.mipmap.ftf_excel);
-        excelRecycler.setAdapter(excelAdapter);
+        if(excelList != null){
+            LinearLayoutManager excelLM = new LinearLayoutManager(getContext());
+            excelLM.setOrientation(LinearLayoutManager.VERTICAL);
+            excelRecycler.setLayoutManager(excelLM);
+            FTFFileAdapter excelAdapter = new FTFFileAdapter(getContext(),excelList,R.mipmap.ftf_excel);
+            excelRecycler.setAdapter(excelAdapter);
+        }
 
-        LinearLayoutManager pdfLM = new LinearLayoutManager(getContext());
-        pdfLM.setOrientation(LinearLayoutManager.VERTICAL);
-        pdfRecycler.setLayoutManager(pdfLM);
-        FTFFileAdapter pdfAdapter = new FTFFileAdapter(getContext(),pdfList,R.mipmap.ftf_pdf);
-        pdfRecycler.setAdapter(pdfAdapter);
+        if(pdfList != null){
+            LinearLayoutManager pdfLM = new LinearLayoutManager(getContext());
+            pdfLM.setOrientation(LinearLayoutManager.VERTICAL);
+            pdfRecycler.setLayoutManager(pdfLM);
+            FTFFileAdapter pdfAdapter = new FTFFileAdapter(getContext(),pdfList,R.mipmap.ftf_pdf);
+            pdfRecycler.setAdapter(pdfAdapter);
+        }
     }
 
     @Override

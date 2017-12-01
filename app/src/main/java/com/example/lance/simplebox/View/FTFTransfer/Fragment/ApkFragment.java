@@ -95,17 +95,21 @@ public class ApkFragment extends Fragment implements View.OnClickListener{
         /**
          * 设置RecycleView的布局与adapter;
          * */
-        LinearLayoutManager apkManager = new LinearLayoutManager(getContext());
-        apkManager.setOrientation(LinearLayoutManager.VERTICAL);
-        apkRecycler.setLayoutManager(apkManager);
-        FTFApkAdapter apkAdapter = new FTFApkAdapter(getContext(),apkList);
-        apkRecycler.setAdapter(apkAdapter);
+        if(apkList != null){
+            LinearLayoutManager apkManager = new LinearLayoutManager(getContext());
+            apkManager.setOrientation(LinearLayoutManager.VERTICAL);
+            apkRecycler.setLayoutManager(apkManager);
+            FTFApkAdapter apkAdapter = new FTFApkAdapter(getContext(),apkList);
+            apkRecycler.setAdapter(apkAdapter);
+        }
 
-        LinearLayoutManager sysApkManager = new LinearLayoutManager(getContext());
-        sysApkManager.setOrientation(LinearLayoutManager.VERTICAL);
-        sysApkRecycler.setLayoutManager(sysApkManager);
-        FTFApkAdapter sysApkAdapter = new FTFApkAdapter(getContext(),sysApkList);
-        sysApkRecycler.setAdapter(sysApkAdapter);
+        if(sysApkList != null){
+            LinearLayoutManager sysApkManager = new LinearLayoutManager(getContext());
+            sysApkManager.setOrientation(LinearLayoutManager.VERTICAL);
+            sysApkRecycler.setLayoutManager(sysApkManager);
+            FTFApkAdapter sysApkAdapter = new FTFApkAdapter(getContext(),sysApkList);
+            sysApkRecycler.setAdapter(sysApkAdapter);
+        }
     }
 
     //打开文件夹动画;

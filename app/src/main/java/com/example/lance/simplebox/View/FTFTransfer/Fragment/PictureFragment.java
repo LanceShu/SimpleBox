@@ -45,7 +45,7 @@ public class PictureFragment extends Fragment {
     private void initData() {
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("扫描数据ing...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -53,17 +53,17 @@ public class PictureFragment extends Fragment {
             pictureBeans = ScanImageUtil.INSTANCE.scanImageFile(getContext());
         }
 
+        if(musicBeans == null){
+            musicBeans = ScanMusicUtil.INSTANCE.scanMusicFile(getContext());
+        }
+
+        if(audioBeans == null){
+            audioBeans = ScanAudioUtil.INSTANCE.scanAudioFile(getContext());
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if(musicBeans == null){
-                    musicBeans = ScanMusicUtil.INSTANCE.scanMusicFile(getContext());
-                }
-
-                if(audioBeans == null){
-                    audioBeans = ScanAudioUtil.INSTANCE.scanAudioFile(getContext());
-                }
-
                 if(wordList == null){
                     wordList = ScanOfficeFileUtil.INSTANCE.scanWordFile(getContext());
                 }
@@ -72,6 +72,12 @@ public class PictureFragment extends Fragment {
                     pptList = ScanOfficeFileUtil.INSTANCE.scanPPTFile(getContext());
                 }
 
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
                 if(excelList == null){
                     excelList = ScanOfficeFileUtil.INSTANCE.scanExcelFile(getContext());
                 }
@@ -79,7 +85,12 @@ public class PictureFragment extends Fragment {
                 if(pdfList == null){
                     pdfList = ScanOfficeFileUtil.INSTANCE.scanPDFFile(getContext());
                 }
+            }
+        }).start();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
                 if(apkList == null){
                     apkList = ScanAPKUtil.scanAPKsFile(getContext());
                 }
@@ -97,7 +108,7 @@ public class PictureFragment extends Fragment {
     private void initWight(View view){
         picRecycler = (RecyclerView) view.findViewById(R.id.picture_recycler);
 
-        if(pictureBeans.size() != 0){
+        if(pictureBeans != null){
             StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
             picRecycler.setLayoutManager(layoutManager);
             FTFPictureAdapter adapter = new FTFPictureAdapter(pictureBeans,getContext());

@@ -97,19 +97,23 @@ public class AuVideoFragment extends Fragment implements View.OnClickListener{
         musicRecycler.setVisibility(View.VISIBLE);
         audioRecycler.setVisibility(View.GONE);
 
-        LinearLayoutManager musicLayoutManager = new LinearLayoutManager(getContext());
-        musicLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+       if(musicBeans != null){
+           LinearLayoutManager musicLayoutManager = new LinearLayoutManager(getContext());
+           musicLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        musicRecycler.setLayoutManager(musicLayoutManager);
-        FTFMusicAdapter musicAdapter = new FTFMusicAdapter(getContext(),musicBeans);
-        musicRecycler.setAdapter(musicAdapter);
+           musicRecycler.setLayoutManager(musicLayoutManager);
+           FTFMusicAdapter musicAdapter = new FTFMusicAdapter(getContext(),musicBeans);
+           musicRecycler.setAdapter(musicAdapter);
+       }
 
-        LinearLayoutManager audioLayoutManager = new LinearLayoutManager(getContext());
-        audioLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        if(audioBeans != null){
+            LinearLayoutManager audioLayoutManager = new LinearLayoutManager(getContext());
+            audioLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        audioRecycler.setLayoutManager(audioLayoutManager);
-        FTFAudioAdapter audioAdapter = new FTFAudioAdapter(getContext(),audioBeans);
-        audioRecycler.setAdapter(audioAdapter);
+            audioRecycler.setLayoutManager(audioLayoutManager);
+            FTFAudioAdapter audioAdapter = new FTFAudioAdapter(getContext(),audioBeans);
+            audioRecycler.setAdapter(audioAdapter);
+        }
     }
 
     @Override

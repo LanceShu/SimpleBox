@@ -19,20 +19,28 @@ public class FTFContent {
 
     //音频文件列表;
     public static List<MusicBean> musicBeans;
+
     //视频文件列表；
     public static List<AudioBean> audioBeans;
+
     //图片的列表;
     public static List<ImageBean> pictureBeans;
+
     //Word文档的列表;
     public static List<FileBean> wordList;
+
     //PPT文档的列表;
     public static List<FileBean> pptList;
+
     //Excel文档的列表;
     public static List<FileBean> excelList;
+
     //PDF文档的列表;
     public static List<FileBean> pdfList;
+
     //用户安装的apk列表;
     public static List<ApkBean> apkList;
+
     //系统预安装的apk列表;
     public static List<ApkBean> sysApkList;
 
