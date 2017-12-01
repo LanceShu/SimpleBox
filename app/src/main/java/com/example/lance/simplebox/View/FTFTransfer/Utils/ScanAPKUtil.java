@@ -52,8 +52,8 @@ public class ScanAPKUtil {
                 //获取apk的路径;
                 apkBean.setApkPath(apk.applicationInfo.sourceDir);
                 //获取apk的大小
-                String size = (Integer.valueOf((int)new File(apk.applicationInfo.publicSourceDir).length()) /1024f /1024f + "").substring(0,4);
-                apkBean.setApkSize(size + "M");
+                String size = (Integer.valueOf((int)new File(apk.applicationInfo.publicSourceDir).length()) /1024f /1024f + "").substring(0,3);
+                apkBean.setApkSize(size);
                 //获取apk在手机中的下载日期；
                 Date date = new Date(new File(apk.applicationInfo.publicSourceDir).lastModified());
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,7 +92,7 @@ public class ScanAPKUtil {
                 apkBean.setApkName(String.valueOf(manager.getApplicationLabel(apk.applicationInfo)));
                 apkBean.setApkPackgeName(apk.applicationInfo.packageName);
                 apkBean.setApkPath(apk.applicationInfo.sourceDir);
-                String size = (Integer.valueOf((int)new File(apk.applicationInfo.publicSourceDir).length()) /1024f /1024f + "").substring(0,4);
+                String size = (Integer.valueOf((int)new File(apk.applicationInfo.publicSourceDir).length()) /1024f /1024f + "").substring(0,3);
                 apkBean.setApkSize(size + "M");
                 Date date = new Date(new File(apk.applicationInfo.publicSourceDir).lastModified());
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

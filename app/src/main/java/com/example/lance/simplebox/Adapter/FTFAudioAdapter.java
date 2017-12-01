@@ -1,6 +1,7 @@
 package com.example.lance.simplebox.Adapter;
 
 import android.content.Context;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.DataBean.AudioBean;
 import com.example.lance.simplebox.DataBean.MusicBean;
+import com.example.lance.simplebox.DataBean.SendFileBean;
 import com.example.lance.simplebox.R;
 
 import java.util.List;
+
+import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
  * Created by Lance on 2017/11/29.
@@ -54,17 +59,37 @@ public class FTFAudioAdapter extends RecyclerView.Adapter<FTFAudioAdapter.ViewHo
                 .into(holder.audioImage);
 
         holder.audioName.setText(audioBean.getAudioName());
-        holder.audioSize.setText(audioBean.getAudioSize());
+        holder.audioSize.setText(audioBean.getAudioSize() + "M");
         holder.audioLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SendFileBean sendFileBean = new SendFileBean();
+
                 if(audioBean.isSelected()){
                     holder.audioSelected.setImageResource(R.mipmap.ftf_select1);
                     audioBeans.get(audioBeans.size()-1-position).setSelected(false);
+
+                    for(int i =0;i<sendFileBeans.size();i++){
+                        if(sendFileBeans.get(i).getSendPath().equals(audioBean.getAudioPath())){
+                            sendFileBeans.remove(i);
+                        }
+                    }
                 }else{
                     holder.audioSelected.setImageResource(R.mipmap.ftf_select2);
                     audioBeans.get(audioBeans.size()-1-position).setSelected(true);
+
+                    sendFileBean.setSendName(audioBean.getAudioName());
+                    sendFileBean.setSendPath(audioBean.getAudioPath());
+                    sendFileBean.setSendSize(audioBean.getAudioSize());
+                    sendFileBean.setSendIcon(audioBean.getAudioPath());
+                    sendFileBean.setSendType("audio");
+                    sendFileBeans.add(sendFileBean);
                 }
+
+                Message message = Message.obtain();
+                message.what = Content.SEND_FILE_LIST;
+                Content.FTFhandler.sendMessage(message);
             }
         });
     }

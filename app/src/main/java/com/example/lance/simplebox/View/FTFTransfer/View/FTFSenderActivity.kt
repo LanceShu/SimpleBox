@@ -1,17 +1,21 @@
 package com.example.lance.simplebox.View.FTFTransfer.View
 
-import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.example.lance.simplebox.Adapter.SendTableViewAdapter
+import com.example.lance.simplebox.Content.Content
+import com.example.lance.simplebox.DataBean.SendFileBean
 import com.example.lance.simplebox.R
+import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent
 import com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.*
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.ApkFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.AuVideoFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.DocumentFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.PictureFragment
-import com.example.lance.simplebox.View.FTFTransfer.Utils.*
 import kotlinx.android.synthetic.main.ftf_sender.*
 
 /**
@@ -28,6 +32,16 @@ class FTFSenderActivity : AppCompatActivity(){
         setContentView(R.layout.ftf_sender)
         initSenderData()
         initSenderWight()
+
+        Content.FTFhandler = object : Handler(){
+            override fun handleMessage(msg: Message?) {
+                when(msg!!.what){
+                    Content.SEND_FILE_LIST ->
+                        ftf_send_file.setText("下一步(${FTFContent.sendFileBeans.size.toString()})")
+
+                }
+            }
+        }
     }
 
     /**
@@ -44,6 +58,13 @@ class FTFSenderActivity : AppCompatActivity(){
         senderFragmentList.add(AuVideoFragment())
         senderFragmentList.add(DocumentFragment())
         senderFragmentList.add(ApkFragment())
+
+        /**
+         * 初始化选中列表
+         * */
+        if(sendFileBeans == null){
+            sendFileBeans = ArrayList<SendFileBean>()
+        }
 
         /**
          * 初始所有图片未点击;
@@ -141,5 +162,11 @@ class FTFSenderActivity : AppCompatActivity(){
         tab_layout.setupWithViewPager(sendViewPage)
 //        ReFTFFragUtil.replaceFTFSendFragment(AuVideoFragment(),this)
         sendViewPage.setCurrentItem(0)
+
+        ftf_send_file.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+
+            }
+        })
     }
 }

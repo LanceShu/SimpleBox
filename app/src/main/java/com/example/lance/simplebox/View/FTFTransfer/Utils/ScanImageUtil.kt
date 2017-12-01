@@ -15,7 +15,7 @@ object ScanImageUtil {
         var pictures = ArrayList<ImageBean>()
 
         val cursor = context.contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                , arrayOf(MediaStore.Images.Media.BUCKET_DISPLAY_NAME,MediaStore.Images.Media.DATA)
+                , arrayOf(MediaStore.Images.Media.BUCKET_DISPLAY_NAME,MediaStore.Images.Media.DATA,MediaStore.Images.Media.SIZE)
                 ,null,null,null)
 
         if(cursor.moveToFirst()){
@@ -23,6 +23,12 @@ object ScanImageUtil {
                 val picture = ImageBean()
                 picture.imageDisplayName = cursor.getString(0)
                 picture.imagePath = cursor.getString(1)
+                if(cursor.getInt(2) != null){
+                    var size : Float = cursor.getInt(1)/1024f/1024f
+                    picture.imageSize = "$size".substring(0,3)
+                }else{
+                    picture.imageSize = "unkown"
+                }
                 picture.isSelected = false
                 pictures.add(picture)
             }while(cursor.moveToNext())

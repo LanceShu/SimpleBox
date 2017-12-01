@@ -8,6 +8,7 @@ import com.example.lance.simplebox.DataBean.AudioBean;
 import com.example.lance.simplebox.DataBean.FileBean;
 import com.example.lance.simplebox.DataBean.ImageBean;
 import com.example.lance.simplebox.DataBean.MusicBean;
+import com.example.lance.simplebox.DataBean.SendFileBean;
 
 import java.util.List;
 
@@ -43,5 +44,8 @@ public class FTFContent {
 
     //系统预安装的apk列表;
     public static List<ApkBean> sysApkList;
+
+    //用户选中发送的列表;
+    public static List<SendFileBean> sendFileBeans;
 
 }

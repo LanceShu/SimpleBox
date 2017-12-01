@@ -43,7 +43,7 @@ object ScanOfficeFileUtil{
                 }
                 if(cursor.getInt(2) != 0){
                     var size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,4) + "M"
+                    file.fileSize = "$size".substring(0,3)
                 }else{
                     file.fileSize = "unknow"
                 }
@@ -90,7 +90,7 @@ object ScanOfficeFileUtil{
                 }
                 if(cursor.getInt(2) != 0){
                     var size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,4) + "M"
+                    file.fileSize = "$size".substring(0,3)
                 }else{
                     file.fileSize = "unknow"
                 }
@@ -136,7 +136,7 @@ object ScanOfficeFileUtil{
                 }
                 if(cursor.getInt(2) != 0){
                     var size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,4) + "M"
+                    file.fileSize = "$size".substring(0,3)
                 }else{
                     file.fileSize = "unknow"
                 }
@@ -182,7 +182,7 @@ object ScanOfficeFileUtil{
                 }
                 if(cursor.getInt(2) != 0){
                     var size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,4) + "M"
+                    file.fileSize = "$size".substring(0,3)
                 }else{
                     file.fileSize = "unknow"
                 }

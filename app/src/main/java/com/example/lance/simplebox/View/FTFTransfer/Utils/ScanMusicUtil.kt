@@ -30,7 +30,7 @@ object ScanMusicUtil{
 
                 if(cursor.getInt(1) != null){
                     var size : Float = cursor.getInt(1)/1024f/1024f
-                    music.musicSize = "$size".substring(0,4) + "M"
+                    music.musicSize = "$size".substring(0,3)
                 }else{
                     music.musicSize = "unkown"
                 }
