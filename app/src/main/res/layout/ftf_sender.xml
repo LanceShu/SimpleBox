@@ -2,8 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/headerBack"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -11,7 +9,7 @@
         android:layout_height="?attr/actionBarSize">
 
         <ImageView
-            android:id="@+id/sendback"
+            android:id="@+id/ftfsendback"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:src="@mipmap/back"
@@ -28,39 +26,103 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:tabIndicatorColor="@color/colorPrimary"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/font"
-        app:tabMode="fixed"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.example.lance.simplebox.View.FTFTransfer.View.NoScrollViewPager
-            android:id="@+id/sendViewPage"
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送文件列表"
+            android:textColor="@color/font"
+            android:textSize="12sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"/>
+
+
+        <LinearLayout
+            android:id="@+id/send_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:isScrollContainer="true"/>
-
-        <Button
-            android:id="@+id/ftf_send_file"
-            android:layout_marginBottom="12dp"
-            android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="下一步(0)"
-            android:textSize="16sp"
-            android:textColor="@color/font_white"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:background="@drawable/send_button" />
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
 
+            <RelativeLayout
+                android:id="@+id/ftf_send_radar"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/send_button">
+
+                <ImageView
+                    android:id="@+id/radar"
+                    android:layout_width="30dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/radar"
+                    android:layout_marginLeft="16dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/radar"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搜索附近"
+                    android:textColor="@color/font_white"
+                    android:layout_centerInParent="true"
+                    android:textSize="14sp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ftf_send_td_code"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/send_button">
+
+                <ImageView
+                    android:id="@+id/td_code"
+                    android:layout_width="30dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/td_code"
+                    android:layout_marginLeft="16dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/td_code"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="二维码发送"
+                    android:textColor="@color/font_white"
+                    android:layout_centerVertical="true"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ftf_send_recycler"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_above="@id/send_layout"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
 

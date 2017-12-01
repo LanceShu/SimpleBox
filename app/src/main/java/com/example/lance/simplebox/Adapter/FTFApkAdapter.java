@@ -77,7 +77,7 @@ public class FTFApkAdapter extends RecyclerView.Adapter<FTFApkAdapter.ViewHolder
                     sendFileBean.setSendName(apkBean.getApkName());
                     sendFileBean.setSendPath(apkBean.getApkPath());
                     sendFileBean.setSendSize(apkBean.getApkSize());
-                    sendFileBean.setSendIcon(R.mipmap.ic_launcher+"");
+                    sendFileBean.setSendIcon(R.mipmap.ic_launcher_round+"");
                     sendFileBean.setSendType("apk");
                     sendFileBeans.add(sendFileBean);
                 }

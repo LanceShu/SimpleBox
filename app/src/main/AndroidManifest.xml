@@ -50,7 +50,9 @@
             android:launchMode="singleTask"/>
         <activity android:name=".View.FTFTransfer.View.FTFTransferMainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".View.FTFTransfer.View.FTFSenderActivity"
+        <activity android:name=".View.FTFTransfer.View.SenderActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".View.FTFTransfer.View.FTFSendActivity"
             android:launchMode="singleTask"/>
 
         <provider

@@ -24,7 +24,7 @@ object ScanImageUtil {
                 picture.imageDisplayName = cursor.getString(0)
                 picture.imagePath = cursor.getString(1)
                 if(cursor.getInt(2) != null){
-                    var size : Float = cursor.getInt(1)/1024f/1024f
+                    var size : Float = cursor.getInt(2)/1024f/1024f
                     picture.imageSize = "$size".substring(0,3)
                 }else{
                     picture.imageSize = "unkown"

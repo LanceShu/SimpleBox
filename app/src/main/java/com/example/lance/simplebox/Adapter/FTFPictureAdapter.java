@@ -58,6 +58,9 @@ public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.Vi
                     holder.isSelected.setImageResource(R.mipmap.ftf_select1);
                     pictures.get(pictures.size()-1-position).setSelected(false);
 
+                    /**
+                     * 在发送列表中找到该文件的位置，将它移除；
+                     * */
                     for(int i =0;i<sendFileBeans.size();i++){
                         if(sendFileBeans.get(i).getSendPath().equals(imageBean.getImagePath())){
                             sendFileBeans.remove(i);
@@ -67,6 +70,9 @@ public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.Vi
                     holder.isSelected.setImageResource(R.mipmap.ftf_select2);
                     pictures.get(pictures.size()-1-position).setSelected(true);
 
+                    /**
+                     * 将该文件添加到发送列表中去;
+                     * */
                     sendFileBean.setSendName(imageBean.getImageDisplayName());
                     sendFileBean.setSendPath(imageBean.getImagePath());
                     sendFileBean.setSendSize(imageBean.getImageSize());
@@ -75,6 +81,9 @@ public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.Vi
                     sendFileBeans.add(sendFileBean);
                 }
 
+                /**
+                 * 添加到发送列表后，通知Activity改变Button的内容;
+                 * */
                 Message message = Message.obtain();
                 message.what = Content.SEND_FILE_LIST;
                 Content.FTFhandler.sendMessage(message);

@@ -1,5 +1,6 @@
 package com.example.lance.simplebox.View.FTFTransfer.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -16,12 +17,12 @@ import com.example.lance.simplebox.View.FTFTransfer.Fragment.ApkFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.AuVideoFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.DocumentFragment
 import com.example.lance.simplebox.View.FTFTransfer.Fragment.PictureFragment
-import kotlinx.android.synthetic.main.ftf_sender.*
+import kotlinx.android.synthetic.main.file_sender.*
 
 /**
  * Created by Lance on 2017/11/21.
  */
-class FTFSenderActivity : AppCompatActivity(){
+class SenderActivity : AppCompatActivity(){
 
     var senderTitleList = ArrayList<String>()
     var senderFragmentList = ArrayList<android.support.v4.app.Fragment>()
@@ -29,7 +30,7 @@ class FTFSenderActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.ftf_sender)
+        setContentView(R.layout.file_sender)
         initSenderData()
         initSenderWight()
 
@@ -64,6 +65,8 @@ class FTFSenderActivity : AppCompatActivity(){
          * */
         if(sendFileBeans == null){
             sendFileBeans = ArrayList<SendFileBean>()
+        }else{
+            sendFileBeans.clear()
         }
 
         /**
@@ -97,8 +100,8 @@ class FTFSenderActivity : AppCompatActivity(){
          * 初始所有word未点击;
          * */
         if(wordList != null){
-            for(i in audioBeans.indices){
-                audioBeans[i].isSelected = false
+            for(i in wordList.indices){
+                wordList[i].isFileSelected = false
             }
         }
 
@@ -106,8 +109,8 @@ class FTFSenderActivity : AppCompatActivity(){
          * 初始所有PPT未点击;
          * */
         if(pptList != null){
-            for(i in audioBeans.indices){
-                audioBeans[i].isSelected = false
+            for(i in pptList.indices){
+                pptList[i].isFileSelected = false
             }
         }
 
@@ -115,8 +118,8 @@ class FTFSenderActivity : AppCompatActivity(){
          * 初始所有Excel未点击;
          * */
         if(excelList != null){
-            for(i in audioBeans.indices){
-                audioBeans[i].isSelected = false
+            for(i in excelList.indices){
+                excelList[i].isFileSelected = false
             }
         }
 
@@ -124,8 +127,8 @@ class FTFSenderActivity : AppCompatActivity(){
          * 初始所有PDF未点击;
          * */
         if(pdfList != null){
-            for(i in audioBeans.indices){
-                audioBeans[i].isSelected = false
+            for(i in pdfList.indices){
+                pdfList[i].isFileSelected = false
             }
         }
 
@@ -153,6 +156,11 @@ class FTFSenderActivity : AppCompatActivity(){
 
         sendback.setOnClickListener { finish() }
 
+        ftf_send_file.setText("下一步(${FTFContent.sendFileBeans.size.toString()})")
+
+        /**
+         * 导航栏初始化；
+         * */
         for(i in 0 until senderTitleList.size){
             tab_layout.addTab(tab_layout.newTab().setText(senderTitleList[i]))
         }
@@ -161,11 +169,16 @@ class FTFSenderActivity : AppCompatActivity(){
         sendViewPage.adapter = sendAdapter
         tab_layout.setupWithViewPager(sendViewPage)
 //        ReFTFFragUtil.replaceFTFSendFragment(AuVideoFragment(),this)
+        /**
+         * 首次打开设置为第一个Fragment
+         * */
         sendViewPage.setCurrentItem(0)
 
         ftf_send_file.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-
+                val ftfSendIntent = Intent(this@SenderActivity,FTFSendActivity::class.java)
+                startActivity(ftfSendIntent)
+                finish()
             }
         })
     }
