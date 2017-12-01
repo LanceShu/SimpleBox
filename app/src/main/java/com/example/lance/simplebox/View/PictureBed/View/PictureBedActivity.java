@@ -40,6 +40,7 @@ import java.io.IOException;
 
 /**
  * Created by Lance on 2017/10/28.
+ *
  */
 
 public class PictureBedActivity extends AppCompatActivity implements View.OnClickListener{
@@ -176,7 +177,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }else{
                     openPicuture();
                 }
-
                 dialog.dismiss();
             }
         });

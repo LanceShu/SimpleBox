@@ -1,11 +1,13 @@
 package com.example.lance.simplebox.View.Main.View;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     private LinearLayout softwareManagement;
     //面对面传输;
     private LinearLayout faceTransformer;
+    //支付工具：启动扫码支付
+    private LinearLayout payTool;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         documentUpDate= (LinearLayout) findViewById(R.id.document_back_up);
         softwareManagement= (LinearLayout) findViewById(R.id.software_management);
         faceTransformer = (LinearLayout) findViewById(R.id.faceTransform);
+        payTool = (LinearLayout) findViewById(R.id.pay_tool);
 
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
@@ -90,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         documentUpDate.setOnClickListener(this);
         softwareManagement.setOnClickListener(this);
         faceTransformer.setOnClickListener(this);
+        payTool.setOnClickListener(this);
 
     }
 
@@ -129,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
             case R.id.faceTransform:
                 Intent FTFIontent = new Intent(this, FTFTransferMainActivity.class);
                 startActivity(FTFIontent);
+                break;
+            case R.id.pay_tool:
+                //进入支付设置；
+                Log.e("pay_tool", "点击了支付工具");
                 break;
         }
     }
