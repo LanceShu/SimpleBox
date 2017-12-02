@@ -27,13 +27,9 @@ class FTFTransferMainActivity : AppCompatActivity(){
             startActivity(sendIntent)
         }
         //主页面接收按键;
-        ftfReceiver.setOnClickListener { FTFReceive() }
+        ftfReceiver.setOnClickListener {
+            val receiveIntent = Intent(this@FTFTransferMainActivity, FTFReceiveActivity::class.java)
+            startActivity(receiveIntent) }
     }
 
-    /**
-     * 接收文件的逻辑
-     * */
-    fun FTFReceive(){
-
-    }
 }

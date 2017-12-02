@@ -10,7 +10,7 @@
         android:layout_height="?attr/actionBarSize">
 
         <ImageView
-            android:id="@+id/ftfback"
+            android:id="@+id/ftfReceiveBack"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:src="@mipmap/back"
@@ -27,56 +27,119 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_marginTop="80dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/transfor"
-            android:layout_gravity="center"/>
+        android:layout_weight="1">
 
         <TextView
-            android:layout_marginTop="18dp"
+            android:id="@+id/text"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:text="无需流量，简而极传"
-            android:textSize="18sp"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="接收文件列表"
             android:textColor="@color/font"
-            android:gravity="center" />
+            android:textSize="12sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"/>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/send_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/ftfSender"
-            android:layout_width="180dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="↑发文件↑"
-            android:textSize="16sp"/>
+            <RelativeLayout
+                android:id="@+id/ftf_receive_radar"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/send_button">
 
-        <Button
-            android:id="@+id/ftfReceiver"
-            android:layout_marginTop="18dp"
-            android:layout_width="180dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="↓收文件↓"
-            android:textSize="16sp"/>
+                <ImageView
+                    android:id="@+id/radar"
+                    android:layout_width="30dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/radar"
+                    android:layout_marginLeft="16dp"/>
 
-    </LinearLayout>
+                <TextView
+                    android:layout_toRightOf="@id/radar"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="扫描附近"
+                    android:textColor="@color/font_white"
+                    android:layout_centerInParent="true"
+                    android:textSize="14sp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ftf_receive_td_code"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/send_button">
+
+                <ImageView
+                    android:id="@+id/td_code"
+                    android:layout_width="30dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/td_code"
+                    android:layout_marginLeft="8dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/td_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="扫描二维码接收"
+                    android:textColor="@color/font_white"
+                    android:layout_centerVertical="true"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ftf_receive_text"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_above="@id/send_layout"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="暂无接收到文件"
+            android:textSize="16sp"
+            android:textColor="@color/font"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ftf_receive_recycler"
+            android:visibility="gone"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_above="@id/send_layout"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -54,6 +54,8 @@
             android:launchMode="singleTask"/>
         <activity android:name=".View.FTFTransfer.View.FTFSendActivity"
             android:launchMode="singleTask"/>
+        <activity android:name=".View.FTFTransfer.View.FTFReceiveActivity"
+            android:launchMode="singleTask"/>
 
         <provider
             android:authorities="com.example.lance.simplebox"
