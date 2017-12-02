@@ -42,7 +42,7 @@ class FTFSendActivity : AppCompatActivity(){
          * 扫描附近
          * */
         ftf_send_radar.setOnClickListener {
-            dialog!!.setContentView(R.layout.ftf_scan_radar)
+            dialog!!.setContentView(R.layout.ftf_send_scan_radar)
             dialog!!.setCanceledOnTouchOutside(true)
             dialog!!.show()
         }
@@ -51,7 +51,7 @@ class FTFSendActivity : AppCompatActivity(){
          * 扫描二维码
          * */
         ftf_send_td_code.setOnClickListener {
-            dialog!!.setContentView(R.layout.ftf_td_code)
+            dialog!!.setContentView(R.layout.ftf_send_td_code)
             dialog!!.setCanceledOnTouchOutside(true)
             dialog!!.show()
 
