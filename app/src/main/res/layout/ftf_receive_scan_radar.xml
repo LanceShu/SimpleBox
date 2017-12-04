@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="480dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_back">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/dialog_header"
+        android:text="连接附近"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/font_white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
+
+        <com.kongqw.radarscanviewlibrary.RadarScanView
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            app:radarBackgroundColor="@color/radarBack"
+            app:radarBackgroundLinesColor="@color/radarLines"
+            app:radarScanColor="@color/radarLines"
+            app:radarBackgroundLinesNumber="5"
+            app:radarBackgroundLinesWidth="2"
+            app:radarScanAlpha="0xFFAAAAAA"
+            app:radarScanTime="5000"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:padding="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:background="@color/radarBack"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在连接发送方...\n127.0.0.1连接成功\n\n准备开始接收文件...\n文件接收ing...\n接收完成进度...100%\n\n接收完成，请查收"
+            android:textColor="@color/font"
+            android:textSize="12sp"
+            android:gravity="left"
+            android:layout_gravity="center"/>
+
+    </ScrollView>
+
+</LinearLayout>

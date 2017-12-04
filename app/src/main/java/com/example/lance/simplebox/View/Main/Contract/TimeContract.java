@@ -1,12 +1,5 @@
 package com.example.lance.simplebox.View.Main.Contract;
 
-import android.content.Context;
-
-import com.example.lance.simplebox.DataBean.SMSBean;
-import com.example.lance.simplebox.DataBean.WeatherBean;
-
-import java.util.List;
-
 /**
  * Created by Lance on 2017/10/13.
  */
@@ -17,7 +10,7 @@ public class TimeContract {
         void showTimeData(String data);
     }
 
-    public interface  TimePersenter{
+    public interface TimePersenter{
         void getTimeData();
     }
 

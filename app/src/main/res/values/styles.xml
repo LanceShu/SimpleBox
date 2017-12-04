@@ -28,7 +28,7 @@
         <item name="android:windowIsFloating">true</item>
         //动画
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        //半透明
+        //透明
         <item name="android:windowIsTranslucent">true</item>
         //模糊
         <item name="android:backgroundDimEnabled">true</item>

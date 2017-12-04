@@ -15,4 +15,8 @@ class MusicBean {
     var musicSize : String = ""
     //音频文件的全路径;
     var musicPath : String = ""
+    //音频文件是否选中;
+    var isSelected : Boolean = false
+    //音频文件的专辑;
+    var album_id : String = ""
 }

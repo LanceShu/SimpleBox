@@ -5,9 +5,15 @@ package com.example.lance.simplebox.DataBean
  */
 class ImageBean{
 
-    //图片所在的文件夹
+    //图片的名称;
     var imageDisplayName : String = ""
 
     //图片所在的绝对路径
     var imagePath : String = ""
+
+    //图片是否选中
+    var isSelected : Boolean = false
+
+    //图片的大小;
+    var imageSize : String = ""
 }

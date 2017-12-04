@@ -23,7 +23,7 @@ object ScanAudioUtil{
                 audio.audioName = cursor.getString(0)
                 if(cursor.getInt(1) != null){
                     var size : Float = cursor.getInt(1)/1024f/1024f
-                    audio.audioSize = "$size".substring(0,4) + "M"
+                    audio.audioSize = "$size".substring(0,3)
                 }else{
                     audio.audioSize = "unkown"
                 }

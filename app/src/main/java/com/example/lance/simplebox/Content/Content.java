@@ -19,6 +19,7 @@ public class Content {
 
     public static final int UPDATE_TIME = 1;
     public static final int SCAN_AUDIO_SUCCESS = 2;
+    public static final int SEND_FILE_LIST = 3;
 
     //获取通讯录数据;
     public static List<LinkmanBean> linkmanBeanList = new ArrayList<>();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/picture_item"
+    android:layout_width="120dp"
+    android:layout_height="150dp"
+    android:layout_margin="1dp">
+
+    <ImageView
+        android:id="@+id/picture_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/pic_idSelected"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:src="@mipmap/select1"/>
+
+</RelativeLayout>

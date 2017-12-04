@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ftf_word"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp">
+
+                <ImageView
+                    android:id="@+id/ftf_word_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Word"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/ftf_word_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ftf_ppt"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/ftf_ppt_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="PPT"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/ftf_ppt_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ftf_excel"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="16dp">
+
+                <ImageView
+                    android:id="@+id/ftf_excel_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Excel"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/ftf_excel_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ftf_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="16dp">
+
+                <ImageView
+                    android:id="@+id/ftf_pdf_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/ftf_right"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="PDF"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/font"
+                    android:paddingLeft="16dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/ftf_pdf_recycle"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    <!--</ScrollView>-->
 
 </LinearLayout>
