@@ -126,8 +126,9 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 selectPictureOrTakeCamera();
                 break;
             case R.id.toUrl:
+                File file = new File(ImagePath);
                 //图片转URL;
-                if(ImagePath.equals("")){
+                if(!file.exists()){
                     Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
                 }else{
                     progressDialog.show();
@@ -135,12 +136,12 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.topicture:
-                if(imageEdit.getText().toString().length() == 0){
+                if(imageEdit.getText().toString().length() != 0){
                     watchType = 2;
                     ImagePath = imageEdit.getText().toString();
                     Glide.with(this)
                             .load(imageEdit.getText().toString())
-                            .fitCenter()
+                            .centerCrop()
                             .into(picture);
                     isHasPicture = true;
                 }else{

@@ -75,7 +75,7 @@ class TimeMemActivity : AppCompatActivity() {
     fun initDateLive(){
         val calendar = Calendar.getInstance()
         curYear = calendar.get(Calendar.YEAR)
-        curMonth = calendar.get(Calendar.MONTH)
+        curMonth = calendar.get(Calendar.MONTH)+1
         curDays = calendar.get(Calendar.DAY_OF_MONTH)
     }
 
@@ -138,7 +138,7 @@ class TimeMemActivity : AppCompatActivity() {
      * */
     fun setLiveInfor(liveYear : Int,liveMonth : Int,liveDays : Int){
 
-        var userage : Float = (curYear + (curMonth-1) /12.0f + curDays/30.0f) - (liveYear + (liveMonth -1)/12.0f + liveDays/30.0f)
+        var userage : Float = (curYear + ((curMonth-1)*30.0f+curDays)/365.0f) - (liveYear + ((liveMonth-1)*30.0f+liveDays)/365.0f)
 
         text_center.text = "你已经 "+userage+" 岁了..."
         time_live_year.text = userage!!.toInt().toString()
@@ -297,9 +297,10 @@ class TimeMemActivity : AppCompatActivity() {
      * 设置死之钟的信息
      * */
     fun setDeadInfor(deadYear : Int,deadMonth : Int,deadDays : Int){
-
-        var userdead = (deadYear + (deadMonth-1) /12.0f + deadDays/30.0f) - (curYear + (curMonth -1)/12.0f + curDays/30.0f)
-
+        Log.e("deadDate","$deadYear-$deadMonth-$deadDays")
+        Log.e("currentDate","$curYear-$curMonth-$curDays")
+        var userdead = (deadYear + ((deadMonth-1) * 30.0f + deadDays)/365.0f) - (curYear + ((curMonth -1)*30.0f + curDays)/365.0f)
+        Log.e("userdead",userdead.toString())
         var deadDyas = userdead * 365
         time_dead_content.text = "距离生命的终结还有 "+ deadDyas +" 天..."
         time_dead_book.text = "看 "+ (deadDyas/7).toInt() +" 本书"
