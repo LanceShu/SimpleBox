@@ -20,24 +20,26 @@ import okhttp3.Response;
  */
 
 public class UploadFileUtil implements Runnable {
-    OkHttpClient okHttpClient;
-    String fileUrl;
-    String filename;
+    private OkHttpClient okHttpClient;
+    private String fileUrl;
+    private String filename;
+    private String imei;
     List<ChildBean> childBeans;
-    private static final String urls = "http://172.20.0.152:8080/FileService/recive2";
-    public UploadFileUtil(List<ChildBean> filePath){
+    private static final String urls = "http://172.20.0.152:8080/FileService/recive";
+    public UploadFileUtil(List<ChildBean> filePath, String imei){
         fileUrl=filePath.get(0).getFileUri().get(0);
         filename=filePath.get(0).getFileName().get(0);
         childBeans=filePath;
+        this.imei=imei;
     }
     public void upLoad(){
         OkHttpClient client = new OkHttpClient();
         MultipartBody.Builder builder = new MultipartBody.Builder();
-        builder.addFormDataPart("user", "lu");
         for(int i=0;i<childBeans.size();i++){
             filename =childBeans.get(i).getFileName().get(0);
             fileUrl =childBeans.get(i).getFileUri().get(0);
             File file =new File(fileUrl);
+            builder.addFormDataPart("user", imei);
             builder.addFormDataPart("file1",filename,RequestBody.create(null,file));
         }
         RequestBody body = builder.build();
@@ -56,7 +58,6 @@ public class UploadFileUtil implements Runnable {
             public void onFailure(Call call, IOException e) {
 
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {

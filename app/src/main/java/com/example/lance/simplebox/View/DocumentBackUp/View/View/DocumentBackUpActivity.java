@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -90,15 +92,22 @@ public class DocumentBackUpActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch(v.getId()) {
             case R.id.cancel:
                 finish();
             case R.id.back_up:
-                List<ChildBean> childListBean =expandableAdapter.getChildMessage();
-               // UploadFile uploadFile=new UploadFile(childListBean);
-                UploadFileUtil uploadFile =new UploadFileUtil(childListBean);
-                Thread thread =new Thread(uploadFile);
-                thread.start();
+                List<ChildBean> childListBean = expandableAdapter.getChildMessage();
+                TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+                String imei = telephonyManager.getDeviceId();
+                if (imei!= "000000000000000") {
+                    if (childListBean.size() != 0) {
+                        UploadFileUtil uploadFile = new UploadFileUtil(childListBean, imei);
+                        Thread thread = new Thread(uploadFile);
+                        thread.start();
+                    }
+                }else{
+
+                }
         }
     }
 
