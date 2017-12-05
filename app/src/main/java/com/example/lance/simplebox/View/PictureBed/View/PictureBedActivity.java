@@ -169,7 +169,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         selectPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 watchType = 1;
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED){
