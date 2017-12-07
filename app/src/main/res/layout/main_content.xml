@@ -56,7 +56,9 @@
                 android:layout_height="60dp"
                 android:layout_above="@id/hTime"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/ic_launcher" />
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher"
+                />
 
         </RelativeLayout>
 
