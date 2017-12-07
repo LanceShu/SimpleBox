@@ -1,5 +1,6 @@
 package com.example.lance.simplebox.View.FTFTransfer.Fragment;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.example.lance.simplebox.Adapter.FTFPictureAdapter;
+import com.example.lance.simplebox.Content.Content;
 import com.example.lance.simplebox.R;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAPKUtil;
 import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanAudioUtil;
@@ -31,12 +35,13 @@ public class PictureFragment extends Fragment {
 
     private View view;
     private RecyclerView picRecycler;
-    private ProgressDialog progressDialog;
+    private Dialog progressDialog;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.list_picture,container,false);
+
         initData();
         initWight(view);
         return view;
@@ -44,8 +49,10 @@ public class PictureFragment extends Fragment {
 
     private void initData() {
 
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("扫描数据ing...");
+        progressDialog = new Dialog(getContext(),R.style.DialogTheme);
+        progressDialog.setContentView(R.layout.loading_layout);
+        ImageView imageView = (ImageView) progressDialog.findViewById(R.id.load_image);
+//        progressDialog.setMessage("扫描数据ing...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
