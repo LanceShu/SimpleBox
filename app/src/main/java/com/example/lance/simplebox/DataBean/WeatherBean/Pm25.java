@@ -20,19 +20,20 @@ package com.example.lance.simplebox.DataBean.WeatherBean;
  */
 
 public class Pm25 {
-    public String key;
-    public String show_desc;
-    public PM25 pm25;
-    public String dateTime;
-    public String cityName;
+
+    private String key;
+    private String show_desc;
+    private PM25 pm25;
+    private String dateTime;
+    private String cityName;
 
     public class PM25{
-        public String curPm;
-        public String pm25;
-        public String pm10;
-        public String level;
-        public String quality;
-        public String des;
+        String curPm;
+        String pm25;
+        String pm10;
+        String level;
+        String quality;
+        String des;
 
         public String getCurPm() {
             return curPm;

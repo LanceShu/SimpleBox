@@ -1,29 +1,43 @@
 package com.example.lance.simplebox.View.Main.View;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.Content.Content;
+import com.example.lance.simplebox.DataBean.WeatherBean.Realtime;
+import com.example.lance.simplebox.DataBean.WeatherBean.WeatherIconBean;
 import com.example.lance.simplebox.R;
 import com.example.lance.simplebox.View.DocumentBackUp.View.View.DocumentBackUpActivity;
 import com.example.lance.simplebox.View.FTFTransfer.View.FTFTransferMainActivity;
-import com.example.lance.simplebox.View.Main.Mode.TimeMode;
 import com.example.lance.simplebox.View.Main.Contract.TimeContract;
+import com.example.lance.simplebox.View.Main.Mode.TimeMode;
 import com.example.lance.simplebox.View.Main.Persenter.TimePersenter;
+import com.example.lance.simplebox.View.Main.Persenter.Weather.impl.WeatherPresenterIMPL;
 import com.example.lance.simplebox.View.PictureBed.View.PictureBedActivity;
 import com.example.lance.simplebox.View.SoftManageActivity;
 import com.example.lance.simplebox.View.TimeMemory.View.TimeMemActivity;
 
-public class MainActivity extends AppCompatActivity implements TimeContract.TimeView,View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements WeatherView,TimeContract.TimeView,View.OnClickListener{
 
     private TimePersenter timePersenter = new TimePersenter(TimeMode.getInstance(), (TimeContract.TimeView) this);
 
@@ -31,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
     private TextView hTime;
     private TextView hCalendar;
     private TextView hWeather;
+    private ImageView hWpic;
+
+    private LocationClient locationClient;
 
     //短信；
     private LinearLayout smsLayout;
@@ -80,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         hTime = (TextView) findViewById(R.id.hTime);
         hCalendar = (TextView) findViewById(R.id.hCalendar);
         hWeather = (TextView) findViewById(R.id.hWeather);
+        hWpic = (ImageView) findViewById(R.id.hWpic);
 
         smsLayout = (LinearLayout) findViewById(R.id.sms);
         timeMemory = (LinearLayout) findViewById(R.id.time_memory);
@@ -98,6 +116,18 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         faceTransformer.setOnClickListener(this);
         payTool.setOnClickListener(this);
 
+        //检测权限
+        CheckPermission();
+    }
+
+    //初始化启动百度的Location定位；
+    private void initLocationClient(){
+        locationClient = new LocationClient(getApplicationContext());
+        locationClient.registerLocationListener(new WeatherPresenterIMPL(MainActivity.this));
+        LocationClientOption option = new LocationClientOption();
+        option.setIsNeedAddress(true);//获取当前位置的详细地址信息
+        locationClient.setLocOption(option);
+        locationClient.start();
     }
 
     @Override
@@ -108,6 +138,30 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
         String week = data.split("&")[2];
         hTime.setText(time);
         hCalendar.setText(calendar+"   "+week);
+    }
+
+    @Override
+    public void setWeatherInfo(final Realtime WeatherRealtime) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Realtime.NowWeather nowWeather = WeatherRealtime.getNowWeather();
+                String NowWeather = nowWeather.getTemperature() + "℃  "
+                        + nowWeather.getInfo() + "  "
+                        + WeatherRealtime.getCity_name();
+
+                hWeather.setText(NowWeather);
+
+                Log.e("setWeatherInfo", "" + WeatherIconBean.weatherimage.get(nowWeather.getImg()));
+
+                //加载图片
+                Glide.with(MainActivity.this)
+                        .load(WeatherIconBean.weatherimage.get(nowWeather.getInfo()))
+                        .into(hWpic);
+            }
+        });
+
     }
 
     @Override
@@ -142,5 +196,68 @@ public class MainActivity extends AppCompatActivity implements TimeContract.Time
                 Log.e("pay_tool", "点击了支付工具");
                 break;
         }
+    }
+
+    /*获取权限*/
+    private void CheckPermission(){
+        List<String> permissionList = new ArrayList<>();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                ){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
+
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.READ_PHONE_STATE)
+                !=PackageManager.PERMISSION_GRANTED
+                ){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                !=PackageManager.PERMISSION_GRANTED
+                ){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (permissionList.isEmpty()) {
+            /*如果不需要请求权限就执行操作*/
+            initLocationClient();
+        }else{
+            String[] permission = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(MainActivity.this, permission, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0) {
+                    for (int result : grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            //权限若没有全部通过，就结束Demo
+                            finish();
+                            break;
+                        }
+                    }
+                    /*请求权限成功后执行操作*/
+                    initLocationClient();
+                }else {
+                    finish();
+                }
+                break;
+            default:
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        locationClient.stop();
     }
 }

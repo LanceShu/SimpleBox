@@ -41,7 +41,7 @@ public class Life {
     public String date;
 
     @SerializedName("info")
-    public INFO Info;
+    private INFO Info;
 
     public String getDate() {
         return date;
@@ -63,17 +63,17 @@ public class Life {
         /*下列的温馨提示为数组的形式，下标【0】：表明情况；下标【1】：相对应的建议*/
 
         @SerializedName("kongtiao")
-        public List<String> kongtiao;
+        List<String> kongtiao;
         @SerializedName("yundong")
-        public List<String>  yundong;
+        List<String>  yundong;
         @SerializedName("ziwaixian")
-        public List<String>  ziwaixian;
+        List<String>  ziwaixian;
         @SerializedName("ganmao")
-        public List<String>  ganmao;
+        List<String>  ganmao;
         @SerializedName("xiche")
-        public List<String> xiche;
+        List<String> xiche;
         @SerializedName("chuanyi")
-        public List<String>  chuanyi;
+        List<String>  chuanyi;
 
         public List<String> getKongtiao() {
             return kongtiao;

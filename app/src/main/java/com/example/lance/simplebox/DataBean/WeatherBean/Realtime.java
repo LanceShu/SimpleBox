@@ -29,22 +29,22 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Realtime {
-    public Wind wind;
+    private Wind wind;
     public String time;
     @SerializedName("weather")
-    public NowWeather nowWeather;
-    public String dataUptime;
+    private NowWeather nowWeather;
+    private String dataUptime;
     public String date;
-    public String city_code;
-    public String city_name;
-    public String week;
-    public String moon;
+    private String city_code;
+    private String city_name;
+    private String week;
+    private String moon;
 
     public class Wind{
-        public String windspeed;
-        public String direct;
-        public String power;
-        public String offset;
+        String windspeed;
+        String direct;
+        String power;
+        String offset;
 
         public String getWindspeed() {
             return windspeed;
@@ -80,11 +80,11 @@ public class Realtime {
     }
 
     public class NowWeather{
-        public String humidity;
-        public String img;
+        String humidity;
+        String img;
         @SerializedName("info")
-        public String Info;
-        public String temperature;
+        String Info;
+        String temperature;
 
         public String getHumidity() {
             return humidity;

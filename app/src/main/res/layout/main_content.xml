@@ -19,8 +19,8 @@
 
             <TextView
                 android:id="@+id/hTime"
-                android:layout_width="240dp"
-                android:layout_height="75dp"
+                android:layout_width="230dp"
+                android:layout_height="65dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -46,18 +46,17 @@
                 android:layout_below="@id/hCalendar"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="17℃  西安"
                 android:textColor="@color/font"
                 android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/hWpic"
                 android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_above="@id/hTime"
                 android:layout_centerInParent="true"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/duanwang"
                 />
 
         </RelativeLayout>

@@ -66,6 +66,7 @@
         <activity android:name=".View.FTFTransfer.View.FTFReceiveActivity"
             android:launchMode="singleTask"/>
 
+
         <!--百度SDK中的服务-->
         <service
             android:name="com.baidu.location.f"

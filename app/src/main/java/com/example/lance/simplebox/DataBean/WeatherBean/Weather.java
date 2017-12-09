@@ -24,11 +24,11 @@ import java.util.List;
  */
 
 public class Weather {
-    public String date ;
-    public String week ;
-    public String nongli ;
+    private String date ;
+    private String week ;
+    private String nongli ;
     @SerializedName("info")
-    public InFo inFo;
+    private InFo inFo;
 
     public class InFo  {
 

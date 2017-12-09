@@ -22,12 +22,12 @@ import java.util.List;
 
 public class WeatherResult {
 
-    public Realtime realtime;
-    public Life life;
+    private Realtime realtime;
+    private Life life;
     @SerializedName("weather")
-    public List<Weather> WeatherList;
-    public Pm25 pm25;
-    public int isForeign;
+    private List<Weather> WeatherList;
+    private Pm25 pm25;
+    private int isForeign;
 
     public Realtime getRealtime() {
         return realtime;
