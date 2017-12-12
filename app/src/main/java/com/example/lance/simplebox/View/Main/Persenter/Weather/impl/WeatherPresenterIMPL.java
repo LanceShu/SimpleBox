@@ -28,6 +28,7 @@ public class WeatherPresenterIMPL extends BDAbstractLocationListener implements 
     @Override
     public void onSuccess(WeatherResult weatherResult) {
         weatherView.setWeatherInfo(weatherResult.getRealtime());
+
     }
 
     @Override

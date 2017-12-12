@@ -153,8 +153,6 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
 
                 hWeather.setText(NowWeather);
 
-                Log.e("setWeatherInfo", "" + WeatherIconBean.weatherimage.get(nowWeather.getImg()));
-
                 //加载图片
                 Glide.with(MainActivity.this)
                         .load(WeatherIconBean.weatherimage.get(nowWeather.getInfo()))
