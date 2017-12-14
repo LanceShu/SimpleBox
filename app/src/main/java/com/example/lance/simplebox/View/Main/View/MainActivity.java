@@ -240,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
                             //权限若没有全部通过，就结束Demo
                             finish();
                             break;
+
                         }
                     }
                     /*请求权限成功后执行操作*/
