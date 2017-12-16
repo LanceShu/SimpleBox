@@ -65,6 +65,8 @@
             android:launchMode="singleTask"/>
         <activity android:name=".View.FTFTransfer.View.FTFReceiveActivity"
             android:launchMode="singleTask"/>
+        <activity android:name=".View.Informations.view.InforMainActivity"
+            android:launchMode="singleTask"/>
 
 
         <!--百度SDK中的服务-->

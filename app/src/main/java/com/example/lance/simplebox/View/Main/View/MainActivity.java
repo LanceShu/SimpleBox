@@ -26,6 +26,7 @@ import com.example.lance.simplebox.DataBean.WeatherBean.WeatherIconBean;
 import com.example.lance.simplebox.R;
 import com.example.lance.simplebox.View.DocumentBackUp.View.View.DocumentBackUpActivity;
 import com.example.lance.simplebox.View.FTFTransfer.View.FTFTransferMainActivity;
+import com.example.lance.simplebox.View.Informations.view.InforMainActivity;
 import com.example.lance.simplebox.View.Main.Contract.TimeContract;
 import com.example.lance.simplebox.View.Main.Mode.TimeMode;
 import com.example.lance.simplebox.View.Main.Persenter.TimePersenter;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
 
     //短信；
     private LinearLayout smsLayout;
+
+    /*简盒工具*/
     //时光简记
     private LinearLayout timeMemory;
     //图床;
@@ -63,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
     private LinearLayout faceTransformer;
     //支付工具：启动扫码支付
     private LinearLayout payTool;
+
+    /*简盒资讯：*/
+    //今日热点；
+    private LinearLayout hotpot;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -107,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         faceTransformer = (LinearLayout) findViewById(R.id.faceTransform);
         payTool = (LinearLayout) findViewById(R.id.pay_tool);
 
+        hotpot= (LinearLayout) findViewById(R.id.hotpot);
+
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
         timeMemory.setOnClickListener(this);
@@ -115,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         softwareManagement.setOnClickListener(this);
         faceTransformer.setOnClickListener(this);
         payTool.setOnClickListener(this);
+
+        hotpot.setOnClickListener(this);
 
         //检测权限
         CheckPermission();
@@ -192,6 +203,10 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
             case R.id.pay_tool:
                 //进入支付设置；
                 Log.e("pay_tool", "点击了支付工具");
+                break;
+            case R.id.hotpot:
+                Intent hotpotIntent = new Intent(this, InforMainActivity.class);
+                startActivity(hotpotIntent);
                 break;
         }
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/headerBack">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/iback"
+            android:layout_width="25dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="简盒资讯"
+            android:textSize="18sp"
+            android:textColor="@color/font"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/infor_tab"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/font"
+        app:tabMode="fixed"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/infor_viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
