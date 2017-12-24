@@ -2,9 +2,8 @@ package com.example.lance.simplebox.View.Informations.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
-import android.widget.TableLayout
+import android.view.MotionEvent
 import com.example.lance.simplebox.Adapter.InforAdapter
 import com.example.lance.simplebox.R
 import com.example.lance.simplebox.View.Informations.fragment.HotpotFragment
@@ -24,6 +23,12 @@ class InforMainActivity : AppCompatActivity() {
         setContentView(R.layout.information_layout)
         initData()
         initWight()
+    }
+
+
+
+    override fun onPause() {
+        super.onPause()
     }
 
     fun initData(){
@@ -48,7 +53,13 @@ class InforMainActivity : AppCompatActivity() {
 
     fun initWight(){
 
-        adapter = InforAdapter(fragmentManager,tablist,fragmentlist)
+        iback.setOnClickListener { finish() }
+
+        adapter = InforAdapter(supportFragmentManager,tablist,fragmentlist)
+        infor_viewpage.adapter = adapter
+        infor_tab.setupWithViewPager(infor_viewpage)
+        
 
     }
+
 }

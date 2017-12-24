@@ -25,7 +25,7 @@ import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent
  * Created by Lance on 2017/11/29.
  */
 
-public class FTFApkAdapter extends RecyclerView.Adapter<FTFApkAdapter.ViewHolder> {
+public class FTFApkAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
     private List<ApkBean> apkBeans;
@@ -43,7 +43,8 @@ public class FTFApkAdapter extends RecyclerView.Adapter<FTFApkAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
+        final ViewHolder holder = (ViewHolder) viewHolder;
         final ApkBean apkBean = apkBeans.get(apkBeans.size()-1-position);
         if(apkBean.getApkSelected()){
             holder.apkSelected.setImageResource(R.mipmap.ftf_select2);
