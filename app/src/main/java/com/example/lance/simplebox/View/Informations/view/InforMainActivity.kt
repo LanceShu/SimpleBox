@@ -25,8 +25,6 @@ class InforMainActivity : AppCompatActivity() {
         initWight()
     }
 
-
-
     override fun onPause() {
         super.onPause()
     }
