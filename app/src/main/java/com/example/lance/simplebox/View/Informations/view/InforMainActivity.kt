@@ -56,7 +56,6 @@ class InforMainActivity : AppCompatActivity() {
         adapter = InforAdapter(supportFragmentManager,tablist,fragmentlist)
         infor_viewpage.adapter = adapter
         infor_tab.setupWithViewPager(infor_viewpage)
-        
 
     }
 
