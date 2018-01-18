@@ -24,7 +24,6 @@ class FTFReceiveActivity : AppCompatActivity(){
     }
 
     fun initData(){
-
     }
 
     fun initWight(){
