@@ -22,7 +22,6 @@ import java.util.Scanner;
 public class UploadFile implements Runnable{
     private static final String urls = "http://192.168.1.101:8080/FileService/recive";
     String fileUrl;
-
     public UploadFile(List<ChildBean> filePath){
         fileUrl=filePath.get(0).getFileUri().get(0);
     }
@@ -44,13 +43,11 @@ public class UploadFile implements Runnable{
             int d=0;
             bytea=string.getBytes();
             bufferedOutputStream.write(bytea);
-
             //上传文件
             InputStream inputStream=new FileInputStream(fileUrl);
             BufferedInputStream bufferedInputStream= new BufferedInputStream(inputStream);
             byte[] bytes = new byte[1024];
             int data = 0;
-
             while((data = bufferedInputStream.read(bytes)) != -1){
                 bufferedOutputStream.write(bytes,0,data);
             }
@@ -58,7 +55,6 @@ public class UploadFile implements Runnable{
             bufferedInputStream.close();
             inputStream.close();
             bufferedOutputStream.close();
-
             StringBuilder response = new StringBuilder();
             Scanner in = new Scanner(httpURLConnection.getInputStream());
             while(in.hasNextLine()){
@@ -66,7 +62,6 @@ public class UploadFile implements Runnable{
                 response.append("&");
             }
           //  Log.e("response:",response.toString().split("&")[1]);
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }catch (IOException e) {
