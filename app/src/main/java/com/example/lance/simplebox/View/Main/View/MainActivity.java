@@ -99,12 +99,10 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
 
     private void initWight() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         hTime = (TextView) findViewById(R.id.hTime);
         hCalendar = (TextView) findViewById(R.id.hCalendar);
         hWeather = (TextView) findViewById(R.id.hWeather);
         hWpic = (ImageView) findViewById(R.id.hWpic);
-
         smsLayout = (LinearLayout) findViewById(R.id.sms);
         timeMemory = (LinearLayout) findViewById(R.id.time_memory);
         pictureBed = (LinearLayout) findViewById(R.id.picture);
@@ -112,9 +110,7 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         softwareManagement= (LinearLayout) findViewById(R.id.software_management);
         faceTransformer = (LinearLayout) findViewById(R.id.faceTransform);
         payTool = (LinearLayout) findViewById(R.id.pay_tool);
-
         hotpot= (LinearLayout) findViewById(R.id.hotpot);
-
         timePersenter.getTimeData();
         smsLayout.setOnClickListener(this);
         timeMemory.setOnClickListener(this);
@@ -123,9 +119,7 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         softwareManagement.setOnClickListener(this);
         faceTransformer.setOnClickListener(this);
         payTool.setOnClickListener(this);
-
         hotpot.setOnClickListener(this);
-
         //检测权限
         CheckPermission();
     }
@@ -142,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
 
     @Override
     public void showTimeData(String data) {
-
         String time = data.split("&")[1];
         String calendar = data.split("&")[0];
         String week = data.split("&")[2];
@@ -152,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
 
     @Override
     public void setWeatherInfo(final Realtime WeatherRealtime) {
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -160,16 +152,13 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
                 String NowWeather = nowWeather.getTemperature() + "℃  "
                         + nowWeather.getInfo() + "  "
                         + WeatherRealtime.getCity_name();
-
                 hWeather.setText(NowWeather);
-
                 //加载图片
                 Glide.with(MainActivity.this)
                         .load(WeatherIconBean.weatherimage.get(nowWeather.getInfo()))
                         .into(hWpic);
             }
         });
-
     }
 
     @Override
@@ -254,7 +243,6 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
                             //权限若没有全部通过，就结束Demo
                             finish();
                             break;
-
                         }
                     }
                     /*请求权限成功后执行操作*/
