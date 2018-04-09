@@ -41,7 +41,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements WeatherView,TimeContract.TimeView,View.OnClickListener{
 
     private TimePersenter timePersenter = new TimePersenter(TimeMode.getInstance(), (TimeContract.TimeView) this);
-
     private Toolbar toolbar;
     private TextView hTime;
     private TextView hCalendar;
