@@ -17,7 +17,7 @@ class PhotoViewActivity : AppCompatActivity(){
 
     var imagePath :String? = ""
     var watchType :Int? = 0
-    var mAttcher : PhotoViewAttacher? = null
+    var mAttcher :PhotoViewAttacher? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +45,5 @@ class PhotoViewActivity : AppCompatActivity(){
                     .into(photoView)
             mAttcher!!.update()
         }
-
-
     }
-
 }
