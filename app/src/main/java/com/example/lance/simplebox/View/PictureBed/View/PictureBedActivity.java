@@ -180,14 +180,11 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 dialog.dismiss();
             }
         });
-
         // 打开相机
         takeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 watchType = 1;
-
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this, Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(PictureBedActivity.this
@@ -209,7 +206,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
-
         //查看原图；
         lookPicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,7 +217,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 startActivity(picToView);
             }
         });
-
         // 取消
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,14 +228,12 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void openPicuture() {
-
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
         startActivityForResult(intent,SELECT_PICTURE);
     }
 
     private void openCamera() {
-
         if(Build.VERSION.SDK_INT >= 24){
             imageUri = FileProvider.getUriForFile(PictureBedActivity.this
                     ,"com.example.lance.simplebox",outputImage);
@@ -249,7 +242,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
         }
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-
         startActivityForResult(intent,OPEN_CAMERA);
     }
 
@@ -286,8 +278,6 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     private void handleImageOnKitKat(Intent data) {
         String imagePath = null;
         Uri uri = data.getData();
-
-        Log.e("path123456",uri+"");
         if(DocumentsContract.isDocumentUri(this,uri)){
             String documentId = DocumentsContract.getDocumentId(uri);
             if("com.android.providers.media.documents".equals(uri.getAuthority())){
@@ -342,16 +332,16 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case 1:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera();
-                }else{
+                } else {
                     Snackbar.make(toUrl,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
             case 2:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openPicuture();
-                }else{
+                } else {
                     Snackbar.make(toPicture,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
