@@ -39,8 +39,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * Created by Lance on 2017/10/28.
- *
+ * Created by Lance
+ * on 2017/10/28.
  */
 
 public class PictureBedActivity extends AppCompatActivity implements View.OnClickListener{
@@ -165,7 +165,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
             lookPicture.setVisibility(View.GONE);
         }
 
-        /**选择照片*/
+        // 选择照片
         selectPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,7 +180,8 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 dialog.dismiss();
             }
         });
-        /**打开相机*/
+
+        // 打开相机
         takeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,7 +222,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        /**取消*/
+        // 取消
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,7 +273,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 break;
             case SELECT_PICTURE:
                 if(resultCode == RESULT_OK){
-                    if(Build.VERSION.SDK_INT >= 19){
+                    if(Build.VERSION.SDK_INT >= 22){
                         handleImageOnKitKat(data);
                     }else{
                         handleImageBeforeKitKat(data);
