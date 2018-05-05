@@ -65,6 +65,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     //利用临时文件存储拍照的照片;
     private File outputImage;
     private Uri imageUri;
+
     //图册里image的路径;
     private String ImagePath = "";
 
@@ -180,6 +181,7 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 dialog.dismiss();
             }
         });
+
         // 打开相机
         takeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
