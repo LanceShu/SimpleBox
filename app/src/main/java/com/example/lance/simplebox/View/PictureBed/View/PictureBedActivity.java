@@ -39,22 +39,37 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by Lance
  * on 2017/10/28.
  */
 
-public class PictureBedActivity extends AppCompatActivity implements View.OnClickListener{
+public class PictureBedActivity extends AppCompatActivity {
 
     public static final int OPEN_CAMERA = 1;
 
     public static final int SELECT_PICTURE = 2;
 
-    private ImageView back;
-    private ImageView picture;
-    private EditText imageEdit;
-    private Button toUrl;
-    private Button toPicture;
+
+    @BindView(R.id.back)
+    ImageView back;
+
+    @BindView(R.id.bpicture)
+    ImageView picture;
+
+    @BindView(R.id.imageUrlEdit)
+    EditText imageEdit;
+
+    @BindView(R.id.toUrl)
+    Button toUrl;
+
+    @BindView(R.id.topicture)
+    Button toPicture;
+
     private BottomSheetDialog dialog;
     private Button selectPicture;
     private Button takeCamera;
@@ -111,66 +126,56 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.picturebed_layout);
+        ButterKnife.bind(this);
         //初始化控件
         initWight();
         pictureBedActivityHandler = new PictureBedActivityHandler(this, imageEdit, progressDialog);
     }
 
     private void initWight() {
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
-
-        back = (ImageView) findViewById(R.id.back);
-        picture = (ImageView) findViewById(R.id.bpicture);
-        imageEdit = (EditText) findViewById(R.id.imageUrlEdit);
-        toUrl = (Button) findViewById(R.id.toUrl);
-        toPicture = (Button) findViewById(R.id.topicture);
-
-        back.setOnClickListener(this);
-        picture.setOnClickListener(this);
-        toUrl.setOnClickListener(this);
-        toPicture.setOnClickListener(this);
-
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.back:
-                finish();
-                break;
-            case R.id.bpicture:
-                selectPictureOrTakeCamera();
-                break;
-            case R.id.toUrl:
-                File file = new File(ImagePath);
-                //图片转URL;
-                if(!file.exists()){
-                    Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
-                }else{
-                    progressDialog.show();
-                    new Thread(new ImageToURLUtil(ImagePath)).start();
-                }
-                break;
-            case R.id.topicture:
-                if(imageEdit.getText().toString().length() != 0){
-                    watchType = 2;
-                    ImagePath = imageEdit.getText().toString();
-                    Glide.with(this)
-                            .load(imageEdit.getText().toString())
-                            .centerCrop()
-                            .into(picture);
-                    isHasPicture = true;
-                }else{
-                    Toast.makeText(this,"请输入图片的URL",Toast.LENGTH_SHORT).show();
-                }
-                break;
+    @OnClick(R.id.back)
+    void back() {
+        finish();
+    }
+
+    @OnClick(R.id.bpicture)
+    void bPicture() {
+        selectPictureOrTakeCamera();
+    }
+
+    @OnClick(R.id.toUrl)
+    void toUrl() {
+        File file = new File(ImagePath);
+        //图片转URL;
+        if(!file.exists()){
+            Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
+        }else{
+            progressDialog.show();
+            new Thread(new ImageToURLUtil(ImagePath)).start();
+        }
+    }
+
+    @OnClick(R.id.topicture)
+    void toPicture() {
+        if(imageEdit.getText().toString().length() != 0){
+            watchType = 2;
+            ImagePath = imageEdit.getText().toString();
+            Glide.with(this)
+                    .load(imageEdit.getText().toString())
+                    .centerCrop()
+                    .into(picture);
+            isHasPicture = true;
+        }else{
+            Toast.makeText(this,"请输入图片的URL",Toast.LENGTH_SHORT).show();
         }
     }
 
     private void selectPictureOrTakeCamera() {
-        dialog = new BottomSheetDialog(this,R.style.DialogTheme);
+        dialog = new BottomSheetDialog(this, R.style.DialogTheme);
         dialog.setContentView(R.layout.select_or_take_photo);
         selectPicture = (Button) dialog.findViewById(R.id.select_picture);
         takeCamera = (Button) dialog.findViewById(R.id.take_camera);
