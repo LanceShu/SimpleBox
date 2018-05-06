@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         initWight();
 
         Content.handler = new Handler(){
+            @SuppressLint("SetTextI18n")
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
         locationClient.start();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void showTimeData(String data) {
         String time = data.split("&")[1];
@@ -251,7 +253,6 @@ public class MainActivity extends AppCompatActivity implements WeatherView,TimeC
                 }else {
                     finish();
                 }
-                Window
                 break;
             default:
         }

@@ -37,6 +37,7 @@ import com.example.lance.simplebox.Utils.ImageToURLUtil;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by Lance
@@ -69,21 +70,28 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
     //图册里image的路径;
     private String ImagePath = "";
 
-    public static Handler handler ;
+    public static PictureBedActivityHandler pictureBedActivityHandler;
 
     private boolean isHasPicture = false;
     private int watchType = 0;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.picturebed_layout);
-        //初始化控件
-        initWight();
+    public static class PictureBedActivityHandler extends Handler {
+        private WeakReference<PictureBedActivity> activityWeakReference;
+        private WeakReference<EditText> editTextWeakReference;
+        private WeakReference<ProgressDialog> dialogWeakReference;
 
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
+        PictureBedActivityHandler (PictureBedActivity activity, EditText editText, ProgressDialog progressDialog) {
+            activityWeakReference = new WeakReference<>(activity);
+            editTextWeakReference = new WeakReference<>(editText);
+            dialogWeakReference = new WeakReference<>(progressDialog);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            PictureBedActivity pictureBedActivity = activityWeakReference.get();
+            EditText imageEdit = editTextWeakReference.get();
+            ProgressDialog progressDialog = dialogWeakReference.get();
+            if (pictureBedActivity != null && imageEdit != null && progressDialog != null) {
                 String imageURl = (String) msg.obj;
                 switch (msg.what){
                     case ImageToURLUtil.SUCCESS:
@@ -96,7 +104,16 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                         break;
                 }
             }
-        };
+        }
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.picturebed_layout);
+        //初始化控件
+        initWight();
+        pictureBedActivityHandler = new PictureBedActivityHandler(this, imageEdit, progressDialog);
     }
 
     private void initWight() {
@@ -348,5 +365,11 @@ public class PictureBedActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pictureBedActivityHandler.removeCallbacksAndMessages(0);
     }
 }

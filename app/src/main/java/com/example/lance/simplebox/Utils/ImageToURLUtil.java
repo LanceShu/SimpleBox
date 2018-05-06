@@ -63,7 +63,7 @@ public class ImageToURLUtil implements Runnable{
                 message.what = FAILURE;
                 message.obj = "failure";
             }
-            PictureBedActivity.handler.sendMessage(message);
+            PictureBedActivity.pictureBedActivityHandler.sendMessage(message);
         } catch (IOException e) {
             Log.e("Exception",e.toString());
         }

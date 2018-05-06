@@ -6,7 +6,8 @@ import android.provider.MediaStore
 import com.example.lance.simplebox.DataBean.FileBean
 
 /**
- * Created by Lance on 2017/11/30.
+ * Created by Lance
+ * on 2017/11/30.
  */
 object ScanOfficeFileUtil{
 
@@ -15,15 +16,15 @@ object ScanOfficeFileUtil{
      * */
     fun scanWordFile(context : Context) : List<FileBean>{
         
-        var wordList = ArrayList<FileBean>()
+        val wordList = ArrayList<FileBean>()
 
         val extension = arrayOf(".doc",".docx",".wps")
 
-        var selection : String = ""
+        var selection = ""
         for(i in extension.indices){
 
             if(i !=0 ){
-                selection = selection + " OR "
+                selection += " OR "
             }
             selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'"
         }
@@ -34,18 +35,22 @@ object ScanOfficeFileUtil{
 
         if(cursor.moveToFirst()){
             do{
-                var file = FileBean()
-                file.fileName = cursor.getString(0)
+                val file = FileBean()
+                if (cursor.getString(0) != null) {
+                    file.fileName = cursor.getString(0)
+                } else {
+                    file.fileName = "unknown"
+                }
                 if(cursor.getString(1) != null){
                     file.filePath = cursor.getString(1)
                 }else{
-                    file.filePath = ""
+                    file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    var size : Float = cursor.getInt(2)/1024f/1024f
+                    val size : Float = cursor.getInt(2)/1024f/1024f
                     file.fileSize = "$size".substring(0,3)
                 }else{
-                    file.fileSize = "unknow"
+                    file.fileSize = "unknown"
                 }
                 file.isFileSelected = false
                 wordList.add(file)
@@ -62,15 +67,15 @@ object ScanOfficeFileUtil{
      * */
     fun scanPPTFile(context: Context) : List<FileBean>{
 
-        var pptList = ArrayList<FileBean>()
+        val pptList = ArrayList<FileBean>()
 
         val extension = arrayOf(".ppt",".pptx",".dps")
 
-        var selection : String = ""
+        var selection = ""
         for(i in extension.indices){
 
             if(i !=0 ){
-                selection = selection + " OR "
+                selection +=" OR "
             }
             selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'"
         }
@@ -81,18 +86,22 @@ object ScanOfficeFileUtil{
 
         if(cursor.moveToFirst()){
             do{
-                var file = FileBean()
-                file.fileName = cursor.getString(0)
+                val file = FileBean()
+                if (cursor.getString(0) != null) {
+                    file.fileName = cursor.getString(0)
+                } else {
+                    file.fileName = "unknown"
+                }
                 if(cursor.getString(1) != null){
                     file.filePath = cursor.getString(1)
                 }else{
-                    file.filePath = ""
+                    file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    var size : Float = cursor.getInt(2)/1024f/1024f
+                    val size : Float = cursor.getInt(2)/1024f/1024f
                     file.fileSize = "$size".substring(0,3)
                 }else{
-                    file.fileSize = "unknow"
+                    file.fileSize = "unknown"
                 }
                 file.isFileSelected = false
                 pptList.add(file)
@@ -108,15 +117,15 @@ object ScanOfficeFileUtil{
      * */
     fun scanExcelFile(context: Context) : List<FileBean>{
 
-        var excelList = ArrayList<FileBean>()
+        val excelList = ArrayList<FileBean>()
 
         val extension = arrayOf(".xls",".xlsx",".et")
 
-        var selection : String = ""
+        var selection = ""
         for(i in extension.indices){
 
             if(i !=0 ){
-                selection = selection + " OR "
+                selection += " OR "
             }
             selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'"
         }
@@ -127,18 +136,22 @@ object ScanOfficeFileUtil{
 
         if(cursor.moveToFirst()){
             do{
-                var file = FileBean()
-                file.fileName = cursor.getString(0)
+                val file = FileBean()
+                if (cursor.getString(0) != null) {
+                    file.fileName = cursor.getString(0)
+                } else {
+                    file.fileName = "unknown"
+                }
                 if(cursor.getString(1) != null){
                     file.filePath = cursor.getString(1)
                 }else{
-                    file.filePath = ""
+                    file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    var size : Float = cursor.getInt(2)/1024f/1024f
+                    val size : Float = cursor.getInt(2)/1024f/1024f
                     file.fileSize = "$size".substring(0,3)
                 }else{
-                    file.fileSize = "unknow"
+                    file.fileSize = "unknown"
                 }
                 file.isFileSelected = false
                 excelList.add(file)
@@ -154,15 +167,15 @@ object ScanOfficeFileUtil{
      * */
     fun scanPDFFile(context: Context) : List<FileBean>{
 
-        var pdfList = ArrayList<FileBean>()
+        val pdfList = ArrayList<FileBean>()
 
         val extension = arrayOf(".pdf")
 
-        var selection : String = ""
+        var selection = ""
         for(i in extension.indices){
 
             if(i !=0 ){
-                selection = selection + " OR "
+                selection += " OR "
             }
             selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'"
         }
@@ -173,18 +186,22 @@ object ScanOfficeFileUtil{
 
         if(cursor.moveToFirst()){
             do{
-                var file = FileBean()
-                file.fileName = cursor.getString(0)
+                val file = FileBean()
+                if (cursor.getString(0) != null) {
+                    file.fileName = cursor.getString(0)
+                } else {
+                    file.fileName = "unknown"
+                }
                 if(cursor.getString(1) != null){
                     file.filePath = cursor.getString(1)
                 }else{
-                    file.filePath = ""
+                    file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    var size : Float = cursor.getInt(2)/1024f/1024f
+                    val size : Float = cursor.getInt(2)/1024f/1024f
                     file.fileSize = "$size".substring(0,3)
                 }else{
-                    file.fileSize = "unknow"
+                    file.fileSize = "unknown"
                 }
                 file.isFileSelected = false
                 pdfList.add(file)

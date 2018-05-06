@@ -28,14 +28,15 @@ import com.example.lance.simplebox.View.FTFTransfer.Utils.ScanOfficeFileUtil;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.*;
 
 /**
- * Created by Lance on 2017/11/21.
+ * Created by Lance
+ * on 2017/11/21.
  */
 
 public class PictureFragment extends Fragment {
 
     private View view;
     private RecyclerView picRecycler;
-    private Dialog progressDialog;
+    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -49,10 +50,10 @@ public class PictureFragment extends Fragment {
 
     private void initData() {
 
-        progressDialog = new Dialog(getContext(),R.style.DialogTheme);
-        progressDialog.setContentView(R.layout.loading_layout);
-        ImageView imageView = (ImageView) progressDialog.findViewById(R.id.load_image);
-//        progressDialog.setMessage("扫描数据ing...");
+        progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setContentView(R.layout.loading_layout);
+//        ImageView imageView = (ImageView) progressDialog.findViewById(R.id.load_image);
+        progressDialog.setMessage("扫描数据ing...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -88,7 +89,6 @@ public class PictureFragment extends Fragment {
                 if(excelList == null){
                     excelList = ScanOfficeFileUtil.INSTANCE.scanExcelFile(getContext());
                 }
-
                 if(pdfList == null){
                     pdfList = ScanOfficeFileUtil.INSTANCE.scanPDFFile(getContext());
                 }
