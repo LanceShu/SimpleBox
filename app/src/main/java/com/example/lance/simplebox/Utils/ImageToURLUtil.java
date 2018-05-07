@@ -2,6 +2,7 @@ package com.example.lance.simplebox.Utils;
 
 import android.os.Message;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.lance.simplebox.View.PictureBed.View.PictureBedActivity;
 
@@ -15,7 +16,8 @@ import java.net.URL;
 import java.util.Scanner;
 
 /**
- * Created by Lance on 2017/11/3.
+ * Created by Lance
+ * on 2017/11/3.
  */
 
 public class ImageToURLUtil implements Runnable{
@@ -23,11 +25,20 @@ public class ImageToURLUtil implements Runnable{
     //服务器地址;
     private static final String urls = "http://123.207.145.251:8080/SimpleBox/ImageUrl";
     private String imageUrl;
+    private ImageView picture;
+    private boolean decodeBitmap;
     public  final static int SUCCESS = 1;
     public  final static int FAILURE = 2;
 
+    public ImageToURLUtil(String imageToUrl, ImageView imageView, boolean decodeBitmap){
+        imageUrl = imageToUrl;
+        picture = imageView;
+        this.decodeBitmap = decodeBitmap;
+    }
+
     public ImageToURLUtil(String imageToUrl){
         imageUrl = imageToUrl;
+        new ImageToURLUtil(imageToUrl, null, false);
     }
 
     private void imageToUrl(String imagePath){
@@ -43,7 +54,7 @@ public class ImageToURLUtil implements Runnable{
             byte[] bytes = new byte[1024];
             int data = 0;
             while((data = bis.read(bytes)) != -1){
-                bos.write(bytes,0,data);
+                bos.write(bytes, 0, data);
             }
             bis.close();
             is.close();
@@ -71,6 +82,9 @@ public class ImageToURLUtil implements Runnable{
 
     @Override
     public void run() {
+        if (decodeBitmap && picture != null) {
+            String reduceImagePath = BitmapUtil.createReduceBitmapFromOrigin(imageUrl, picture);
+        }
         imageToUrl(imageUrl);
     }
 }

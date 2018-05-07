@@ -13,6 +13,7 @@ import uk.co.senab.photoview.PhotoViewAttacher
  * Created by Lance
  * on 2017/10/30.
  */
+
 class PhotoViewActivity : AppCompatActivity(){
 
     var imagePath :String? = ""

@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.Utils.BitmapUtil;
 import com.example.lance.simplebox.Utils.ImageToURLUtil;
 
 import java.io.File;
@@ -155,7 +156,7 @@ public class PictureBedActivity extends AppCompatActivity {
             Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.show();
-            new Thread(new ImageToURLUtil(ImagePath)).start();
+            new Thread(new ImageToURLUtil(ImagePath, picture, true)).start();
         }
     }
 
@@ -196,7 +197,7 @@ public class PictureBedActivity extends AppCompatActivity {
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(PictureBedActivity.this
-                            ,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
+                            ,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SELECT_PICTURE);
                 }else{
                     openPicuture();
                 }
@@ -212,10 +213,10 @@ public class PictureBedActivity extends AppCompatActivity {
                 if(ContextCompat.checkSelfPermission(PictureBedActivity.this, Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(PictureBedActivity.this
-                            ,new String[]{Manifest.permission.CAMERA},1);
+                            ,new String[]{Manifest.permission.CAMERA}, OPEN_CAMERA);
                 }else{
                     //创建一个output_image.jpg作为临时保存;
-                    outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+                    outputImage = new File(getExternalCacheDir(),"picture_bed_image.jpg");
                     if(outputImage.exists()){
                         outputImage.delete();
                     }
@@ -227,9 +228,9 @@ public class PictureBedActivity extends AppCompatActivity {
                     openCamera();
                 }
                 dialog.dismiss();
-
             }
         });
+
         //查看原图；
         lookPicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,6 +242,7 @@ public class PictureBedActivity extends AppCompatActivity {
                 startActivity(picToView);
             }
         });
+
         // 取消
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,19 +256,19 @@ public class PictureBedActivity extends AppCompatActivity {
     private void openPicuture() {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
-        startActivityForResult(intent,SELECT_PICTURE);
+        startActivityForResult(intent, SELECT_PICTURE);
     }
 
     private void openCamera() {
-        if(Build.VERSION.SDK_INT >= 24){
+        if(Build.VERSION.SDK_INT >= 19){
             imageUri = FileProvider.getUriForFile(PictureBedActivity.this
-                    ,"com.example.lance.simplebox",outputImage);
+                    ,"com.example.lance.simplebox", outputImage);
         }else{
             imageUri = Uri.fromFile(outputImage);
         }
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-        startActivityForResult(intent,OPEN_CAMERA);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, OPEN_CAMERA);
     }
 
     @Override
@@ -280,11 +282,13 @@ public class PictureBedActivity extends AppCompatActivity {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    bitmap.createScaledBitmap(bitmap,100,100,true);
-                    isHasPicture = true;
-                    ImagePath = outputImage.getAbsolutePath();
-                    Log.e("outputimage6666:",outputImage.getPath());
-                    picture.setImageBitmap(bitmap);
+                    if (bitmap != null) {
+                        bitmap.createScaledBitmap(bitmap, 100, 100, true);
+                        isHasPicture = true;
+                        ImagePath = outputImage.getAbsolutePath();
+                        Log.e("outputimage6666:",outputImage.getPath());
+                        picture.setImageBitmap(bitmap);
+                    }
                 }
                 break;
             case SELECT_PICTURE:
@@ -307,14 +311,14 @@ public class PictureBedActivity extends AppCompatActivity {
             if("com.android.providers.media.documents".equals(uri.getAuthority())){
                 String id = documentId.split(":")[1];
                 String selection = MediaStore.Images.Media._ID+"="+id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
+                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
             }else if("com.android.providers.downloads,documents".equals(uri.getAuthority())){
                 Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads")
                         ,Long.valueOf(documentId));
                 imagePath = getImagePath(contentUri,null);
             }
         }else if("content".equalsIgnoreCase(uri.getScheme())){
-            imagePath = getImagePath(uri,null);
+            imagePath = getImagePath(uri, null);
         }else if("file".equalsIgnoreCase(uri.getScheme())){
             imagePath = uri.getPath();
         }
@@ -342,7 +346,7 @@ public class PictureBedActivity extends AppCompatActivity {
 
     private String getImagePath(Uri uri, String selection) {
         String path = "";
-        Cursor cursor = getContentResolver().query(uri,null,selection,null,null);
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
         if(cursor != null){
             if(cursor.moveToFirst()){
                  path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
@@ -359,14 +363,14 @@ public class PictureBedActivity extends AppCompatActivity {
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera();
                 } else {
-                    Snackbar.make(toUrl,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(toUrl, "您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
             case 2:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openPicuture();
                 } else {
-                    Snackbar.make(toPicture,"您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(toPicture, "您拒绝了权限申请",Snackbar.LENGTH_SHORT).show();
                 }
                 break;
         }
