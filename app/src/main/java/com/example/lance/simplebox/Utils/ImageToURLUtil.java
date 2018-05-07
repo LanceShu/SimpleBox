@@ -1,5 +1,6 @@
 package com.example.lance.simplebox.Utils;
 
+import android.content.Context;
 import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
@@ -27,18 +28,21 @@ public class ImageToURLUtil implements Runnable{
     private String imageUrl;
     private ImageView picture;
     private boolean decodeBitmap;
+    private Context context;
     public  final static int SUCCESS = 1;
     public  final static int FAILURE = 2;
 
-    public ImageToURLUtil(String imageToUrl, ImageView imageView, boolean decodeBitmap){
+    public ImageToURLUtil(Context context, String imageToUrl, ImageView imageView, boolean decodeBitmap){
         imageUrl = imageToUrl;
         picture = imageView;
         this.decodeBitmap = decodeBitmap;
+        this.context = context;
     }
 
-    public ImageToURLUtil(String imageToUrl){
+    public ImageToURLUtil(Context context, String imageToUrl){
         imageUrl = imageToUrl;
-        new ImageToURLUtil(imageToUrl, null, false);
+        this.context = context;
+        new ImageToURLUtil(context, imageToUrl, null, false);
     }
 
     private void imageToUrl(String imagePath){
@@ -83,8 +87,10 @@ public class ImageToURLUtil implements Runnable{
     @Override
     public void run() {
         if (decodeBitmap && picture != null) {
-            String reduceImagePath = BitmapUtil.createReduceBitmapFromOrigin(imageUrl, picture);
+            String reduceImagePath = BitmapUtil.createReduceBitmapFromOrigin(context, imageUrl, picture);
+            imageToUrl(reduceImagePath);
+        } else {
+            imageToUrl(imageUrl);
         }
-        imageToUrl(imageUrl);
     }
 }

@@ -156,7 +156,7 @@ public class PictureBedActivity extends AppCompatActivity {
             Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.show();
-            new Thread(new ImageToURLUtil(ImagePath, picture, true)).start();
+            new Thread(new ImageToURLUtil(this, ImagePath, picture, true)).start();
         }
     }
 

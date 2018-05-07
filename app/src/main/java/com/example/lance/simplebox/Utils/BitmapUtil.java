@@ -1,11 +1,20 @@
 package com.example.lance.simplebox.Utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Build;
 import android.util.Log;
 import android.widget.ImageView;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by Lance
@@ -46,7 +55,7 @@ public class BitmapUtil {
         return bitmap.getRowBytes() * bitmap.getHeight();
     }
 
-    public static String createReduceBitmapFromOrigin(String imagePath, ImageView picture) {
+    public static String createReduceBitmapFromOrigin(Context context, String imagePath, ImageView picture) {
 //        File newImage = new File(getExternalCacheDir(), "reduce_picture_bed_image.jpg");
 //        if (newImage.exists()) {
 //            newImage.delete();
@@ -58,10 +67,35 @@ public class BitmapUtil {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+        String newImagePath = context.getExternalCacheDir() + "reduce_picture_bed_image.jpg";
+        File newFile = new File(newImagePath);
         Bitmap oldBitmap = BitmapFactory.decodeFile(imagePath);
         Log.e("BitmapOld", BitmapUtil.getBitmapSize(oldBitmap) + "");
-        Bitmap newBitmap = BitmapUtil.decodeSampledBitmmapFromImagePath(imagePath, 512, 512);
+        Bitmap newBitmap = BitmapUtil.decodeSampledBitmmapFromImagePath(imagePath, 360, 360);
         Log.e("BitmapNew", BitmapUtil.getBitmapSize(newBitmap) + "");
-        return null;
+        if (newFile.exists()) {
+            newFile.delete();
+        }
+        try {
+            newFile.createNewFile();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            InputStream is = new ByteArrayInputStream(baos.toByteArray());
+            BufferedInputStream bis = new BufferedInputStream(is);
+            FileOutputStream fos = new FileOutputStream(newImagePath);
+            byte[] bytes = new byte[1024];
+            int len;
+            while ((len = bis.read(bytes)) != -1) {
+                fos.write(bytes, 0, len);
+            }
+            fos.flush();
+            fos.close();
+            bis.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.e("newImagePath", newImagePath + " " + BitmapUtil.getBitmapSize(BitmapFactory.decodeFile(newImagePath)));
+        return newImagePath;
     }
 }
