@@ -56,17 +56,6 @@ public class BitmapUtil {
     }
 
     public static String createReduceBitmapFromOrigin(Context context, String imagePath, ImageView picture) {
-//        File newImage = new File(getExternalCacheDir(), "reduce_picture_bed_image.jpg");
-//        if (newImage.exists()) {
-//            newImage.delete();
-//        }
-//        try {
-//            newImage.createNewFile();
-//            Bitmap reduceBitmap = DecodeSampledBitmapUtil.decodeSampledBitmmapFromImagePath(imagePath, 100, 100);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         String newImagePath = context.getExternalCacheDir() + "reduce_picture_bed_image.jpg";
         File newFile = new File(newImagePath);
         Bitmap oldBitmap = BitmapFactory.decodeFile(imagePath);
