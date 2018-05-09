@@ -52,9 +52,7 @@ import butterknife.OnClick;
 public class PictureBedActivity extends AppCompatActivity {
 
     public static final int OPEN_CAMERA = 1;
-
     public static final int SELECT_PICTURE = 2;
-
 
     @BindView(R.id.back)
     ImageView back;
