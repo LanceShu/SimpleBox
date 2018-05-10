@@ -32,7 +32,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
-import com.example.lance.simplebox.Utils.BitmapUtil;
 import com.example.lance.simplebox.Utils.ImageToURLUtil;
 
 import java.io.File;
