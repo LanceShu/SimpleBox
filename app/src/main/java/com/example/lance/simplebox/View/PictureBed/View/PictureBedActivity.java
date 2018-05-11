@@ -75,16 +75,12 @@ public class PictureBedActivity extends AppCompatActivity {
     private Button cancel;
 
     private ProgressDialog progressDialog;
-
     //利用临时文件存储拍照的照片;
     private File outputImage;
     private Uri imageUri;
-
     //图册里image的路径;
     private String ImagePath = "";
-
     public static PictureBedActivityHandler pictureBedActivityHandler;
-
     private boolean isHasPicture = false;
     private int watchType = 0;
 
