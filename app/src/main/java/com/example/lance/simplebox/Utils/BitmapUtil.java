@@ -16,12 +16,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Created by Lance
  * on 2018/5/7.
  */
 
 public class BitmapUtil {
+    private static final String url = "https://api-cn.faceplusplus.com/imagepp/beta/detectsceneandobject";
+    private static final String api_key = "m3oSWWicRnS0SdXob-RDEl6VEkzF82OY";
+    private static final String api_secret = "zM6MjiSg4kE6I-yI8V56MCiSfJAfQJsx";
+
     public static Bitmap decodeSampledBitmmapFromImagePath(String imagePath, int reqWidth, int reqHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -86,5 +99,36 @@ public class BitmapUtil {
         }
         Log.e("newImagePath", newImagePath + " " + BitmapUtil.getBitmapSize(BitmapFactory.decodeFile(newImagePath)));
         return newImagePath;
+    }
+
+    public static void discernImageForFile(String imagePath, Callback callback) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg, image/png"), new File(imagePath));
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", api_key)
+                .addFormDataPart("api_secret", api_secret)
+                .addFormDataPart("image_file", imagePath, fileBody)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
+    public static void discernImageForUrl(String imageUrl, Callback callback) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", api_key)
+                .addFormDataPart("api_secret", api_secret)
+                .addFormDataPart("image_url", imageUrl)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(callback);
     }
 }

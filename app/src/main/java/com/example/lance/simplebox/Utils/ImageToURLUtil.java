@@ -16,6 +16,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 /**
  * Created by Lance
  * on 2017/11/3.

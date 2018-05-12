@@ -36,7 +36,7 @@ dependencies {
     compile 'com.loopeer.library:cardstack:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.github.chrisbanes:PhotoView:1.2.6'
     compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.1'
     compile 'org.jetbrains.anko:anko-sdk25:0.10.0-beta-1'

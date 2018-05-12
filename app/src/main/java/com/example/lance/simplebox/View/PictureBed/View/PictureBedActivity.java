@@ -1,6 +1,7 @@
 package com.example.lance.simplebox.View.PictureBed.View;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -28,11 +29,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lance.simplebox.R;
+import com.example.lance.simplebox.Utils.BitmapUtil;
 import com.example.lance.simplebox.Utils.ImageToURLUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,6 +50,9 @@ import java.lang.ref.WeakReference;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by Lance
@@ -68,6 +79,12 @@ public class PictureBedActivity extends AppCompatActivity {
     @BindView(R.id.topicture)
     Button toPicture;
 
+    @BindView(R.id.image_result_content)
+    TextView image_result;
+
+    @BindView(R.id.discern_picture)
+    Button discernPicture;
+
     private BottomSheetDialog dialog;
     private Button selectPicture;
     private Button takeCamera;
@@ -88,11 +105,14 @@ public class PictureBedActivity extends AppCompatActivity {
         private WeakReference<PictureBedActivity> activityWeakReference;
         private WeakReference<EditText> editTextWeakReference;
         private WeakReference<ProgressDialog> dialogWeakReference;
+        private WeakReference<TextView> textViewWeakReference;
 
-        PictureBedActivityHandler (PictureBedActivity activity, EditText editText, ProgressDialog progressDialog) {
+        PictureBedActivityHandler (PictureBedActivity activity, EditText editText,
+                                   TextView imageResult, ProgressDialog progressDialog) {
             activityWeakReference = new WeakReference<>(activity);
             editTextWeakReference = new WeakReference<>(editText);
             dialogWeakReference = new WeakReference<>(progressDialog);
+            textViewWeakReference = new WeakReference<>(imageResult);
         }
 
         @Override
@@ -100,8 +120,11 @@ public class PictureBedActivity extends AppCompatActivity {
             PictureBedActivity pictureBedActivity = activityWeakReference.get();
             EditText imageEdit = editTextWeakReference.get();
             ProgressDialog progressDialog = dialogWeakReference.get();
-            if (pictureBedActivity != null && imageEdit != null && progressDialog != null) {
+            TextView imageResult = textViewWeakReference.get();
+            if (pictureBedActivity != null && imageEdit != null
+                    && progressDialog != null && imageResult != null) {
                 String imageURl = (String) msg.obj;
+                imageResult.setText("图片URL：");
                 switch (msg.what){
                     case ImageToURLUtil.SUCCESS:
                         imageEdit.setText(imageURl);
@@ -123,7 +146,7 @@ public class PictureBedActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         //初始化控件
         initWight();
-        pictureBedActivityHandler = new PictureBedActivityHandler(this, imageEdit, progressDialog);
+        pictureBedActivityHandler = new PictureBedActivityHandler(this, imageEdit, image_result, progressDialog);
     }
 
     private void initWight() {
@@ -149,7 +172,106 @@ public class PictureBedActivity extends AppCompatActivity {
             Toast.makeText(this,"您还未选择照片",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.show();
+            Log.e("image_path", ImagePath);
             new Thread(new ImageToURLUtil(this, ImagePath, picture, true)).start();
+        }
+    }
+
+    @OnClick(R.id.discern_picture)
+    void discernPicture() {
+        if (picture.getDrawable().getCurrent().getConstantState()
+                .equals(getResources().getDrawable(R.mipmap.select_picture).getConstantState())) {
+            Toast.makeText(this,"请先加载图片",Toast.LENGTH_SHORT).show();
+        } else {
+            progressDialog.show();
+            image_result.setText("识别结果：");
+            if (watchType == 1) {
+                final String reduceImagePath = BitmapUtil.createReduceBitmapFromOrigin(this, ImagePath, picture);
+                BitmapUtil.discernImageForFile(reduceImagePath, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String resp = response.body().string();
+                        Log.e("json", resp);
+                        StringBuilder scene = new StringBuilder();
+                        StringBuilder object = new StringBuilder();
+                        try {
+                            JSONObject jsonObject = new JSONObject(resp);
+                            JSONArray scenes = jsonObject.getJSONArray("scenes");
+                            for (int i = 0; i < scenes.length(); i++) {
+                                JSONObject sceneItem = scenes.getJSONObject(i);
+                                scene.append(sceneItem.getString("value")
+                                        + "( " + sceneItem.getString("confidence") + "% )\n");
+                            }
+                            JSONArray objects = jsonObject.getJSONArray("objects");
+                            for (int i = 0; i < objects.length(); i++) {
+                                JSONObject objectItem = objects.getJSONObject(i);
+                                object.append(objectItem.getString("value")
+                                        + "( " + objectItem.getString("confidence") + "% ) ");
+                            }
+                            if (!scene.toString().equals("") && !object.toString().equals("")) {
+                                imageEdit.setText("场景： " + scene.toString() + "\n物体： " + object.toString());
+                            } else if (!scene.toString().equals("")) {
+                                imageEdit.setText("场景： " + scene.toString() + "\n物体： 未识别出");
+                            } else if (!object.toString().equals("")){
+                                imageEdit.setText("场景： 未识别出" + "\n物体： " + object.toString());
+                            } else {
+                                imageEdit.setText("场景： 未识别出" + "\n物体： 未识别出");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+            } else if (watchType == 2) {
+                BitmapUtil.discernImageForUrl(imageEdit.getText().toString(), new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String resp = response.body().string();
+                        StringBuilder scene = new StringBuilder();
+                        StringBuilder object = new StringBuilder();
+                        try {
+                            JSONObject jsonObject = new JSONObject(resp);
+                            JSONArray scenes = jsonObject.getJSONArray("scenes");
+                            for (int i = 0; i < scenes.length(); i++) {
+                                JSONObject sceneItem = scenes.getJSONObject(i);
+                                scene.append(sceneItem.getString("value")
+                                        + "( " + sceneItem.getString("confidence") + "% )\n");
+                            }
+                            JSONArray objects = jsonObject.getJSONArray("objects");
+                            for (int i = 0; i < objects.length(); i++) {
+                                JSONObject objectItem = objects.getJSONObject(i);
+                                object.append(objectItem.getString("value")
+                                        + "( " + objectItem.getString("confidence") + "% ) ");
+                            }
+                            if (!scene.toString().equals("") && !object.toString().equals("")) {
+                                imageEdit.setText("场景： " + scene.toString() + "\n物体： " + object.toString());
+                            } else if (!scene.toString().equals("")) {
+                                imageEdit.setText("场景： " + scene.toString() + "\n物体： 未识别出");
+                            } else if (!object.toString().equals("")){
+                                imageEdit.setText("场景： 未识别出" + "\n物体： " + object.toString());
+                            } else {
+                                imageEdit.setText("场景： 未识别出" + "\n物体： 未识别出");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+            }
         }
     }
 
