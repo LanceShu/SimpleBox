@@ -97,7 +97,6 @@ public class BitmapUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.e("newImagePath", newImagePath + " " + BitmapUtil.getBitmapSize(BitmapFactory.decodeFile(newImagePath)));
         return newImagePath;
     }
 
