@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/11/21.
+ * Created by Lance
+ * on 2017/11/21.
  */
 
 public class SendTableViewAdapter extends FragmentPagerAdapter {

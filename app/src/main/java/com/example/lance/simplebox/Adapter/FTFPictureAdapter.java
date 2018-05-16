@@ -19,7 +19,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.*;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.ViewHolder> {
@@ -102,7 +103,7 @@ public class FTFPictureAdapter extends RecyclerView.Adapter<FTFPictureAdapter.Vi
         private ImageView imageView;
         private ImageView isSelected;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             pictureLayout = (RelativeLayout) view.findViewById(R.id.picture_item);
             imageView = (ImageView) view.findViewById(R.id.picture_icon);

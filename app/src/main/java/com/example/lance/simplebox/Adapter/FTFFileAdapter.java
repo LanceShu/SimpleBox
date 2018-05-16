@@ -23,7 +23,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFFileAdapter extends RecyclerView.Adapter<FTFFileAdapter.ViewHolder> {
@@ -109,7 +110,7 @@ public class FTFFileAdapter extends RecyclerView.Adapter<FTFFileAdapter.ViewHold
         private TextView fileName;
         private TextView fileSize;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             fileLayout = (LinearLayout) view.findViewById(R.id.media_layout);
             fileSelected = (ImageView) view.findViewById(R.id.media_isSeleted);

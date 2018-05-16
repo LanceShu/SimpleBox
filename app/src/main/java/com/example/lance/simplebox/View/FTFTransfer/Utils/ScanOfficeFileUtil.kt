@@ -23,7 +23,7 @@ object ScanOfficeFileUtil{
         var selection = ""
         for(i in extension.indices){
 
-            if(i !=0 ){
+            if(i != 0){
                 selection += " OR "
             }
             selection = selection + MediaStore.Files.FileColumns.DATA + " LIKE '%" + extension[i] + "'"

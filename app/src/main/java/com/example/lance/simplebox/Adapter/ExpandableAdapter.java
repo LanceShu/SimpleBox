@@ -78,7 +78,6 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         View view = convertView;
         GroupHolder groupholder = null;
         if (view != null) {
-
             groupholder = (GroupHolder) view.getTag();
         } else {
             groupholder = new GroupHolder();

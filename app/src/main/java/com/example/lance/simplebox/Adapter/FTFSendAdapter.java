@@ -22,7 +22,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFSendAdapter extends RecyclerView.Adapter<FTFSendAdapter.ViewHolder> {
@@ -75,7 +76,7 @@ public class FTFSendAdapter extends RecyclerView.Adapter<FTFSendAdapter.ViewHold
         private TextView sendName;
         private TextView sendSize;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             sendImage = (ImageView) view.findViewById(R.id.media_image);
             sendName = (TextView) view.findViewById(R.id.media_name);

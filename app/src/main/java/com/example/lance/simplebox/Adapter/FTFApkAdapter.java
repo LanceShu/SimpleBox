@@ -22,7 +22,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFApkAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

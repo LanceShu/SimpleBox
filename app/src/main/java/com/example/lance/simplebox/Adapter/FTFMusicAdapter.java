@@ -21,7 +21,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHolder> {
@@ -101,7 +102,7 @@ public class FTFMusicAdapter extends RecyclerView.Adapter<FTFMusicAdapter.ViewHo
         private TextView musicName;
         private TextView musicSize;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             musicLayout = (LinearLayout) view.findViewById(R.id.media_layout);
             musicSelected = (ImageView) view.findViewById(R.id.media_isSeleted);

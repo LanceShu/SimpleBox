@@ -22,7 +22,8 @@ import java.util.List;
 import static com.example.lance.simplebox.View.FTFTransfer.FTFContent.FTFContent.sendFileBeans;
 
 /**
- * Created by Lance on 2017/11/29.
+ * Created by Lance
+ * on 2017/11/29.
  */
 
 public class FTFAudioAdapter extends RecyclerView.Adapter<FTFAudioAdapter.ViewHolder> {
@@ -107,7 +108,7 @@ public class FTFAudioAdapter extends RecyclerView.Adapter<FTFAudioAdapter.ViewHo
         private TextView audioName;
         private TextView audioSize;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             audioLayout = (LinearLayout) view.findViewById(R.id.media_layout);
             audioSelected = (ImageView) view.findViewById(R.id.media_isSeleted);

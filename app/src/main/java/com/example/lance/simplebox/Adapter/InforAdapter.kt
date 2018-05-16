@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
 /**
- * Created by Lance on 2017/12/16.
+ * Created by Lance
+ * on 2017/12/16.
  */
 
 class InforAdapter(fm: FragmentManager, private val tablist: List<String>, private val fragmentList: List<Fragment>) : FragmentPagerAdapter(fm) {
