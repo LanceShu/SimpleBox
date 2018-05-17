@@ -47,8 +47,8 @@ object ScanOfficeFileUtil{
                     file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    val size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,3)
+                    val size : Float = cursor.getInt(2).toFloat()/1024f/1024f
+                    file.fileSize = "$size".substring(0, 4)
                 }else{
                     file.fileSize = "unknown"
                 }
@@ -98,8 +98,8 @@ object ScanOfficeFileUtil{
                     file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    val size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,3)
+                    val size : Float = cursor.getInt(2).toFloat()/1024f/1024f
+                    file.fileSize = "$size".substring(0, 4)
                 }else{
                     file.fileSize = "unknown"
                 }
@@ -148,8 +148,8 @@ object ScanOfficeFileUtil{
                     file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    val size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,3)
+                    val size : Float = cursor.getInt(2).toFloat()/1024f/1024f
+                    file.fileSize = "$size".substring(0, 4)
                 }else{
                     file.fileSize = "unknown"
                 }
@@ -198,8 +198,8 @@ object ScanOfficeFileUtil{
                     file.filePath = "unknown"
                 }
                 if(cursor.getInt(2) != 0){
-                    val size : Float = cursor.getInt(2)/1024f/1024f
-                    file.fileSize = "$size".substring(0,3)
+                    val size : Float = cursor.getInt(2).toFloat()/1024f/1024f
+                    file.fileSize = "$size".substring(0, 4)
                 }else{
                     file.fileSize = "unknown"
                 }
